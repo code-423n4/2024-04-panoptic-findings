@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "kerdakov",
+  "risk": "2",
+  "title": "Medium Risk Vulnerability in FeesCalc due Potential Overflow in Fee Calculations",
+  "issueId": 7,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/7"
+}
