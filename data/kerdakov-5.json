@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "kerdakov",
+  "risk": "2",
+  "title": "Medium Risk Vulnerability in SafeTransferLib Due to Ignored ERC20 Transfer Return Values",
+  "issueId": 5,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/5"
+}
