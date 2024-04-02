@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "kerdakov",
+  "risk": "3",
+  "title": "High Risk Vulnerability in Multicall Due to Unchecked Delegate Calls",
+  "issueId": 6,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/6"
+}
