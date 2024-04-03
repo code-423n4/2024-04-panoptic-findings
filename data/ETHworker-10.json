@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "ETHworker",
+  "risk": "3",
+  "title": "Reentrancy Vulnerability due to Violation of Checks-Effects-Interactions Pattern in deposit() and mint() Functions",
+  "issueId": 10,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/10"
+}
