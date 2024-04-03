@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "Sanket_722",
+  "risk": "2",
+  "title": "OpenZeppelin Base64 Encoding may read from potentially dirty memory vulnerability",
+  "issueId": 13,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/13"
+}
