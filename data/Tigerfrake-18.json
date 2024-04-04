@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "Tigerfrake",
+  "risk": "2",
+  "title": "Approval for ERC1155 Token transfers is not removed after transfer",
+  "issueId": 18,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/18"
+}
