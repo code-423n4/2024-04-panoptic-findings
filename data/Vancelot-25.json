@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "Vancelot",
+  "risk": "2",
+  "title": "`ERC1155Minimal` has missing checks, making it non-compliant",
+  "issueId": 25,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/25"
+}
