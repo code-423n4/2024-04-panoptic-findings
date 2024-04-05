@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "Myrault",
+  "risk": "3",
+  "title": "CollateralTracker is susceptible to the inflation attack",
+  "issueId": 24,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/24"
+}
