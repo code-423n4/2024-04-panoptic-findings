@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "Vancelot",
+  "risk": "3",
+  "title": "`slot0` is used in two function which could easily be manipulated",
+  "issueId": 30,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/30"
+}
