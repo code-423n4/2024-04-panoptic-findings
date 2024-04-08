@@ -45,3 +45,5 @@ Post deployment, the initialize() can be front run by any one to claim the owner
 
 Implement the initialize() to set a new owner and mark initialized as true to be restricted to current owner, which was set in the constructor. 
 
+### 4) PanopticFactory::initialize does not restrict any functionality
+The s_initialized variable marked as initialized does not restrict any functionality even if it was not initialized. Meaning, anyone can deploy a new pool even when initialize was not called.
