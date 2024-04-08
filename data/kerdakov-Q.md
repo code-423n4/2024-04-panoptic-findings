@@ -1,4 +1,4 @@
-In `PanopticFactory.sol`, make sure to emit an event when initializing the owner and setting the `s_initialized` bool to true. 
+In `PanopticFactory.sol`, make sure to emit an event when initializing the owner and setting the `s_initialized` bool to true. This creates a transparent and immutable record of the initialization, making it easier to track when and by whom the contract was initialized.
 
 ```
 function initialize(address _owner) public {
