@@ -39,3 +39,9 @@ code snippets:
 ```
 Solution:
 Add validation in the constructor to ensure that COMMISSION_FEE is less than DECIMALS, else revert. 
+
+### 3) PanopticFactory::initialize() can be front run
+Post deployment, the initialize() can be front run by any one to claim the ownership. This risk could be eliminated by setting the owner in the constructor.
+
+Implement the initialize() to set a new owner and mark initialized as true to be restricted to current owner, which was set in the constructor. 
+
