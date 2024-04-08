@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "MSaptarshi",
+  "risk": "2",
+  "title": "Implementations of clones could be metamorphic and lead to exploit",
+  "issueId": 34,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/34"
+}
