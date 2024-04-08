@@ -19,7 +19,7 @@ In CollateralTracker.sol, lines 321 and 338 it says `"the caller must have a bal
         // if they do: we don't want them sending panoptic pool shares to others
         // since that's like reducing collateral
 
-+       uint256 balance = ERC20Minimal.balanceOf(msg.sender);
++       uint256 balance = balanceOf[msg.sender];
 +       require(balance >= amount, "TRANSFER_AMOUNT_EXCEEDS_BALANCE");
 
         if (s_panopticPool.numberOfPositions(msg.sender) != 0) revert Errors.PositionCountNotZero();
@@ -41,8 +41,8 @@ In CollateralTracker.sol, lines 321 and 338 it says `"the caller must have a bal
         // if they do: we don't want them sending panoptic pool shares to others
         // as this would reduce their amount of collateral against the opened positions
 
-+       uint256 currentAllowance = ERC20Minimal.allowance[from][msg.sender];
-+       require(currentAllowance >= amount, "TRANSFER_AMOUNT_EXCEEDS_ALLOWANCE");
++       uint256 allowed = allowance[from][msg.sender];
++       require(allowed >= amount, "TRANSFER_AMOUNT_EXCEEDS_ALLOWANCE");
 
         if (s_panopticPool.numberOfPositions(from) != 0) revert Errors.PositionCountNotZero();
 
