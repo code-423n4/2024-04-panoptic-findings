@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "MSaptarshi",
+  "risk": "2",
+  "title": "The Deposit function might mint less shares than expected ",
+  "issueId": 39,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/39"
+}
