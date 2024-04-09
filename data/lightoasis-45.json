@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "lightoasis",
+  "risk": "3",
+  "title": "A user can get more tokens than they should get via CollateralTracker.deposit(), due to accounting issues in PanopticPool.liquidate()",
+  "issueId": 45,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/45"
+}
