@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "krisp",
+  "risk": "3",
+  "title": "Use of delegatecall in a payable function inside a loop",
+  "issueId": 52,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/52"
+}
