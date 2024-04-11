@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "Mrxstrange",
+  "risk": "2",
+  "title": "Lack of Access Control Modifier in startToken() Impacts Collateral Tracker State Values",
+  "issueId": 58,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/58"
+}
