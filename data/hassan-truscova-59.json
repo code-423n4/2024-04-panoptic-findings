@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "hassan-truscova",
+  "risk": "2",
+  "title": "Out of bounds access for positionIdList in _mintOptions",
+  "issueId": 59,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/59"
+}
