@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "Daniel526",
+  "risk": "2",
+  "title": "An attacker can create under-collateralized positions due to inappropriate adjustments of the sell collateral ratio",
+  "issueId": 72,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/72"
+}
