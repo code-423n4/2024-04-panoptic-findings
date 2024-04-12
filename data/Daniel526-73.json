@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "Daniel526",
+  "risk": "2",
+  "title": "Dynamic Collateral Ratio Calculation Deviates from Specified Static Requirement",
+  "issueId": 73,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/73"
+}
