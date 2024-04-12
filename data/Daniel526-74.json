@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "Daniel526",
+  "risk": "2",
+  "title": "_buyCollateralRatio does not consider the notional value of the option or the price of the underlying asset when calculating the buy collateral ratio",
+  "issueId": 74,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/74"
+}
