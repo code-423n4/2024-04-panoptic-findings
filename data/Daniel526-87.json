@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "Daniel526",
+  "risk": "2",
+  "title": " Potential Loss of Precision Due to Division Before Multiplication in [startToken](vscode-remote://wsl%2Bubuntu/home/daniel/Panoptic/2024-04-panoptic/contracts/CollateralTracker.sol#92%2C112-92%2C112) Function",
+  "issueId": 87,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/87"
+}
