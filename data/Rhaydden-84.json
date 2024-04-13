@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "Rhaydden",
+  "risk": "2",
+  "title": "Incorrect Premium Calculation for Non-Long Legs in `_calculateAccumulatedPremia` Function",
+  "issueId": 84,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/84"
+}
