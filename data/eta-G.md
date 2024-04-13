@@ -5,6 +5,10 @@ Since [initializeAMMPool](https://github.com/code-423n4/2024-04-panoptic/blob/83
 [SemiFungiblePositionManager::initializeAMMPool#L354-362](https://github.com/code-423n4/2024-04-panoptic/blob/833312ebd600665b577fbd9c03ffa0daf250ed24/contracts/SemiFungiblePositionManager.sol#L354C1-L362C56)
 
 ```solidity
+    function initializeAMMPool(address token0, address token1, uint24 fee) external {
+        // compute the address of the Uniswap v3 pool for the given token0, token1, and fee tier
+        address univ3pool = FACTORY.getPool(token0, token1, fee);
+
         // reverts if the Uni v3 pool has not been initialized
         if (univ3pool == address(0)) revert Errors.UniswapPoolNotInitialized();
 
@@ -16,16 +20,22 @@ Since [initializeAMMPool](https://github.com/code-423n4/2024-04-panoptic/blob/83
         if (s_AddrToPoolIdData[univ3pool] != 0) return;
 ```
 
-Remove the below require statement:
+Consider removing the check:
 
 [PanopticFactory::deployNewPool#L227-230](https://github.com/code-423n4/2024-04-panoptic/blob/833312ebd600665b577fbd9c03ffa0daf250ed24/contracts/PanopticFactory.sol#L227C1-L230C52)
 
 
 ```solidity
+function deployNewPool( address token0, address token1, uint24 fee, bytes32 salt
+    ) external returns (PanopticPool newPoolContract) {
+...
+IUniswapV3Pool v3Pool = IUniswapV3Pool(UNIV3_FACTORY.getPool(token0, token1, fee));
+-       if (address(v3Pool) == address(0)) revert Errors.UniswapPoolNotInitialized();
 
-        if (address(v3Pool) == address(0)) revert Errors.UniswapPoolNotInitialized();
-
-        if (address(s_getPanopticPool[v3Pool]) != address(0))
+-       if (address(s_getPanopticPool[v3Pool]) != address(0))
             revert Errors.PoolAlreadyInitialized();
+
+         // initialize pool in SFPM if it has not already been initialized
+        SFPM.initializeAMMPool(token0, token1, fee);
 
 ```
