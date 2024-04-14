@@ -110,3 +110,46 @@ It's generally recommended to lock the compiler version to avoid these issues.
 ```solidity
 pragma solidity 0.8.0;
 ```
+
+### [L-5] Missing Value verification
+##### Description:
+Certain functions lack value safety check. The values of the arguments should be verified to allow only the ones that comply with the contract's logic.
+
+##### Instance:
+In the constructor of `CollateralTracker`, values such as `_sellerCollateralRatio, _buyerCollateralRatio` are not sanitized to meet the specs as highlighted in the comments:
+
+> [constructor()](https://github.com/code-423n4/2024-04-panoptic/blob/833312ebd600665b577fbd9c03ffa0daf250ed24/contracts/CollateralTracker.sol#L178-L211)
+```solidity
+    constructor(
+        uint256 _commissionFee,
+        uint256 _sellerCollateralRatio,
+        uint256 _buyerCollateralRatio,
+        int256 _forceExerciseCost,
+        uint256 _targetPoolUtilization,
+        uint256 _saturatedPoolUtilization,
+        uint256 _ITMSpreadMultiplier
+    ) {
+        COMMISSION_FEE = _commissionFee;
+        SELLER_COLLATERAL_RATIO = _sellerCollateralRatio;
+        BUYER_COLLATERAL_RATIO = _buyerCollateralRatio;
+        FORCE_EXERCISE_COST = _forceExerciseCost;
+        TARGET_POOL_UTIL = _targetPoolUtilization;
+        SATURATED_POOL_UTIL = _saturatedPoolUtilization;
+        ITM_SPREAD_MULTIPLIER = _ITMSpreadMultiplier;
+
+         ---- ---------more code----------
+}
+```
+> [Comments on the variables](https://github.com/code-423n4/2024-04-panoptic/blob/833312ebd600665b577fbd9c03ffa0daf250ed24/contracts/CollateralTracker.sol#L139-L145)
+```solidity
+    /// @notice Required collateral ratios for buying, represented as percentage * 10_000.
+    /// i.e 20% -> 0.2 * 10_000 = 2_000.
+    uint256 immutable SELLER_COLLATERAL_RATIO;
+
+
+    /// @notice Required collateral ratios for selling, represented as percentage * 10_000.
+    /// i.e 10% -> 0.1 * 10_000 = 1_000.
+    uint256 immutable BUYER_COLLATERAL_RATIO;
+```
+##### Recommendation:
+Verify the values provided in the arguments. This issue can be addressed by utilizing a `require` statement.
