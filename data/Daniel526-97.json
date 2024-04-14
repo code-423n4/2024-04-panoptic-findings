@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "Daniel526",
+  "risk": "2",
+  "title": "BurnTokenizedPosition Function Does Not Check the Number of Legs in the TokenId",
+  "issueId": 97,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/97"
+}
