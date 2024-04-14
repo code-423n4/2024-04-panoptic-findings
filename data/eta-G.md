@@ -1,13 +1,10 @@
 # Remove unnecessary revert statements
 
-Since [initializeAMMPool](https://github.com/code-423n4/2024-04-panoptic/blob/833312ebd600665b577fbd9c03ffa0daf250ed24/contracts/SemiFungiblePositionManager.sol#L354C1-L362C56) function has checked whether v3 pool has been initialized and the pool has been initialized in SFPM in SemiFungiblePositionManager.sol contract, there is no requirement of revert check in [deployNewPool](https://github.com/code-423n4/2024-04-panoptic/blob/833312ebd600665b577fbd9c03ffa0daf250ed24/contracts/PanopticFactory.sol#L227C1-L230C52) function of PanopticFactory starting at line 227. 
+Since [initializeAMMPool](https://github.com/code-423n4/2024-04-panoptic/blob/833312ebd600665b577fbd9c03ffa0daf250ed24/contracts/SemiFungiblePositionManager.sol#L354C1-L362C56) function has checked whether v3 pool has been initialized and the pool has been initialized in SFPM in SemiFungiblePositionManager.sol contract, there is no requirement of revert check in [deployNewPool](https://github.com/code-423n4/2024-04-panoptic/blob/833312ebd600665b577fbd9c03ffa0daf250ed24/contracts/PanopticFactory.sol#L227C1-L230C52) function of PanopticFactory contract starting at line 227. 
 
 [SemiFungiblePositionManager::initializeAMMPool#L354-362](https://github.com/code-423n4/2024-04-panoptic/blob/833312ebd600665b577fbd9c03ffa0daf250ed24/contracts/SemiFungiblePositionManager.sol#L354C1-L362C56)
 
-```solidity
-    function initializeAMMPool(address token0, address token1, uint24 fee) external {
-        // compute the address of the Uniswap v3 pool for the given token0, token1, and fee tier
-        address univ3pool = FACTORY.getPool(token0, token1, fee);
+```solidity  
 
         // reverts if the Uni v3 pool has not been initialized
         if (univ3pool == address(0)) revert Errors.UniswapPoolNotInitialized();
@@ -26,16 +23,11 @@ Consider removing the check:
 
 
 ```solidity
-function deployNewPool( address token0, address token1, uint24 fee, bytes32 salt
-    ) external returns (PanopticPool newPoolContract) {
-...
-IUniswapV3Pool v3Pool = IUniswapV3Pool(UNIV3_FACTORY.getPool(token0, token1, fee));
+
 -       if (address(v3Pool) == address(0)) revert Errors.UniswapPoolNotInitialized();
 
 -       if (address(s_getPanopticPool[v3Pool]) != address(0))
             revert Errors.PoolAlreadyInitialized();
 
-         // initialize pool in SFPM if it has not already been initialized
-        SFPM.initializeAMMPool(token0, token1, fee);
 
 ```
