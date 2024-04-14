@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "Tigerfrake",
+  "risk": "2",
+  "title": "Rounding leaks in CollateralTracker:previewDeposit() ",
+  "issueId": 91,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/91"
+}
