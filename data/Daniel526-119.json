@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "Daniel526",
+  "risk": "2",
+  "title": "Transaction Reversion Due to Out-of-Gas Error During Looping Over Legs",
+  "issueId": 119,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/119"
+}
