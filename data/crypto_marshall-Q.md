@@ -1,6 +1,4 @@
-https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol
-
-Line 195 - 211
+https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L195C1-L211C6
 
         // calculate amount of ticks required for upwards and downwards moves, used to check if current and mini-median tick
         // are out of sync (then apply a 100% collateral requirement)
