@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "eta",
+  "risk": "2",
+  "title": "# Ineffective check in the `startPool` function of `PanopticPool.sol`",
+  "issueId": 118,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/118"
+}
