@@ -153,3 +153,21 @@ In the constructor of `CollateralTracker`, values such as `_sellerCollateralRati
 ```
 ##### Recommendation:
 Verify the values provided in the arguments. This issue can be addressed by utilizing a `require` statement.
+
+### [L-6] For same condition checks, use modifiers
+##### Description:
+The main advantage of using modifiers for the same condition checks in different functions is code reusability and readability. Instead of repeating the same condition check in every function that requires it, you can define a modifier once and then apply it to any function that needs it. This makes your code cleaner and easier to maintain.
+
+##### Instances:
+The following check has been used in multiple instances to put a limit to the amount of `assets deposited`
+
+> [CollateralTracker.deposit()](https://github.com/code-423n4/2024-04-panoptic/blob/833312ebd600665b577fbd9c03ffa0daf250ed24/contracts/CollateralTracker.sol#L418)
+```solidity
+        if (assets > type(uint104).max) revert Errors.DepositTooLarge();
+```
+
+> [CollateralTracker.mint()](https://github.com/code-423n4/2024-04-panoptic/blob/833312ebd600665b577fbd9c03ffa0daf250ed24/contracts/CollateralTracker.sol#L480)
+```solidity
+        if (assets > type(uint104).max) revert Errors.DepositTooLarge();
+```
+This loos redundant and should be replaced with a modifier.
