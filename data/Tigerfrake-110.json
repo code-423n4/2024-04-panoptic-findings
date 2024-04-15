@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "Tigerfrake",
+  "risk": "2",
+  "title": "Address of the `Panoptic Factory smart contract` is not set during construction in `PanopticPool` contract",
+  "issueId": 110,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/110"
+}
