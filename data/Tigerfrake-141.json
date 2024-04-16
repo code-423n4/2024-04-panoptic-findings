@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "Tigerfrake",
+  "risk": "3",
+  "title": "Wrong assumption used in `delegate()`  & `revoke()` may result in exploitation",
+  "issueId": 141,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/141"
+}
