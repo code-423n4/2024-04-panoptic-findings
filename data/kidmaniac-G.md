@@ -117,7 +117,7 @@ You can find excellent examples of these practices within [Solady's](https://git
 Manual audit
 
 $~$
-## [G-03] Use asssembly to validate `msg.sender`
+## [G-03] Use `assembly` to validate `msg.sender`
 
 We can optimize the validation of msg.sender in the `PanopticFactory.transferOwnership` and `CollateralTracker.onlyPanopticPool` modifier functions using assembly with the minimal number of opcodes required. Furthermore, we can replace iszero(eq()) with xor(), saving 3 gas. Additionally, we might save gas on the error path by utilizing scratch space to store the error selector, potentially avoiding memory expansion costs..
 
