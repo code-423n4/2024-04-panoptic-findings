@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "sbaudh6",
+  "risk": "2",
+  "title": "Precision Loss and Incorrect Fee Calculation in startToken() Function",
+  "issueId": 142,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/142"
+}
