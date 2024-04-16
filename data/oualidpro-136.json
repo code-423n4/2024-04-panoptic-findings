@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "oualidpro",
+  "risk": "3",
+  "title": "Use of `slot0` to get `currentSqrtPriceX96` can lead to price manipulation",
+  "issueId": 136,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/136"
+}
