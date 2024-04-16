@@ -58,6 +58,7 @@ File: ./contracts/SemiFungiblePositionManager.sol
 ## Tools used
 Manual audit
 
+$~$
 ## [G-02] Use `assembly` for efficient event emission
 
 We can use assembly to emit events efficiently by utilizing `scratch space` and the `free memory pointer`. This will allow us to potentially avoid memory expansion costs.
@@ -115,3 +116,43 @@ You can find excellent examples of these practices within [Solady's](https://git
 ## Tools used
 Manual audit
 
+$~$
+## [G-03] Use asssembly to validate `msg.sender`
+
+We can optimize the validation of msg.sender in the `PanopticFactory.transferOwnership` and `CollateralTracker.onlyPanopticPool` modifier functions using assembly with the minimal number of opcodes required. Furthermore, we can replace iszero(eq()) with xor(), saving 3 gas. Additionally, we might save gas on the error path by utilizing scratch space to store the error selector, potentially avoiding memory expansion costs..
+
+<https://github.com/code-423n4/2024-04-panoptic/blob/833312ebd600665b577fbd9c03ffa0daf250ed24/contracts/PanopticFactory.sol#L150>
+
+Gas savings for `PanopticFactory.transferOwnership`.
+
+```solidity
+ File: ./contracts/PanopticFactory.sol
+ - if (msg.sender != currentOwner) revert Errors.NotOwner();
+ + assembly {
+ +     if xor(caller(), currentOwner) {
+ +         // bytes4(keccak256("NotOwner()")) "0x30cd7471"
+ +         mstore(0, 0x30cd7471)
+ +         revert(0x1c, 0x04)
+ +       }
+ +     }
+```
+
+<https://github.com/code-423n4/2024-04-panoptic/blob/833312ebd600665b577fbd9c03ffa0daf250ed24/contracts/CollateralTracker.sol#L170>
+
+Gas savings for `CollateralTracker.onlyPanopticPool` modifier
+
+```solidity
+ File: ./contracts/CollateralTracker.sol
+ - if (msg.sender != address(s_panopticPool)) revert Errors.NotPanopticPool();
+ + address sPanopticPool = address(s_panopticPool);
+ +      assembly {
+ +          if xor(caller(), sPanopticPool) {
+ +              // bytes4(keccak256("NotPanopticPool()")) "0x2dd1912a"
+ +              mstore(0, 0x2dd1912a)
+ +              revert(0x1c, 0x04)
+ +          }
+ +      }
+```
+
+## Tools used
+Manual audit
