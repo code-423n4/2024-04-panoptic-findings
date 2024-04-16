@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "Stormreckson",
+  "risk": "2",
+  "title": "when pool gets drained deposits will revert due division by zero",
+  "issueId": 150,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/150"
+}
