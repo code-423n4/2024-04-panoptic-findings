@@ -1,4 +1,4 @@
-# Remove unnecessary revert statements
+# [G-01]Remove unnecessary revert statements
 
 Since [initializeAMMPool](https://github.com/code-423n4/2024-04-panoptic/blob/833312ebd600665b577fbd9c03ffa0daf250ed24/contracts/SemiFungiblePositionManager.sol#L354C1-L362C56) function has checked whether v3 pool has been initialized and the pool has been initialized in SFPM in SemiFungiblePositionManager.sol contract, there is no requirement of revert check in [deployNewPool](https://github.com/code-423n4/2024-04-panoptic/blob/833312ebd600665b577fbd9c03ffa0daf250ed24/contracts/PanopticFactory.sol#L227C1-L230C52) function of PanopticFactory contract starting at line 227. 
 
@@ -30,4 +30,47 @@ Consider removing the check:
             revert Errors.PoolAlreadyInitialized();
 
 
+```
+
+# [G-02] Cache `numLegs` storage in memory outside of nested for loops to avoid multiple `SLOAD` for every i value.
+
+By caching the `numLegs` outside of loops, this can result in accessing those `numLegs` number of starting elements only one times instead of multiple times. It can save ~100 Gas on avoiding each SLOAD when accessed after first time. Since each SLOAD costs 100 Gas while each MLOAD takes only 3 Gas.
+
+[TokenId.sol::validate#L507-524](https://github.com/code-423n4/2024-04-panoptic/blob/833312ebd600665b577fbd9c03ffa0daf250ed24/contracts/types/TokenId.sol#L507C1-L524C18)
+
+```solidity
+
+            for (uint256 i = 0; i < 4; ++i) {
+                if (self.optionRatio(i) == 0) {                   
+                    if ((TokenId.unwrap(self) >> (64 + 48 * i)) != 0)
+                        revert Errors.InvalidTokenIdParameter(1);
+                    break; 
+                }
+
+                //@audit cache `numLegs` outside from nested for loops
+                uint256 numLegs = self.countLegs();
+                for (uint256 j = i + 1; j < numLegs; ++j) {
+                    if (uint48(chunkData >> (48 * i)) == uint48(chunkData >> (48 * j))) {
+                        revert Errors.InvalidTokenIdParameter(6);
+                    }
+                }
+```
+Recommended Mitigation Steps
+
+```solidity
+
++           uint256 numLegs = self.countLegs();
+            for (uint256 i = 0; i < 4; ++i) {
+                if (self.optionRatio(i) == 0) {                   
+                    if ((TokenId.unwrap(self) >> (64 + 48 * i)) != 0)
+                        revert Errors.InvalidTokenIdParameter(1);
+                    break; 
+                }
+
+- 519:           uint256 numLegs = self.countLegs();
+                for (uint256 j = i + 1; j < numLegs; ++j) {
+                    if (uint48(chunkData >> (48 * i)) == uint48(chunkData >> (48 * j))) {
+                        revert Errors.InvalidTokenIdParameter(6);
+                    }
+                }
 ```
