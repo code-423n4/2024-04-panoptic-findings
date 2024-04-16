@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "0xb41a",
+  "risk": "3",
+  "title": "Passing an arbitrary (from)  address to transferFrom [ FILE NAME :  SemiFungiblePositionManager.sol ]",
+  "issueId": 127,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/127"
+}
