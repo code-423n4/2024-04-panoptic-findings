@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "lightoasis",
+  "risk": "3",
+  "title": "Attacker can manipulate low TVL Uniswap V3 pool to borrow and swap to make Lending Pool in loss",
+  "issueId": 138,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/138"
+}
