@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "Dinesh11G",
+  "risk": "2",
+  "title": "ERC20 Token Transfer Vulnerability Due to Non-Compliant Token Implementation",
+  "issueId": 133,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/133"
+}
