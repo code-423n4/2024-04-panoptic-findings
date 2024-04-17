@@ -32,9 +32,9 @@ Consider removing the check:
 
 ```
 
-# [G-02] Cache `numLegs` storage in memory outside of nested for loops to avoid multiple `SLOAD` for every i value.
+# [G-02] Cache `numLegs` storage in memory outside of nested for loops
 
-By caching the `numLegs` outside of loops, this can result in accessing those `numLegs` number of starting elements only one times instead of multiple times. It can save ~100 Gas on avoiding each SLOAD when accessed after first time. Since each SLOAD costs 100 Gas while each MLOAD takes only 3 Gas.
+By caching the `numLegs` outside of loops, this could be handled in the same way with all other `countLegs()` in those contracts of our Panoptic projects.
 
 [TokenId.sol::validate#L507-524](https://github.com/code-423n4/2024-04-panoptic/blob/833312ebd600665b577fbd9c03ffa0daf250ed24/contracts/types/TokenId.sol#L507C1-L524C18)
 
@@ -73,4 +73,14 @@ Recommended Mitigation Steps
                         revert Errors.InvalidTokenIdParameter(6);
                     }
                 }
+```
+
+Additionally, `countLegs()` in the `exerciseCost` function of the `CollateralTracker.sol` contract could be handled in the same way too.
+
+[CollateralTracker.sol::exerciseCost#L662](https://github.com/code-423n4/2024-04-panoptic/blob/833312ebd600665b577fbd9c03ffa0daf250ed24/contracts/CollateralTracker.sol#L662C1-L662C73)
+
+```solidity
+- 662:       for (uint256 leg = 0; leg < positionId.countLegs(); ++leg) {
++            uint256 numLegs = positionId.countLegs();
++            for (uint256 leg = 0; leg < numLegs; ++leg) {
 ```
