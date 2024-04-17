@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "Daniel526",
+  "risk": "2",
+  "title": "_updatePositionDataBurn function can allow outdated or incorrect data to persist in the contract state, potentially compromising the integrity and security of the protocol",
+  "issueId": 166,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/166"
+}
