@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "jesjupyter",
+  "risk": "2",
+  "title": "`PanopticFactory::minePoolAddress` does not guarantee that returned `bestSalt` contain caller address as first 20 bytes",
+  "issueId": 170,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/170"
+}
