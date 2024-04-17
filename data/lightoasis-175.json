@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "lightoasis",
+  "risk": "3",
+  "title": "Important state updates are made after the callback in the _mintLiquidity() function.",
+  "issueId": 175,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/175"
+}
