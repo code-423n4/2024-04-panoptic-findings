@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "DanielArmstrong",
+  "risk": "3",
+  "title": "There is an error in the process of settling fee when `PanopticPool.forceExercise()` is called.",
+  "issueId": 207,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/207"
+}
