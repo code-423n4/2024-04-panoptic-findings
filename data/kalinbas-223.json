@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "kalinbas",
+  "risk": "3",
+  "title": "Wrongly defined CLEAR_TL_MASK constant breaks Math",
+  "issueId": 223,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/223"
+}
