@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "kodyvim",
+  "risk": "3",
+  "title": "Malicious users can frontrun calls to startToken to deposit/mint arbitrary token shares without providing assets",
+  "issueId": 209,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/209"
+}
