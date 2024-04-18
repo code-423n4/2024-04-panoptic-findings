@@ -129,3 +129,27 @@ The following check has been used in multiple instances to put a limit to the am
         if (assets > type(uint104).max) revert Errors.DepositTooLarge();
 ```
 This loos redundant and should be replaced with a modifier.
+
+## [L-6] Unnecessary solvency checks
+In `PanopticPool.mintOptions()`, we need to perform solvency check on user's account to ensure they had enough buying power to mint the option. 
+However, the solvency validation would occur for every invocation of the `mintOptions()` function, irrespective of whether the user has open positions or not.
+
+- https://github.com/code-423n4/2024-04-panoptic/blob/833312ebd600665b577fbd9c03ffa0daf250ed24/contracts/PanopticPool.sol#L659-L661
+
+```solidity
+        // Perform solvency check on user's account to ensure they had enough buying power to mint the option
+        // Add an initial buffer to the collateral requirement to prevent users from minting their account close to insolvency
+        uint256 medianData = _validateSolvency(msg.sender, positionIdList, BP_DECREASE_BUFFER);
+```
+## Impact
+Potential Overhead: Executing the solvency validation unconditionally might introduce additional overhead, especially in situations where the user frequently interacts with the contract but rarely has open positions.
+
+## Mitigation
+Add a conditional check for solvency validation i.e only if the user has open positions.
+
+```solidity
+if (positionIdList.length > 0){
+    uint256 medianData = _validateSolvency(msg.sender, positionIdList, BP_DECREASE_BUFFER);
+    if (medianData != 0) s_miniMedian = medianData;
+}
+```
