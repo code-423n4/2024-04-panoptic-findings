@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "lsaudit",
+  "risk": "2",
+  "title": "Lack of parameter `to` check in  `ERC1155Minimal.sol` makes this contract to be not compliant with ERC-1155 standard",
+  "issueId": 226,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/226"
+}
