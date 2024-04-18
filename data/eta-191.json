@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "eta",
+  "risk": "2",
+  "title": "# Add a check of `_validatePositionList` for the `_burnAllOptionsFrom` function in `PanopticPool.sol` contract",
+  "issueId": 191,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/191"
+}
