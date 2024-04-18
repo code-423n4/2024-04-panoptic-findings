@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "lsaudit",
+  "risk": "2",
+  "title": "`CollateralTracker.sol` is not compliant with ERC-4626 because of the incorrect implementation of `totalAssets()`",
+  "issueId": 228,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/228"
+}
