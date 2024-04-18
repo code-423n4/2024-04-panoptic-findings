@@ -24,7 +24,7 @@ Panoptic addresses key challenges in on-chain options trading by offering a more
 ## 1. SemiFungiblePositionManager.sol
 
 
-The Semifungible Position Manager (SFPM) for Panoptic is a gas-efficient alternative to Uniswap's NonFungiblePositionManager that offers advanced management of complex, multi-leg Uniswap positions encoded in ERC-1155 token IDs. It enhances the users experience by allowing the minting of positions with only one type of token and supporting both traditional LP positions (adding liquidity to Uniswap) and "long" positions (burning Uniswap liquidity). This versatile tool serves as a crucial component of the Panoptic protocol, acting as the "engine" that empowers savvy Uniswap V3 LPs to manage their liquidity more efficiently and effectively. The SFPM smart contract manages LP positions using the ERC-1155 interface, wrapping up to four-legged Uniswap V3 positions in a single non-fungible token. This innovation provides a valuable upgrade for liquidity management and positions Panoptic as a robust solution in the decentralized finance ecosystem.
+The Semifungible Position Manager (SFPM) is a gas-efficient alternative to Uniswap's NonFungiblePositionManager that offers advanced management of complex, multi-leg Uniswap positions encoded in ERC-1155 token IDs. It enhances the users experience by allowing the minting of positions with only one type of token and supporting both traditional LP positions (adding liquidity to Uniswap) and "long" positions (burning Uniswap liquidity). This versatile tool serves as a crucial component of the Panoptic protocol, acting as the "engine" that empowers savvy Uniswap V3 LPs to manage their liquidity more efficiently and effectively. The SFPM smart contract manages LP positions using the ERC-1155 interface, wrapping up to four-legged Uniswap V3 positions in a single non-fungible token. This innovation provides a valuable upgrade for liquidity management and positions Panoptic as a robust solution in the decentralized finance ecosystem.
 
 ***Here is a breakdown of the key functions***:
 
@@ -1087,6 +1087,8 @@ Analyzing the codebase for gas efficiency provided valuable insights into the me
        
 
         
+
+
 
 ### Time spent:
 90 hours
