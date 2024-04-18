@@ -65,7 +65,7 @@ it takes `amount0Delta` The amount of token0 that was either sent (negative valu
 `Transfer Tokens`: It transfers the owed tokens (token0 or token1) from the payer to the pool.
 This function ensures that the necessary tokens are transferred from the payer to the pool in accordance with the outcomes of the swap, thereby facilitating accurate accounting and liquidity management in the pool.
 
-## Mint/Burn functions
+***Mint/Burn functions***
 
 ***mintTokenizedPosition(tokenId, positionSize, slippageTickLimitLow, slippageTickLimitHigh)*** :
 
@@ -93,7 +93,7 @@ Upon execution, the function burns the specified position and emits an event ind
 `totalSwapped` : A LeftRight-encoded value showing the total amount of token0 and token1 swapped during the burning process, if required.
 This function plays a crucial role in managing positions within the SFPM contract and ensures the efficient and proper handling of positions according to the provided parameters and conditions.
 
-## Transfer hook implementations
+***Transfer hook implementations***
 
 * *`safeTransferFrom(from, to, id, amount, data)`* : The function transfers a single token from one user to another while respecting token approvals.
 
@@ -101,7 +101,7 @@ This function plays a crucial role in managing positions within the SFPM contrac
 
 * *`registerTokenTransfer(from,  to,  id,  amount)`* : The function updates user position data following a token transfer. Token transfers are only allowed if you transfer your entire liquidity of a given chunk and the recipient has none
 
-## AMM Interaction & Position Update Helpers
+***AMM Interaction & Position Update Helpers***
 
 * *`_validateAndForwardToAMM(tokenId, positionSize, tickLimitLow, tickLimitHigh)`* : it checks the proposed option position and size and forwards the minting and potential swapping tasks. Returns collectedByLeg An array of LeftRight encoded words containing the amount of token0 and token1 collected as fees for each leg and totalMoved the total amount of funds swapped in Uniswap as part of building potential ITM positions.
 
@@ -124,7 +124,7 @@ This function plays a crucial role in managing positions within the SFPM contrac
 
 * *`_getPremiaDeltas(currentLiquidity, collectedAmounts)`* : It updates the Owed and Gross account liquidities. Returns two values: `deltaPremiumOwed` and `deltaPremiumGross`, which are both LeftRightUnsigned types representing the extra premium to be added to the owed and gross accumulators for token0 (right) and token1 (left).
        
-## Properties
+***Properties***
 
 * *`getAccountLiquidity(univ3pool, owner, tokenType, tickLower, tickUpper)`* : It retrieves the liquidity associated with a position in a Uniswap v3 pool. Returns `LeftRightUnsigned` representing net liquidity `(rightSlot)` and removed liquidity `(leftSlot)` for a specified position based on owner, token type, and tick range.
        
@@ -1087,6 +1087,8 @@ Analyzing the codebase for gas efficiency provided valuable insights into the me
        
 
         
+
+
 
 
 
