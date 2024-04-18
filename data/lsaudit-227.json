@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "lsaudit",
+  "risk": "2",
+  "title": "Incorrect assumption in `_mint()` may lead to overflow",
+  "issueId": 227,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/227"
+}
