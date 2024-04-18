@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "Joshuajee",
+  "risk": "3",
+  "title": "The `CollateralTracker.sol:deposit()` is vulnerable to sandwich attacks",
+  "issueId": 224,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/224"
+}
