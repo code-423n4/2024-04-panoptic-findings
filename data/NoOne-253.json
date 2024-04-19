@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "NoOne",
+  "risk": "2",
+  "title": "Critical Vulnerability: Lack of Balance Check in ERC20 _transferFrom Function",
+  "issueId": 253,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/253"
+}
