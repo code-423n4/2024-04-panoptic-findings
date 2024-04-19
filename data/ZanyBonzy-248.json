@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "ZanyBonzy",
+  "risk": "2",
+  "title": "The returned value for \"observe\" call in `twapFilter` doesn't round up for negative tick deltas",
+  "issueId": 248,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/248"
+}
