@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "Daniel526",
+  "risk": "2",
+  "title": "Missing Return Value in ERC20 Token Transfer transferFrom Function",
+  "issueId": 237,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/237"
+}
