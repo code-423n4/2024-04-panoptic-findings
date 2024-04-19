@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "MSaptarshi",
+  "risk": "2",
+  "title": "The pool deployment in PanopticFactory will revert due to boolean oprators",
+  "issueId": 238,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/238"
+}
