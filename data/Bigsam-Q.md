@@ -8,7 +8,7 @@
 +------+------------------------------------------------------------------------------+----------+
 | L-01 | Function Visibility marked as public for internal logic                      |    2     |
 | L-02 | Implement Length Check in safeBatchTransferFrom and balanceOfBatch Functions |    2     |
-| L-03 |   lack of                                                                    |    2     |
+| L-03 | Implement Address to Validation for ERC1155 token Receiver                   |    3     |
 +------+------------------------------------------------------------------------------+----------+
 ```
 
