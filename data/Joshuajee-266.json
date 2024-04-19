@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "Joshuajee",
+  "risk": "2",
+  "title": "Error due to divison could make `CollateralTracker.sol:s_ITMSpreadFee` equal to zero",
+  "issueId": 266,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/266"
+}
