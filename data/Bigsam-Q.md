@@ -94,3 +94,26 @@ To prevent potential issues and ensure consistent and expected behavior, it is c
 ```
 
 ---
+
+### L-03 Implement Address to Validation for ERC1155 token Receiver
+
+#### Issue:
+
+The `safeTransferFrom`, `safeBatchTransferFrom`, and `_mint` functions in the ERC1155 contract currently lack a check to ensure that the `address to` is a valid address capable of receiving the ERC1155 token. This omission can lead to unexpected behavior within the contract.
+
+#### Recommendation:
+
+To enhance the security and reliability of the ERC1155 contract, it is essential to implement a validation check to ensure that the `address to` parameter is a valid address before proceeding with the token transfer or minting operation. This check will help prevent potential issues and ensure that tokens are only transferred or minted to valid and intended addresses.
+
+#### Relevant Code References:
+
+- [ERC1155Minimal.sol - safeTransferFrom](https://github.com/code-423n4/2024-04-panoptic/blob/833312ebd600665b577fbd9c03ffa0daf250ed24/contracts/tokens/ERC1155Minimal.sol#L112-L119)
+- [ERC1155Minimal.sol - safeBatchTransferFrom](https://github.com/code-423n4/2024-04-panoptic/blob/833312ebd600665b577fbd9c03ffa0daf250ed24/contracts/tokens/ERC1155Minimal.sol#L163-L170)
+- [ERC1155Minimal.sol - _mint](https://github.com/code-423n4/2024-04-panoptic/blob/833312ebd600665b577fbd9c03ffa0daf250ed24/contracts/tokens/ERC1155Minimal.sol#L222-L228)
+- [Solmate ERC1155.sol - Address Validation](https://github.com/transmissions11/solmate/blob/e8f96f25d48fe702117ce76c79228ca4f20206cb/src/tokens/ERC1155.sol#L75)
+- [Solmate ERC1155.sol - Address Validation](https://github.com/transmissions11/solmate/blob/e8f96f25d48fe702117ce76c79228ca4f20206cb/src/tokens/ERC1155.sol#L115)
+- [Solmate ERC1155.sol - Address Validation](https://github.com/transmissions11/solmate/blob/e8f96f25d48fe702117ce76c79228ca4f20206cb/src/tokens/ERC1155.sol#L168)
+
+#### Proposed Code Modification:
+
+Implement Address Validation like it is in Solmate ERC1155.sol
