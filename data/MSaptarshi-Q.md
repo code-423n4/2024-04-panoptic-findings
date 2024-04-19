@@ -23,3 +23,23 @@ https://github.com/code-423n4/2024-04-panoptic/blob/833312ebd600665b577fbd9c03ff
 The problem is that protocol doesn't really check if both token address are different
 ## Recommendation
 require(token0 != token1, "same address token")
+
+# [L-04] While transferring ownership, it is recommended to check if the owner is not the currentOwner
+
+A malicious owner can change the ownership again to themselves
+```
+ function transferOwnership(address newOwner) external {
+        address currentOwner = s_owner;
+
+        if (msg.sender != currentOwner) revert Errors.NotOwner();
+
+        s_owner = newOwner;
+
+        emit OwnershipTransferred(currentOwner, newOwner);
+    }
+```
+
+## Recommended Mitigation Steps
+Also check if the `prevOwner != newOwner` before transferring ownership
+
+
