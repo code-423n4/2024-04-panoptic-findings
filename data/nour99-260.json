@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "nour99",
+  "risk": "3",
+  "title": "Arbitrary `from` passed to `transferFrom` (or `safeTransferFrom`)",
+  "issueId": 260,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/260"
+}
