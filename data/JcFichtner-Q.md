@@ -64,6 +64,29 @@ In summary, while the `swapInAMM` function uses extreme `sqrtPriceLimitX96` valu
 
 Adding such features would provide users with stronger protections against slippage, ensuring more predictable and secure swap outcomes within the contract.
 
+## 3 - Missing _beforeTokenTransfer Hook
+
+https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/tokens/ERC1155Minimal.sol
+
+The contract does not implement the `_beforeTokenTransfer` hook, which is often used in `ERC1155` contracts for additional checks or functionalities, such as token blacklisting. While not a vulnerability, implementing this hook could provide more flexibility and control in the future.
+
+**Here's a breakdown of its potential uses:**
+
+- **Validation:** Ensuring that tokens meet certain criteria before being transferred. For example, checking if a token is not frozen or blacklisted.
+
+- **State Updates:** Updating related contract state before a transfer occurs. This could involve updating auxiliary data structures or accounting mechanisms.
+
+- **Hooks for Extensions:** If the token contract interacts with other contracts or extensions, the hook can call into these systems to notify them of the transfer.
+
+- **Compliance:** Enforcing regulatory compliance, such as KYC (Know Your Customer) or AML (Anti-Money Laundering) checks before allowing a transfer.
+
+- **Event Logging:** Emitting additional events for off-chain systems to track certain transfer activities.
+
+The absence of this hook in the provided contract means that it lacks this layer of control. While this isn't a vulnerability per se, it does mean that the contract is less flexible and cannot easily be extended to include such logic without modifying the core contract code.
+
+In summary, the _beforeTokenTransfer hook is not present in the provided contract, which limits the contract's ability to enforce additional rules or behaviors during token transfers, minting, and burning.
+
+
 
 
 
