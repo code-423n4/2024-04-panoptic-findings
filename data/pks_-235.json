@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "pks_",
+  "risk": "2",
+  "title": "New pool can deploy failed due to front-running",
+  "issueId": 235,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/235"
+}
