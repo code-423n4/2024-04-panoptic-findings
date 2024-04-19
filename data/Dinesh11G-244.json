@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "Dinesh11G",
+  "risk": "3",
+  "title": "Lack of Overflow/Underflow Checks in ERC20Minimal Contract Can Lead to Token Loss and Disruption",
+  "issueId": 244,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/244"
+}
