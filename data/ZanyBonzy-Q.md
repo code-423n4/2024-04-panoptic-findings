@@ -3,6 +3,7 @@
 startPool(
 
 Lines of code* 
+
 https://github.com/code-423n4/2024-04-panoptic/blob/833312ebd600665b577fbd9c03ffa0daf250ed24/contracts/PanopticFactory.sol#L210
 https://github.com/code-423n4/2024-04-panoptic/blob/833312ebd600665b577fbd9c03ffa0daf250ed24/contracts/SemiFungiblePositionManager.sol#L350
 https://github.com/code-423n4/2024-04-panoptic/blob/833312ebd600665b577fbd9c03ffa0daf250ed24/contracts/CollateralTracker.sol#L221
@@ -219,7 +220,8 @@ Consider introducing a chainlink sequencer integration to check for sequencer up
 
 # 7. Excess `ETH` sent during Multicall will not be retrievable
 
-Lines of code* 
+Lines of code*
+
 https://github.com/code-423n4/2024-04-panoptic/blob/833312ebd600665b577fbd9c03ffa0daf250ed24/contracts/multicall/Multicall.sol#L12
 
 ## Impact
@@ -321,3 +323,18 @@ COnsider refactoring the `transferFrom` to call the internal `_transferFrom` fun
         return true;
     }
 ```
+
+# 11. TWAP prices on L2 can easily be manipulated
+
+Lines of code*
+ 
+https://github.com/code-423n4/2024-04-panoptic/blob/833312ebd600665b577fbd9c03ffa0daf250ed24/contracts/libraries/PanopticMath.sol#L253
+
+## Impact
+
+The protocol aims to deploy on major L2s including Arbitrum, and Optimism. The problem is that the cost of manipulating TWAP on Optimism L2 networks so low and with the lack of abundance of MEVs, little arbitrage risk from manipulating prices. From [Uniswap docs](https://docs.uniswap.org/concepts/protocol/oracle#oracles-integrations-on-layer-2-rollups), 
+> Uniswap pools on Optimism are not suitable for providing oracle prices, as this high-latency block.timestamp update process makes the oracle much less costly to manipulate
+But since protocol uses TWAP prices when performing major functions including liquidations and forceful excercising, prices can easily and cheaply be manipulated to gain unfair advantages over other users.
+
+## Recommended Mitigation Steps
+Recommend integrating chainlink or a different oracle support system when dealing with L2s.
