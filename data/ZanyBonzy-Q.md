@@ -1,3 +1,65 @@
+# 1. Lack of access control in major functions can be misused
+
+startPool(
+
+Lines of code* 
+https://github.com/code-423n4/2024-04-panoptic/blob/833312ebd600665b577fbd9c03ffa0daf250ed24/contracts/PanopticFactory.sol#L210
+https://github.com/code-423n4/2024-04-panoptic/blob/833312ebd600665b577fbd9c03ffa0daf250ed24/contracts/SemiFungiblePositionManager.sol#L350
+https://github.com/code-423n4/2024-04-panoptic/blob/833312ebd600665b577fbd9c03ffa0daf250ed24/contracts/CollateralTracker.sol#L221
+https://github.com/code-423n4/2024-04-panoptic/blob/833312ebd600665b577fbd9c03ffa0daf250ed24/contracts/PanopticPool.sol#L291
+
+## Impact
+While the `deployNewPool` function allows for users and owners alike to be able to deploy a panoptic pool based on a univ3 pool.
+
+```solidity
+function deployNewPool(
+        address token0,
+        address token1,
+        uint24 fee,
+        bytes32 salt
+    ) external returns (PanopticPool newPoolContract) {
+        // initialize pool in SFPM if it has not already been initialized
+        SFPM.initializeAMMPool(token0, token1, fee);
+...
+        // Run state initialization sequence for pool and collateral tokens
+        collateralTracker0.startToken(true, token0, token1, fee, newPoolContract);
+        collateralTracker1.startToken(false, token0, token1, fee, newPoolContract);
+        newPoolContract.startPool(v3Pool, token0, token1, collateralTracker0, collateralTracker1);
+...
+    }
+```
+The issue is that, the external functions called in the function, the `initializeAMMPool`, `startToken`, `startPool` lack a form of access control. Users having access to these functions can maliciously use it to DOS pool creations, register malicious pools, causing a host of problems in the protocol and to its users.
+
+SFPM
+```solidity
+    function initializeAMMPool(address token0, address token1, uint24 fee) external {
+```
+PanopticPool
+```solidity
+    function startPool(
+        IUniswapV3Pool _univ3pool,
+        address token0,
+        address token1,
+        CollateralTracker collateralTracker0,
+        CollateralTracker collateralTracker1
+    ) external {
+```
+
+CollateralTracker
+```solidity
+    function startToken(
+        bool underlyingIsToken0,
+        address token0,
+        address token1,
+        uint24 fee,
+        PanopticPool panopticPool
+    ) external {
+```
+
+## Recommended Mitigation Steps
+Add a form of access control, `onlyPanopticFactory`, `onlyPanopticPool` that will prevent these functions from being misused.
+
+
 # 3. Pools can be deployed without factory state initialization
 
 Lines of code*
