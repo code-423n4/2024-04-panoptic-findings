@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "btk",
+  "risk": "2",
+  "title": "liquidate may result in OOG error",
+  "issueId": 283,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/283"
+}
