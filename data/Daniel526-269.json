@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "Daniel526",
+  "risk": "2",
+  "title": "Lack of Function to Handle Slippage or Unexpected Limits for Direct EOA Access",
+  "issueId": 269,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/269"
+}
