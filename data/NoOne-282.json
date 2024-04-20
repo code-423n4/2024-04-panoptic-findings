@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "NoOne",
+  "risk": "2",
+  "title": "Uninitialized s_inAMM Variable Leading to Potential Division by Zero Error",
+  "issueId": 282,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/282"
+}
