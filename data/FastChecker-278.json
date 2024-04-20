@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "FastChecker",
+  "risk": "2",
+  "title": "Due to lack of validation in the `PanopticPool.sol.sol#startPool()` function, duplicate checking can be bypassed in the `PanopticFactory.sol#deployNewPool()` function.",
+  "issueId": 278,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/278"
+}
