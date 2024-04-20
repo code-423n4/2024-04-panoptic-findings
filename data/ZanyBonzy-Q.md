@@ -338,3 +338,30 @@ But since protocol uses TWAP prices when performing major functions including li
 
 ## Recommended Mitigation Steps
 Recommend integrating chainlink or a different oracle support system when dealing with L2s.
+
+
+# 12. CollateralTracker is not fully compliant ERC4626
+
+Links to affected code *
+
+https://github.com/code-423n4/2024-04-panoptic/blob/833312ebd600665b577fbd9c03ffa0daf250ed24/contracts/CollateralTracker.sol#L365-L374
+
+## Impact
+
+`totalAssets` doesn't include fees
+
+```solidity
+    /// @dev - EXCLUDING the amount of collected fees (because they are reserved for short options)
+    /// @dev - EXCLUDING any donations that have been made to the pool
+    /// @return totalManagedAssets The total amount of assets managed.
+    function totalAssets() public view returns (uint256 totalManagedAssets) {
+        unchecked {
+            return s_poolAssets + s_inAMM;
+        }
+    }
+```
+But according to the [standard](https://eips.ethereum.org/EIPS/eip-4626#totalassets)
+
+> MUST be inclusive of any fees that are charged against assets in the Vault.
+
+
