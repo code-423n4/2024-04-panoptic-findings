@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "Dinesh11G",
+  "risk": "2",
+  "title": "Missing Handling for `currentTick = tickLower` in `_getAMMSwapFeesPerLiquidityCollected` Function Can Lead to Incorrect Fee Calculation",
+  "issueId": 311,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/311"
+}
