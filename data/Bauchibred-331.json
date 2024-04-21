@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "Bauchibred",
+  "risk": "2",
+  "title": "Withdrawal/redemptions employ a non-user provided hardcoded slippage in their executions",
+  "issueId": 331,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/331"
+}
