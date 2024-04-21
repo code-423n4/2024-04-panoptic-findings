@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "Daniel526",
+  "risk": "2",
+  "title": "Incorrect Adjustment of removedLiquidity in _createLegInAMM Function",
+  "issueId": 329,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/329"
+}
