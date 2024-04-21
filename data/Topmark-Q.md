@@ -28,7 +28,7 @@ https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/LeftRig
         }
     }
 ```
-Other similar Overflow and underflow instances are present protocol contract and should be corrected
+Other similar Overflow and underflow instances are present protocol contract and should be corrected e.g [L1340](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L1340) of SemiFungiblePositionManager.sol contract etc
 ###  Report 2:
 #### Denial of Service
 Denial of Service when the number Of Leading Hex Zeros in address is exactly 39.
