@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "Bauchibred",
+  "risk": "2",
+  "title": "Panoptic's TWAP implementation is not a TWAP and could break expected pricing functionality across protocol",
+  "issueId": 333,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/333"
+}
