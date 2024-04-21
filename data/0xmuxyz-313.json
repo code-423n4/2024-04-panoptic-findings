@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "0xmuxyz",
+  "risk": "2",
+  "title": "A malicious distressed/liquidatable-account holder can DOS the liquidator's TX of the PanopticPool#`liquidate()` to prevent their account from a liquidation",
+  "issueId": 313,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/313"
+}
