@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "Topmark",
+  "risk": "2",
+  "title": "Delta Difference Between fastOracleTick & slowOracleTick would go Beyond Max Allowed Undetected",
+  "issueId": 305,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/305"
+}
