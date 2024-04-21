@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "maxim371",
+  "risk": "3",
+  "title": "FeesCalc::_getAMMSwapFeesPerLiquidityCollected results in double subtraction",
+  "issueId": 299,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/299"
+}
