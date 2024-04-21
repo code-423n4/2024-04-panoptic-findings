@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "fractal_20892",
+  "risk": "2",
+  "title": "Insufficient input validation of TokenId in _updatePositionsHash",
+  "issueId": 326,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/326"
+}
