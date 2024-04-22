@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "ArsenLupin",
+  "risk": "2",
+  "title": "In the addCapped there is no mechanism to reset the unfreeze the accumulators, and it will silentghly return the outdated/wrong values.",
+  "issueId": 487,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/487"
+}
