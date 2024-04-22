@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "pkqs90",
+  "risk": "2",
+  "title": "SemiFungiblePositionManager/ERC1155Minimal is not EIP1155 compliant",
+  "issueId": 500,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/500"
+}
