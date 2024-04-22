@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "HChang26",
+  "risk": "2",
+  "title": "Lack of slippage control in CollateralTracker",
+  "issueId": 543,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/543"
+}
