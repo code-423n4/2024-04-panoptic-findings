@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "favelanky",
+  "risk": "2",
+  "title": "Return values of `approve()` not checked",
+  "issueId": 565,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/565"
+}
