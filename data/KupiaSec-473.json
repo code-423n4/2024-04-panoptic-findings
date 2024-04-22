@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "KupiaSec",
+  "risk": "3",
+  "title": "Malicious users will purchase dust amount of options to prevent option sellers from burning their options",
+  "issueId": 473,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/473"
+}
