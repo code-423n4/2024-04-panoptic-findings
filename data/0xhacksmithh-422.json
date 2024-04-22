@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "0xhacksmithh",
+  "risk": "3",
+  "title": "Protocol is open to `Flash Loan` Attack via which `PoolUtilization Ratio` can manipulated and several attacks can preformed.",
+  "issueId": 422,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/422"
+}
