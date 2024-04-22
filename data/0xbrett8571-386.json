@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "0xbrett8571",
+  "risk": "2",
+  "title": "If the `s_accountLiquidity` mapping is updated with incorrect values, it can lead to discrepancies between the actual liquidity of a position and the liquidity tracked by the contract",
+  "issueId": 386,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/386"
+}
