@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "radev_sw",
+  "risk": "2",
+  "title": "Using delegatecall inside a loop. When calling delegatecall the same msg.value amount will be accredited multiple times.",
+  "issueId": 510,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/510"
+}
