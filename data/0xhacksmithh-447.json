@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "0xhacksmithh",
+  "risk": "2",
+  "title": " Slippage controls for calling `CollateralTracker` contract's `deposit` and `mint` functions are missing",
+  "issueId": 447,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/447"
+}
