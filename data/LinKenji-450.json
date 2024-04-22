@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "LinKenji",
+  "risk": "2",
+  "title": "Delegatees may receive shares that do not correspond to the actual assets owned by the delegators, leading to discrepancies in the system.",
+  "issueId": 450,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/450"
+}
