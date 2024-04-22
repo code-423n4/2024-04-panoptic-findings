@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "kfx",
+  "risk": "2",
+  "title": "Inconsistent rounding in the `computeMedianObservedPrice` function",
+  "issueId": 437,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/437"
+}
