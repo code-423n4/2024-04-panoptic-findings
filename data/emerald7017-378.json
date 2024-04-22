@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "emerald7017",
+  "risk": "2",
+  "title": "Collisions in `poolId` generation can potentially allow an attacker to manipulate the system.",
+  "issueId": 378,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/378"
+}
