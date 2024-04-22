@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "Rhaydden",
+  "risk": "2",
+  "title": "`twapFilter` will show incorrect price for negative ticks because it does not round up for negative ticks",
+  "issueId": 344,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/344"
+}
