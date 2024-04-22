@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "sammy",
+  "risk": "2",
+  "title": "Incorrect token settlement in `CollateralTracker.sol`",
+  "issueId": 467,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/467"
+}
