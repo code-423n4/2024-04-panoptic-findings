@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "Myd",
+  "risk": "2",
+  "title": "Division by zero can prevent users from exercising their option positions when certain conditions are met",
+  "issueId": 412,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/412"
+}
