@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "Udsen",
+  "risk": "2",
+  "title": "Hash collision in the `PanopticMath.updatePositionsHash` function could prompt wrong positions in the `positionIdList` to be validated",
+  "issueId": 496,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/496"
+}
