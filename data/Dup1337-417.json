@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "Dup1337",
+  "risk": "2",
+  "title": "`_getAMMSwapFeesPerLiquidityCollected` logic causes loss of fees",
+  "issueId": 417,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/417"
+}
