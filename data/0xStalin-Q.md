@@ -127,3 +127,74 @@ function initialize(address _owner) public {
 
 **Fix:**
 - Since only the `owner` is initialized on the [`PanopticFactory.initialize() function`](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticFactory.sol#L134-L139), better set the owner in the constructor. Since the PanopticFactory is not an upgradeable contract, it is not really necessary to initialize the owner using a separate function outside of the constructor.
+
+
+## [L-03] Not checking the returned value when approving the SFPM & CollateralTrackers to spend tokens could leave unnusable a UniV3Pool if the approval process returns false instead of reverting
+When a new PanopticPool is deployed, the PanopticFactory calls the [`PanopticPool.startPool() function`](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L291-L327) to initialize some core variables, as well as to grant approvals to the SFPM and the CollateralTrackers associated with the PanopticPool.
+
+To grant allowance, the [`InteractionHelper.doApprovals() function`](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/InteractionHelper.sol#L24-L38) is called, which then proceeds to call the underlyingToken.approve() function to grant infinite allowance to the SFPM and the two CollateralTrackers. The current interface doesn't check for the returned value from the underlyingToken.approve(), if the call fails and returns false instead of reverting, either the SFPM or one of the two CollateralTrackers won't have allowance to spend the underlyingToken from the PanopticPool.
+- The problem is that if the SFPM, or one of the two CollateralTrackers is not granted the allowance, first of all, the newly deployed PanopticPool will be unusable, since core functions won't be able to move the token across the contracts, and also, the underlying UniV3Pool associated with the newly deployed PanopticPool will become unusable, it won't be possible to deploy a new PanopticPool and associate the same UniV3Pool with a new PP.
+
+```
+--- PanopticFactory.sol ---
+
+function deployNewPool(
+    address token0,
+    address token1,
+    uint24 fee,
+    bytes32 salt
+) external returns (PanopticPool newPoolContract) {
+    ...
+
+    //@audit-info => One UniV3 Pool can have assigned only 1 PanopticPool!
+    if (address(s_getPanopticPool[v3Pool]) != address(0))
+        revert Errors.PoolAlreadyInitialized();
+
+    ...
+
+    //@audit-ok => Initializes the PanopticPool when is deployed from the PanopticFactory
+    newPoolContract.startPool(v3Pool, token0, token1, collateralTracker0, collateralTracker1);
+
+    //@audit-info => Links the newly deployed PanopticPool to its assigned UniV3 Pool
+    //@audit-info => One UniV3 Pool can have assigned only 1 PanopticPool!
+    s_getPanopticPool[v3Pool] = newPoolContract;
+
+    ...
+}
+
+--- PanopticPool.sol ---
+
+function startPool(
+    ...
+) external {
+    ...
+
+    //@audit-info => Approves SFPM, and the two CollateralTrackers
+    InteractionHelper.doApprovals(SFPM, collateralTracker0, collateralTracker1, token0, token1);
+}
+
+--- InteractionHelper.sol ---
+
+function doApprovals(
+    ...
+) external {
+    //@audit-issue => If the approve fails and returns false instead of reverting, it is not possible to catch the problem and revert the tx
+        //@audit-issue => Not reverting the tx would allow the deployment of the new PP to finalize.
+        //@audit => This means, the associated UniV3Pool to this PP won't be able to be assigned to a different PP.
+        //@audit => If this PP becomes unnusable because the allowance failure, the underlying UniV3Pool won't be able to be used on any other PP.
+    // Approve transfers of Panoptic Pool funds by SFPM
+    IERC20Partial(token0).approve(address(sfpm), type(uint256).max);
+    IERC20Partial(token1).approve(address(sfpm), type(uint256).max);
+
+    // Approve transfers of Panoptic Pool funds by Collateral token
+    IERC20Partial(token0).approve(address(ct0), type(uint256).max);
+    IERC20Partial(token1).approve(address(ct1), type(uint256).max);
+}
+
+```
+
+
+**Fix:**
+The best way to mitigate this potential threat is by using the [`forceApprove()` of the `SafeErc20.sol` contract from OZ.](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/utils/SafeERC20.sol#L76-L83)
+- This approach allows to revert the tx in case the approval process fails and returns false.
+
