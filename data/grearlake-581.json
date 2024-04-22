@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "grearlake",
+  "risk": "2",
+  "title": "Attacker can mint long position with dust amount to make a loss to protocol",
+  "issueId": 581,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/581"
+}
