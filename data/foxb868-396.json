@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "foxb868",
+  "risk": "2",
+  "title": "Position structure can appear solvent at minting but become insolvent due to price changes or spread.",
+  "issueId": 396,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/396"
+}
