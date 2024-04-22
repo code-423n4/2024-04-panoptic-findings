@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "pkqs90",
+  "risk": "2",
+  "title": "`intrinsicValue` during minting OTM short options is not strictly 0 due to rounding issues",
+  "issueId": 503,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/503"
+}
