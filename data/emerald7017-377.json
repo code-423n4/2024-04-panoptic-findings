@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "emerald7017",
+  "risk": "2",
+  "title": "Errors within `_validateAndForwardToAMM` can cause `mintTokenizedPosition` transaction failures without clear error handling, leading to inconsistencies.",
+  "issueId": 377,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/377"
+}
