@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "OdeWeb3",
+  "risk": "3",
+  "title": " Lack of Check on Equal Length of Owners and IDs (Potential Mismatch)",
+  "issueId": 481,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/481"
+}
