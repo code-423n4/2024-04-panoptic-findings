@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "FastChecker",
+  "risk": "3",
+  "title": "There is an error in the fee processing of the `PanopticPool#forceExercise` function.",
+  "issueId": 442,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/442"
+}
