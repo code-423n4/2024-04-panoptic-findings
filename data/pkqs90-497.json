@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "pkqs90",
+  "risk": "3",
+  "title": "`SettleLongPremium` is incorrectly implemented: premium should be deducted instead of added",
+  "issueId": 497,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/497"
+}
