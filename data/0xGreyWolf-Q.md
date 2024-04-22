@@ -1,4 +1,4 @@
-# Front-running `PanopticFactory::initialize()` is a possibility
+# `PanopticFactory::initialize()` can be front-ran
 ## Description
 The `initialize()` function intializes the `_owner` address. However, this function can be called by anyone. An attacker can initialize and set his / her own address in the contract before the protocol deployer does with the hopes that it will go unnoticed. 
 
