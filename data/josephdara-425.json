@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "josephdara",
+  "risk": "3",
+  "title": "Mint() & Deposit() provide different shares amounts to same asset value. ",
+  "issueId": 425,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/425"
+}
