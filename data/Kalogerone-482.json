@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "Kalogerone",
+  "risk": "2",
+  "title": "`CREATE2` address collision during pool deployment allows for complete draining of the pool",
+  "issueId": 482,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/482"
+}
