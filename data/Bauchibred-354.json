@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "Bauchibred",
+  "risk": "2",
+  "title": "Potential protocol loss due to the current implementation of getting the liquidation bonuses",
+  "issueId": 354,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/354"
+}
