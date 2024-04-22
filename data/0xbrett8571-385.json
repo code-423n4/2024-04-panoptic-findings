@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "0xbrett8571",
+  "risk": "2",
+  "title": "If users are unable to transfer their tokens due to the restrictions, they may be stuck with positions they cannot exit, potentially leading to loss of funds if the positions depreciate in value.",
+  "issueId": 385,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/385"
+}
