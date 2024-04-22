@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "ArsenLupin",
+  "risk": "3",
+  "title": "Attacker could manipulate the observationCardinality array and force computeInternalMedian/computeMedianObservedPrice return 0",
+  "issueId": 480,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/480"
+}
