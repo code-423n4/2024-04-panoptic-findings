@@ -9,6 +9,7 @@
 | L-01 | Function Visibility marked as public for internal logic                      |    2     |
 | L-02 | Implement Length Check in safeBatchTransferFrom and balanceOfBatch Functions |    2     |
 | L-03 | Implement Address to Validation for ERC1155 token Receiver                   |    3     |
+| L-04 | Unused variable MAX_UINT256 Constant in PanoticPool and Math Contracts       |    4     |
 +------+------------------------------------------------------------------------------+----------+
 ```
 
@@ -117,3 +118,55 @@ To enhance the security and reliability of the ERC1155 contract, it is essential
 #### Proposed Code Modification:
 
 Implement Address Validation like it is in Solmate ERC1155.sol
+
+
+## | L-04 | Unused variable MAX_UINT256 Constant in PanoticMath and Math Contracts
+
+#### Issue:
+
+The `uint256 internal constant MAX_UINT256 = 2 ** 256 - 1;` constant is declared in both the PanoticMath and Math contracts. However, this constant is not being used, and the contracts continue to call `type(uint256).max` directly. 
+
+#### Relevant Code:
+
+```solidity
+// In PanoticMath and Math contracts
+uint256 internal constant MAX_UINT256 = 2 ** 256 - 1;
+```
+
+Math.sol
+https://github.com/code-423n4/2024-04-panoptic/blob/833312ebd600665b577fbd9c03ffa0daf250ed24/contracts/libraries/Math.sol#L15
+
+PanopticMath.sol
+https://github.com/code-423n4/2024-04-panoptic/blob/833312ebd600665b577fbd9c03ffa0daf250ed24/contracts/libraries/PanopticMath.sol#L23
+
+Reference to instance
+
+Line 176
+https://github.com/code-423n4/2024-04-panoptic/blob/833312ebd600665b577fbd9c03ffa0daf250ed24/contracts/libraries/Math.sol#L176
+
+Line 448 
+https://github.com/code-423n4/2024-04-panoptic/blob/833312ebd600665b577fbd9c03ffa0daf250ed24/contracts/libraries/Math.sol#L448
+
+Line 588
+
+https://github.com/code-423n4/2024-04-panoptic/blob/833312ebd600665b577fbd9c03ffa0daf250ed24/contracts/libraries/Math.sol#L588
+
+Line 665
+
+https://github.com/code-423n4/2024-04-panoptic/blob/833312ebd600665b577fbd9c03ffa0daf250ed24/contracts/libraries/Math.sol#L665
+
+
+#### Issue Analysis:
+
+The declared `MAX_UINT256` constant is not being utilized in the code, and the contract continues to use `type(uint256).max` directly. This inconsistency may lead to confusion and could potentially cause issues if the `MAX_UINT256` constant is intended to be used for such purposes.
+
+#### Recommendation:
+
+To maintain consistency and clarity in the codebase, it is recommended to utilize the declared `MAX_UINT256` constant instead of calling `type(uint256).max` directly in the appropriate areas of the contracts.
+
+#### Mitigation:
+
+Replace `type(uint256).max` with `MAX_UINT256` in the appropriate areas of the contracts where the maximum uint256 value is required.
+
+
+
