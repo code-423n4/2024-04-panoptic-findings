@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "Dup1337",
+  "risk": "2",
+  "title": "Every user, including the factory owner can only deploy 1 pool",
+  "issueId": 369,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/369"
+}
