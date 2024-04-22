@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "OdeWeb3",
+  "risk": "3",
+  "title": "Lack of Input Validation in Token Transfer Function",
+  "issueId": 494,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/494"
+}
