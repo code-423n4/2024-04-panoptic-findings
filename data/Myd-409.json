@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "Myd",
+  "risk": "2",
+  "title": "If the liquidation conditions are not properly enforced or if the TWAP tick can be manipulated, unauthorized liquidations may occur.",
+  "issueId": 409,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/409"
+}
