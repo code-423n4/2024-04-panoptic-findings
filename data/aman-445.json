@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "aman",
+  "risk": "2",
+  "title": "No DeadLine on uniswapV3 swap could lead to unfavorable swaps",
+  "issueId": 445,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/445"
+}
