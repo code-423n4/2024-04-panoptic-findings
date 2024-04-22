@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "DadeKuma",
+  "risk": "3",
+  "title": "Accounts with a large amount of position can become unliquidable, resulting in bad debt",
+  "issueId": 521,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/521"
+}
