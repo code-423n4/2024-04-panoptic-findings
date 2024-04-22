@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "0xdice91",
+  "risk": "2",
+  "title": "Accounting error in `CollateralTracker.sol` may cause `revert` when trying to withdraw an amount equivalent to the `available balance`.",
+  "issueId": 427,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/427"
+}
