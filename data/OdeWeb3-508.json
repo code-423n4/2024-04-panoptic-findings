@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "OdeWeb3",
+  "risk": "3",
+  "title": "One-Step Ownership Transfer Vulnerability",
+  "issueId": 508,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/508"
+}
