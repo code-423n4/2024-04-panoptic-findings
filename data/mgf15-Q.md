@@ -253,3 +253,37 @@ since the contract uses Solmate's SafeTransferLib
 > /// @dev Note that none of the functions in this library check that a token has code at all! That responsibility is delegated to the caller.
 
 Therefore if the token address is empty, the transfer will succeed silently, but not crediting the contract with any tokens.
+
+## [L-11] Return values of approve not checked 
+
+Not all IERC20 implementations (e.g. USDT, KNC) revert when there's a failure in approve. The function signature has a boolean return value and they indicate errors that way instead.By not checking the return value, operations that should have marked as failed, may potentially go through without actually approving anything.
+
+```solidity
+34:        IERC20Partial(token0).approve(address(sfpm), type(uint256).max);
+
+35:        IERC20Partial(token1).approve(address(sfpm), type(uint256).max);
+
+38:        IERC20Partial(token0).approve(address(ct0), type(uint256).max);
+
+39:        IERC20Partial(token1).approve(address(ct1), type(uint256).max);
+
+```
+
+*GitHub* : [InteractionHelper.sol#L34](https://github.com/code-423n4/2024-03-coinbase/tree/main/./contracts/libraries/InteractionHelper.sol#L34),[InteractionHelper.sol#L35](https://github.com/code-423n4/2024-03-coinbase/tree/main/./contracts/libraries/InteractionHelper.sol#L35),[InteractionHelper.sol#L38](https://github.com/code-423n4/2024-03-coinbase/tree/main/./contracts/libraries/InteractionHelper.sol#L38),[InteractionHelper.sol#L39](https://github.com/code-423n4/2024-03-coinbase/tree/main/./contracts/libraries/InteractionHelper.sol#L39)
+
+## [L-12] Some tokens do not consider `type(uint256).max` as an infinite approval
+
+Some tokens such as [COMP](https://github.com/compound-finance/compound-protocol/blob/a3214f67b73310d547e00fc578e8355911c9d376/contracts/Governance/Comp.sol#L89-L91) downcast such approvals to uint96 and use that as a raw value rather than interpreting it as an infinite approval. Eventually these approvals will reach zero, at which point the calling contract will no longer function properly.
+
+```solidity
+34:        IERC20Partial(token0).approve(address(sfpm), type(uint256).max);
+
+35:        IERC20Partial(token1).approve(address(sfpm), type(uint256).max);
+
+38:        IERC20Partial(token0).approve(address(ct0), type(uint256).max);
+
+39:        IERC20Partial(token1).approve(address(ct1), type(uint256).max);
+
+```
+
+*GitHub* : [InteractionHelper.sol#L34](https://github.com/code-423n4/2024-03-coinbase/tree/main/./contracts/libraries/InteractionHelper.sol#L34),[InteractionHelper.sol#L35](https://github.com/code-423n4/2024-03-coinbase/tree/main/./contracts/libraries/InteractionHelper.sol#L35),[InteractionHelper.sol#L38](https://github.com/code-423n4/2024-03-coinbase/tree/main/./contracts/libraries/InteractionHelper.sol#L38),[InteractionHelper.sol#L39](https://github.com/code-423n4/2024-03-coinbase/tree/main/./contracts/libraries/InteractionHelper.sol#L39)
