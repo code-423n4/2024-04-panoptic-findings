@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "Dup1337",
+  "risk": "2",
+  "title": "`ValidateExerciseable` function logic leads to forceExercising ineligible positions",
+  "issueId": 512,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/512"
+}
