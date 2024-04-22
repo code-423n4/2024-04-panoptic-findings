@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "CodeWasp",
+  "risk": "3",
+  "title": "Slippage checks are disabled in an edge case when minting/burning options; may lead to loss of funds",
+  "issueId": 424,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/424"
+}
