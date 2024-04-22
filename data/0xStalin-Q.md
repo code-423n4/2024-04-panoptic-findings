@@ -129,11 +129,11 @@ function initialize(address _owner) public {
 - Since only the `owner` is initialized on the [`PanopticFactory.initialize() function`](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticFactory.sol#L134-L139), better set the owner in the constructor. Since the PanopticFactory is not an upgradeable contract, it is not really necessary to initialize the owner using a separate function outside of the constructor.
 
 
-## [L-03] Not checking the returned value when approving the SFPM & CollateralTrackers to spend tokens could leave unnusable a UniV3Pool if the approval process returns false instead of reverting
+## [L-04] Not checking the returned value when approving the SFPM & CollateralTrackers to spend tokens could leave unnusable a UniV3Pool if the approval process returns false instead of reverting
 When a new PanopticPool is deployed, the PanopticFactory calls the [`PanopticPool.startPool() function`](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L291-L327) to initialize some core variables, as well as to grant approvals to the SFPM and the CollateralTrackers associated with the PanopticPool.
 
 To grant allowance, the [`InteractionHelper.doApprovals() function`](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/InteractionHelper.sol#L24-L38) is called, which then proceeds to call the underlyingToken.approve() function to grant infinite allowance to the SFPM and the two CollateralTrackers. The current interface doesn't check for the returned value from the underlyingToken.approve(), if the call fails and returns false instead of reverting, either the SFPM or one of the two CollateralTrackers won't have allowance to spend the underlyingToken from the PanopticPool.
-- The problem is that if the SFPM, or one of the two CollateralTrackers is not granted the allowance, first of all, the newly deployed PanopticPool will be unusable, since core functions won't be able to move the token across the contracts, and also, the underlying UniV3Pool associated with the newly deployed PanopticPool will become unusable, it won't be possible to deploy a new PanopticPool and associate the same UniV3Pool with a new PP.
+- The problem is that if the SFPM, or one of the two CollateralTrackers are not granted the allowance, first of all, the newly deployed PanopticPool will be unnusable, since core functions won't be able to move the token across the contracts, and also, the underlying UniV3Pool associated with the newly deployed PanopticPool will become unnusable, it won't be possible to deploy a new PanopticPool and associate the same UniV3Pool with a new PP.
 
 ```
 --- PanopticFactory.sol ---
@@ -195,6 +195,20 @@ function doApprovals(
 
 
 **Fix:**
-The best way to mitigate this potential threat is by using the [`forceApprove()` of the `SafeErc20.sol` contract from OZ.](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/utils/SafeERC20.sol#L76-L83)
+The best way to mitigate this potential thread it is by using the [`forceApprove()` of the `SafeErc20.sol` contract from OZ.](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/utils/SafeERC20.sol#L76-L83)
 - This approach allows to revert the tx in case the approval process fails and returns false.
 
+
+## [L-05] Malicious Option Sellers can deploy liquidity on a range far out of the current price to get stuck the liquidity on the UniV3Pool to halt the trading on the PanopticPool because a lack of liquidity
+An Option Seller could deploy all the liquidity (if enough collateral) sitting on a PanopticPool onto a range far away from the current price, with the objective to open an unreasonable short position that any OptionSeller would take because of the cost-opportunity to pay premia for an option with a target price very unreasonable that it most likely never hit.
+
+The OptionSeller would need to only pay the COMISSION_FEE to open the short in exchange for deploying liquidity on a range where it won't generate any fees nor OptionBuyers would open long positions for that range.
+
+Even though the OptionSeller will also have its collateral locked during the time the short option remains open, the impact on the PLPs is bigger because of the leverage that OptionSellers have when opening shorts.
+- For example, the OptionSeller could have locked 100k USDC of his collateral in exchange for deploying 500k+ to a range where no activity will happen. The fees and commissions those 500k would have generated if that liquidity had been available for other traders who wanted to really trade options would be lost.
+
+Since positions with only shorts can't be force exercised, this short option would remain open for as long as the OptionSeller wants.
+
+**Fix:**
+I'd suggest allowing OptionSellers to open shorts without extra commission within a reasonable range from the current price. But if the target range exceeds a defined threshold, charge an extra commission, in this way, this would disincentivize this type of situation because the fees & commissions to pay would be higher.
+- For example, if the currentPrice is 1.5k USDC per ETH, allow to open shorts without extra commission within a price range of 700USDC - 3k USDC, smth like this. But, if the target price exceeds the defined threshold, charge an extra fee to disincentivize malicious OptionSellers from deploying liquidity to unreasonable ranges.
