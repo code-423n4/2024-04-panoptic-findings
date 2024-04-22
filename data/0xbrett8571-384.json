@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "0xbrett8571",
+  "risk": "2",
+  "title": "Improper arithmetic operations may lead to overflow/underflow, causing incorrect swap amounts, risking financial losses.",
+  "issueId": 384,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/384"
+}
