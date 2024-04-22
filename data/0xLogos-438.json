@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "0xLogos",
+  "risk": "3",
+  "title": "Overflow in CollateralTracker allows minting shares for free",
+  "issueId": 438,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/438"
+}
