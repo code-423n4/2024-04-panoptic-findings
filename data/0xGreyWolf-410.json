@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "0xGreyWolf",
+  "risk": "2",
+  "title": "`Collateral::deposit()` does not account for the maximum amount of shares that can be minted",
+  "issueId": 410,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/410"
+}
