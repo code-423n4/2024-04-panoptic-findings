@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "LinKenji",
+  "risk": "2",
+  "title": "Users may receive incorrect amounts of premium when minting or burning positions, leading to discrepancies in their expected rewards.",
+  "issueId": 449,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/449"
+}
