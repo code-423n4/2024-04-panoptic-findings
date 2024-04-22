@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "0xblackskull",
+  "risk": "2",
+  "title": "Missing initializer in SemiFungiblePositionManager::initializeAMMPool",
+  "issueId": 575,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/575"
+}
