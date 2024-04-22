@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "DadeKuma",
+  "risk": "3",
+  "title": "`PanopticFactory` uses spot price when deploying new pools, resulting in liquidity manipulation when minting",
+  "issueId": 537,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/537"
+}
