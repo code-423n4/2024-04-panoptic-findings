@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "d_tony7470",
+  "risk": "2",
+  "title": "getUniV3TWAP will return wrong price when tick is negative",
+  "issueId": 536,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/536"
+}
