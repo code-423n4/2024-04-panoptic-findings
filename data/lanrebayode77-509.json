@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "lanrebayode77",
+  "risk": "2",
+  "title": "Insufficient check in LeftRight.addcapped() which could lead to accounting flaw",
+  "issueId": 509,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/509"
+}
