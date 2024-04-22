@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "0xdice91",
+  "risk": "2",
+  "title": "Missing deadline checks in CollateralTracker.sol crucial functions like the `deposit()` and `withdraw()` functions ",
+  "issueId": 493,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/493"
+}
