@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "Udsen",
+  "risk": "3",
+  "title": "Wrong order in delta calculation in the `tickCumulatives` could result in wrong `twapTick` thus putting the protocol in a broken and undesirable state (insolvent state)",
+  "issueId": 516,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/516"
+}
