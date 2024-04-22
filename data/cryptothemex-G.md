@@ -13,19 +13,21 @@
 | [[G-09](#g-09)] | Functions guaranteed to revert when called by normal users can be marked `payable` | 10| 0|
 | [[G-10](#g-10)] | if variable is casted more than once, consider caching the result to save gas | 21| 0|
 | [[G-11](#g-11)] | Inefficient Parameter Storage | 117| 5850|
-| [[G-12](#g-12)] | Avoid updating storage when the value hasn't changed | 1| 800|
-| [[G-13](#g-13)] | smaller uint/int types cause gas overhead | 50| 300|
-| [[G-14](#g-14)] | Use Bytes32 for small data storage | 1| 0|
-| [[G-15](#g-15)] | Solidity versions 0.8.19 and above are more gas efficient | 20| 0|
-| [[G-16](#g-16)] | Use assembly to write address storage values | 4| 308|
-| [[G-17](#g-17)] | State variable read in a loop | 4| 0|
-| [[G-18](#g-18)] | Unnecessary casting as variable is already of the same type | 3| 0|
-| [[G-19](#g-19)] | Shorten the array rather than copying to a new one | 2| 0|
-| [[G-20](#g-20)] | checks for zero uint should be done using assembly to save gas | 47| 1410|
-| [[G-21](#g-21)] | Use Assembly for Hash Calculation | 10| 800|
-| [[G-22](#g-22)] | `>=` costs less gas than `>` | 150| 450|
-| [[G-23](#g-23)] | Counting down in for statements is more gas efficient | 16| 480|
-| [[G-24](#g-24)] | Avoid transferring amounts of zero in order to save gas | 12| 1200|
+| [[G-12](#g-12)] | Consider Merge Sequential Loops | 1| 0|
+| [[G-13](#g-13)] | Avoid updating storage when the value hasn't changed | 1| 800|
+| [[G-14](#g-14)] | smaller uint/int types cause gas overhead | 50| 300|
+| [[G-15](#g-15)] | Use Bytes32 for small data storage | 1| 0|
+| [[G-16](#g-16)] | Solidity versions 0.8.19 and above are more gas efficient | 20| 0|
+| [[G-17](#g-17)] | Optimal State Variable Order | 2| 10000|
+| [[G-18](#g-18)] | Use assembly to write address storage values | 4| 308|
+| [[G-19](#g-19)] | State variable read in a loop | 4| 0|
+| [[G-20](#g-20)] | Unnecessary casting as variable is already of the same type | 3| 0|
+| [[G-21](#g-21)] | Shorten the array rather than copying to a new one | 2| 0|
+| [[G-22](#g-22)] | checks for zero uint should be done using assembly to save gas | 47| 1410|
+| [[G-23](#g-23)] | Use Assembly for Hash Calculation | 10| 800|
+| [[G-24](#g-24)] | `>=` costs less gas than `>` | 150| 450|
+| [[G-25](#g-25)] | Counting down in for statements is more gas efficient | 16| 480|
+| [[G-26](#g-26)] | Avoid transferring amounts of zero in order to save gas | 12| 1200|
 
 ### Gas Risk Issues
 
@@ -63,7 +65,7 @@ PanopticPool.forceExercise(address,TokenId[],TokenId[],TokenId[]) (contracts/Pan
 
 ```
 
-*GitHub* : [1179-1278](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1179-L1278)
+*GitHub* : [1179-1278](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1179-L1278)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -93,7 +95,7 @@ PanopticPool._calculateAccumulatedPremia(address,TokenId[],bool,bool,int24) (con
 
 ```
 
-*GitHub* : [429-492](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L429-L492)
+*GitHub* : [429-492](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L429-L492)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -132,7 +134,7 @@ PanopticPool._getPremia(TokenId,uint128,address,bool,int24) (contracts/PanopticP
 
 ```
 
-*GitHub* : [1503-1575](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1503-L1575)
+*GitHub* : [1503-1575](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1503-L1575)
 
 ```solidity
 File: contracts/SemiFungiblePositionManager.sol
@@ -152,7 +154,7 @@ SemiFungiblePositionManager.registerTokenTransfer(address,address,TokenId,uint25
 
 ```
 
-*GitHub* : [593-653](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L593-L653)
+*GitHub* : [593-653](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L593-L653)
 
 ```solidity
 File: contracts/libraries/PanopticMath.sol
@@ -187,7 +189,7 @@ PanopticMath.haircutPremia(address,TokenId[],LeftRightSigned[4][],LeftRightSigne
 
 ```
 
-*GitHub* : [768-908](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L768-L908)
+*GitHub* : [768-908](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L768-L908)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -223,7 +225,7 @@ PanopticPool._updateSettlementPostMint(TokenId,LeftRightUnsigned[4],uint128) (co
 
 ```
 
-*GitHub* : [1666-1746](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1666-L1746)
+*GitHub* : [1666-1746](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1666-L1746)
 
 ```solidity
 File: contracts/SemiFungiblePositionManager.sol
@@ -260,7 +262,7 @@ SemiFungiblePositionManager._updateStoredPremia(bytes32,LeftRightUnsigned,LeftRi
 
 ```
 
-*GitHub* : [1110-1130](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L1110-L1130)
+*GitHub* : [1110-1130](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L1110-L1130)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -318,7 +320,7 @@ PanopticPool._updateSettlementPostBurn(address,TokenId,LeftRightUnsigned[4],uint
 
 ```
 
-*GitHub* : [1833-1980](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1833-L1980)
+*GitHub* : [1833-1980](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1833-L1980)
 
 ```solidity
 File: contracts/CollateralTracker.sol
@@ -337,7 +339,7 @@ CollateralTracker.redeem(uint256,address,address) (contracts/CollateralTracker.s
 
 ```
 
-*GitHub* : [591-626](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L591-L626)
+*GitHub* : [591-626](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L591-L626)
 
 ```solidity
 File: contracts/SemiFungiblePositionManager.sol
@@ -357,7 +359,7 @@ SemiFungiblePositionManager.registerTokenTransfer(address,address,TokenId,uint25
 
 ```
 
-*GitHub* : [593-653](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L593-L653)
+*GitHub* : [593-653](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L593-L653)
 
 ```solidity
 File: contracts/SemiFungiblePositionManager.sol
@@ -383,7 +385,7 @@ SemiFungiblePositionManager.getAccountPremium(address,address,uint256,int24,int2
 
 ```
 
-*GitHub* : [1449-1523](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L1449-L1523)
+*GitHub* : [1449-1523](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L1449-L1523)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -403,7 +405,7 @@ PanopticPool.settleLongPremium(TokenId[],address,uint256) (contracts/PanopticPoo
 
 ```
 
-*GitHub* : [1587-1659](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1587-L1659)
+*GitHub* : [1587-1659](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1587-L1659)
 
 ```solidity
 File: contracts/SemiFungiblePositionManager.sol
@@ -425,7 +427,7 @@ SemiFungiblePositionManager._createLegInAMM(IUniswapV3Pool,TokenId,uint256,Liqui
 
 ```
 
-*GitHub* : [958-1104](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L958-L1104)
+*GitHub* : [958-1104](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L958-L1104)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -469,7 +471,7 @@ PanopticPool._updateSettlementPostMint(TokenId,LeftRightUnsigned[4],uint128) (co
 
 ```
 
-*GitHub* : [1666-1746](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1666-L1746)
+*GitHub* : [1666-1746](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1666-L1746)
 
 ```solidity
 File: contracts/SemiFungiblePositionManager.sol
@@ -488,7 +490,7 @@ SemiFungiblePositionManager.registerTokenTransfer(address,address,TokenId,uint25
 
 ```
 
-*GitHub* : [593-653](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L593-L653)
+*GitHub* : [593-653](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L593-L653)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -537,7 +539,7 @@ PanopticPool._getPremia(TokenId,uint128,address,bool,int24) (contracts/PanopticP
 
 ```
 
-*GitHub* : [1503-1575](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1503-L1575)
+*GitHub* : [1503-1575](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1503-L1575)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -556,7 +558,7 @@ PanopticPool._updateSettlementPostBurn(address,TokenId,LeftRightUnsigned[4],uint
 
 ```
 
-*GitHub* : [1833-1980](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1833-L1980)
+*GitHub* : [1833-1980](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1833-L1980)
 
 ```solidity
 File: contracts/PanopticFactory.sol
@@ -575,7 +577,7 @@ PanopticFactory.deployNewPool(address,address,uint24,bytes32) (contracts/Panopti
 
 ```
 
-*GitHub* : [210-276](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticFactory.sol#L210-L276)
+*GitHub* : [210-276](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticFactory.sol#L210-L276)
 
 ```solidity
 File: contracts/SemiFungiblePositionManager.sol
@@ -612,7 +614,7 @@ SemiFungiblePositionManager.safeBatchTransferFrom(address,address,uint256[],uint
 
 ```
 
-*GitHub* : [566-585](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L566-L585)
+*GitHub* : [566-585](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L566-L585)
 
 ```solidity
 File: contracts/CollateralTracker.sol
@@ -631,7 +633,7 @@ CollateralTracker.withdraw(uint256,address,address) (contracts/CollateralTracker
 
 ```
 
-*GitHub* : [531-566](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L531-L566)
+*GitHub* : [531-566](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L531-L566)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -653,7 +655,7 @@ PanopticPool._mintOptions(TokenId[],uint128,uint64,int24,int24) (contracts/Panop
 
 ```
 
-*GitHub* : [614-667](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L614-L667)
+*GitHub* : [614-667](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L614-L667)
 
 ```solidity
 File: contracts/SemiFungiblePositionManager.sol
@@ -676,7 +678,7 @@ SemiFungiblePositionManager.beginReentrancyLock(uint64) (contracts/SemiFungibleP
 
 ```
 
-*GitHub* : [320-326](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L320-L326)
+*GitHub* : [320-326](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L320-L326)
 
 ```solidity
 File: contracts/tokens/ERC20Minimal.sol
@@ -710,7 +712,7 @@ ERC20Minimal.transferFrom(address,address,uint256) (contracts/tokens/ERC20Minima
 
 ```
 
-*GitHub* : [81-97](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/tokens/ERC20Minimal.sol#L81-L97)
+*GitHub* : [81-97](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/tokens/ERC20Minimal.sol#L81-L97)
 
 ```solidity
 File: contracts/CollateralTracker.sol
@@ -731,7 +733,7 @@ CollateralTracker._getTotalRequiredCollateral(int24,uint256[2][]) (contracts/Col
 
 ```
 
-*GitHub* : [1200-1236](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L1200-L1236)
+*GitHub* : [1200-1236](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L1200-L1236)
 
 ```solidity
 File: contracts/libraries/PanopticMath.sol
@@ -753,7 +755,7 @@ PanopticMath.haircutPremia(address,TokenId[],LeftRightSigned[4][],LeftRightSigne
 
 ```
 
-*GitHub* : [768-908](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L768-L908)
+*GitHub* : [768-908](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L768-L908)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -813,7 +815,7 @@ PanopticPool._updateSettlementPostBurn(address,TokenId,LeftRightUnsigned[4],uint
 
 ```
 
-*GitHub* : [1833-1980](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1833-L1980)
+*GitHub* : [1833-1980](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1833-L1980)
 
 ```solidity
 File: contracts/SemiFungiblePositionManager.sol
@@ -832,7 +834,7 @@ SemiFungiblePositionManager.registerTokenTransfer(address,address,TokenId,uint25
 
 ```
 
-*GitHub* : [593-653](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L593-L653)
+*GitHub* : [593-653](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L593-L653)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -851,7 +853,7 @@ PanopticPool.settleLongPremium(TokenId[],address,uint256) (contracts/PanopticPoo
 
 ```
 
-*GitHub* : [1587-1659](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1587-L1659)
+*GitHub* : [1587-1659](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1587-L1659)
 
 ```solidity
 File: contracts/SemiFungiblePositionManager.sol
@@ -870,7 +872,7 @@ SemiFungiblePositionManager.initializeAMMPool(address,address,uint24) (contracts
 
 ```
 
-*GitHub* : [350-391](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L350-L391)
+*GitHub* : [350-391](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L350-L391)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -895,7 +897,7 @@ PanopticPool._calculateAccumulatedPremia(address,TokenId[],bool,bool,int24) (con
 
 ```
 
-*GitHub* : [429-492](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L429-L492)
+*GitHub* : [429-492](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L429-L492)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -924,7 +926,7 @@ PanopticPool._updatePositionsHash(address,TokenId,bool) (contracts/PanopticPool.
 
 ```
 
-*GitHub* : [1405-1417](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1405-L1417)
+*GitHub* : [1405-1417](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1405-L1417)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -942,7 +944,7 @@ PanopticPool._updateSettlementPostMint(TokenId,LeftRightUnsigned[4],uint128) (co
 
 ```
 
-*GitHub* : [1666-1746](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1666-L1746)
+*GitHub* : [1666-1746](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1666-L1746)
 
 ```solidity
 File: contracts/SemiFungiblePositionManager.sol
@@ -965,7 +967,7 @@ SemiFungiblePositionManager.initializeAMMPool(address,address,uint24) (contracts
 
 ```
 
-*GitHub* : [350-391](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L350-L391)
+*GitHub* : [350-391](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L350-L391)
 
 ### [G-02]<a name="g-02"></a> Constructors can be marked `payable`
 
@@ -986,7 +988,7 @@ SemiFungiblePositionManager.constructor(IUniswapV3Factory) (contracts/SemiFungib
 
 ```
 
-*GitHub* : [341-343](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L341-L343)
+*GitHub* : [341-343](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L341-L343)
 
 ```solidity
 File: contracts/PanopticFactory.sol
@@ -1014,7 +1016,7 @@ PanopticFactory.constructor(address,SemiFungiblePositionManager,IUniswapV3Factor
 
 ```
 
-*GitHub* : [115-130](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticFactory.sol#L115-L130)
+*GitHub* : [115-130](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticFactory.sol#L115-L130)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -1029,7 +1031,7 @@ PanopticPool.constructor(SemiFungiblePositionManager) (contracts/PanopticPool.so
 
 ```
 
-*GitHub* : [280-282](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L280-L282)
+*GitHub* : [280-282](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L280-L282)
 
 ```solidity
 File: contracts/CollateralTracker.sol
@@ -1051,7 +1053,7 @@ CollateralTracker.constructor(uint256,uint256,uint256,int256,uint256,uint256,uin
 
 ```
 
-*GitHub* : [178-211](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L178-L211)
+*GitHub* : [178-211](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L178-L211)
 
 ### [G-03]<a name="g-03"></a> Division which can not overflow
 
@@ -1079,7 +1081,7 @@ SemiFungiblePositionManager._getPremiaDeltas(LeftRightUnsigned,LeftRightUnsigned
 
 ```
 
-*GitHub* : [1321-1407](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L1321-L1407)
+*GitHub* : [1321-1407](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L1321-L1407)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -1115,7 +1117,7 @@ PanopticPool._getPremia(TokenId,uint128,address,bool,int24) (contracts/PanopticP
 
 ```
 
-*GitHub* : [1503-1575](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1503-L1575)
+*GitHub* : [1503-1575](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1503-L1575)
 
 ```solidity
 File: contracts/CollateralTracker.sol
@@ -1137,7 +1139,7 @@ CollateralTracker._sellCollateralRatio(int256) (contracts/CollateralTracker.sol#
 
 ```
 
-*GitHub* : [751-800](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L751-L800)
+*GitHub* : [751-800](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L751-L800)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -1171,7 +1173,7 @@ PanopticPool._updateSettlementPostMint(TokenId,LeftRightUnsigned[4],uint128) (co
 
 ```
 
-*GitHub* : [1666-1746](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1666-L1746)
+*GitHub* : [1666-1746](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1666-L1746)
 
 ```solidity
 File: contracts/CollateralTracker.sol
@@ -1196,7 +1198,7 @@ CollateralTracker.constructor(uint256,uint256,uint256,int256,uint256,uint256,uin
 
 ```
 
-*GitHub* : [178-211](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L178-L211)
+*GitHub* : [178-211](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L178-L211)
 
 ```solidity
 File: contracts/libraries/Math.sol
@@ -1213,7 +1215,7 @@ Math.getSqrtRatioAtTick(int24) (contracts/libraries/Math.sol#128-181) perform di
 
 ```
 
-*GitHub* : [128-181](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L128-L181)
+*GitHub* : [128-181](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L128-L181)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -1233,7 +1235,7 @@ PanopticPool.settleLongPremium(TokenId[],address,uint256) (contracts/PanopticPoo
 
 ```
 
-*GitHub* : [1587-1659](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1587-L1659)
+*GitHub* : [1587-1659](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1587-L1659)
 
 ```solidity
 File: contracts/libraries/Math.sol
@@ -1254,7 +1256,7 @@ Math.unsafeDivRoundingUp(uint256,uint256) (contracts/libraries/Math.sol#738-742)
 
 ```
 
-*GitHub* : [738-742](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L738-L742)
+*GitHub* : [738-742](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L738-L742)
 
 ```solidity
 File: contracts/libraries/Math.sol
@@ -1282,7 +1284,7 @@ Math.getAmount0ForLiquidity(LiquidityChunk) (contracts/libraries/Math.sol#191-20
 
 ```
 
-*GitHub* : [191-202](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L191-L202)
+*GitHub* : [191-202](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L191-L202)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -1339,7 +1341,7 @@ PanopticPool._updateSettlementPostBurn(address,TokenId,LeftRightUnsigned[4],uint
 
 ```
 
-*GitHub* : [1833-1980](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1833-L1980)
+*GitHub* : [1833-1980](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1833-L1980)
 
 ```solidity
 File: contracts/libraries/Math.sol
@@ -1362,7 +1364,7 @@ Math.mulDiv(uint256,uint256,uint256) (contracts/libraries/Math.sol#340-433) perf
 
 ```
 
-*GitHub* : [340-433](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L340-L433)
+*GitHub* : [340-433](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L340-L433)
 
 ```solidity
 File: contracts/libraries/PanopticMath.sol
@@ -1383,7 +1385,7 @@ PanopticMath.twapFilter(IUniswapV3Pool,uint32) (contracts/libraries/PanopticMath
 
 ```
 
-*GitHub* : [241-268](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L241-L268)
+*GitHub* : [241-268](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L241-L268)
 
 ```solidity
 File: contracts/CollateralTracker.sol
@@ -1405,7 +1407,7 @@ CollateralTracker._buyCollateralRatio(uint256) (contracts/CollateralTracker.sol#
 
 ```
 
-*GitHub* : [806-853](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L806-L853)
+*GitHub* : [806-853](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L806-L853)
 
 ```solidity
 File: contracts/libraries/PanopticMath.sol
@@ -1424,7 +1426,7 @@ PanopticMath.getLiquidationBonus(LeftRightUnsigned,LeftRightUnsigned,uint160,uin
 
 ```
 
-*GitHub* : [651-754](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L651-L754)
+*GitHub* : [651-754](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L651-L754)
 
 ```solidity
 File: contracts/CollateralTracker.sol
@@ -1445,7 +1447,7 @@ CollateralTracker.maxMint(address) (contracts/CollateralTracker.sol#444-448) per
 
 ```
 
-*GitHub* : [444-448](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L444-L448)
+*GitHub* : [444-448](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L444-L448)
 
 ```solidity
 File: contracts/CollateralTracker.sol
@@ -1466,7 +1468,7 @@ CollateralTracker._poolUtilization() (contracts/CollateralTracker.sol#741-745) p
 
 ```
 
-*GitHub* : [741-745](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L741-L745)
+*GitHub* : [741-745](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L741-L745)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -1513,7 +1515,7 @@ PanopticPool._getAvailablePremium(uint256,LeftRightUnsigned,LeftRightUnsigned,Le
 
 ```
 
-*GitHub* : [1757-1796](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1757-L1796)
+*GitHub* : [1757-1796](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1757-L1796)
 
 ```solidity
 File: contracts/libraries/PanopticMath.sol
@@ -1530,7 +1532,7 @@ PanopticMath.computeMedianObservedPrice(IUniswapV3Pool,uint256,uint256,uint256,u
 
 ```
 
-*GitHub* : [125-157](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L125-L157)
+*GitHub* : [125-157](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L125-L157)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -1547,7 +1549,7 @@ PanopticPool._checkLiquiditySpread(TokenId,uint256,int24,int24,uint64) (contract
 
 ```
 
-*GitHub* : [1465-1494](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1465-L1494)
+*GitHub* : [1465-1494](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1465-L1494)
 
 ```solidity
 File: contracts/CollateralTracker.sol
@@ -1566,7 +1568,7 @@ CollateralTracker.startToken(bool,address,address,uint24,PanopticPool) (contract
 
 ```
 
-*GitHub* : [221-264](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L221-L264)
+*GitHub* : [221-264](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L221-L264)
 
 ### [G-04]<a name="g-04"></a> Use assembly to emit events
 
@@ -1596,7 +1598,7 @@ PanopticFactory.deployNewPool(address,address,uint24,bytes32) (contracts/Panopti
 
 ```
 
-*GitHub* : [210-276](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticFactory.sol#L210-L276)
+*GitHub* : [210-276](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticFactory.sol#L210-L276)
 
 ```solidity
 File: contracts/tokens/ERC1155Minimal.sol
@@ -1617,7 +1619,7 @@ ERC1155.setApprovalForAll(address,bool) (contracts/tokens/ERC1155Minimal.sol#81-
 
 ```
 
-*GitHub* : [81-85](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/tokens/ERC1155Minimal.sol#L81-L85)
+*GitHub* : [81-85](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/tokens/ERC1155Minimal.sol#L81-L85)
 
 ```solidity
 File: contracts/tokens/ERC20Minimal.sol
@@ -1644,7 +1646,7 @@ ERC20Minimal._transferFrom(address,address,uint256) (contracts/tokens/ERC20Minim
 
 ```
 
-*GitHub* : [103-113](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/tokens/ERC20Minimal.sol#L103-L113)
+*GitHub* : [103-113](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/tokens/ERC20Minimal.sol#L103-L113)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -1661,7 +1663,7 @@ PanopticPool._burnOptions(bool,TokenId,address,int24,int24) (contracts/PanopticP
 
 ```
 
-*GitHub* : [826-854](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L826-L854)
+*GitHub* : [826-854](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L826-L854)
 
 ```solidity
 File: contracts/CollateralTracker.sol
@@ -1678,7 +1680,7 @@ CollateralTracker.withdraw(uint256,address,address) (contracts/CollateralTracker
 
 ```
 
-*GitHub* : [531-566](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L531-L566)
+*GitHub* : [531-566](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L531-L566)
 
 ```solidity
 File: contracts/tokens/ERC20Minimal.sol
@@ -1707,7 +1709,7 @@ ERC20Minimal.transfer(address,uint256) (contracts/tokens/ERC20Minimal.sol#61-73)
 
 ```
 
-*GitHub* : [61-73](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/tokens/ERC20Minimal.sol#L61-L73)
+*GitHub* : [61-73](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/tokens/ERC20Minimal.sol#L61-L73)
 
 ```solidity
 File: contracts/PanopticFactory.sol
@@ -1732,7 +1734,7 @@ PanopticFactory.transferOwnership(address) (contracts/PanopticFactory.sol#147-15
 
 ```
 
-*GitHub* : [147-155](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticFactory.sol#L147-L155)
+*GitHub* : [147-155](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticFactory.sol#L147-L155)
 
 ```solidity
 File: contracts/tokens/ERC20Minimal.sol
@@ -1765,7 +1767,7 @@ ERC20Minimal.transferFrom(address,address,uint256) (contracts/tokens/ERC20Minima
 
 ```
 
-*GitHub* : [81-97](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/tokens/ERC20Minimal.sol#L81-L97)
+*GitHub* : [81-97](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/tokens/ERC20Minimal.sol#L81-L97)
 
 ```solidity
 File: contracts/CollateralTracker.sol
@@ -1782,7 +1784,7 @@ CollateralTracker.redeem(uint256,address,address) (contracts/CollateralTracker.s
 
 ```
 
-*GitHub* : [591-626](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L591-L626)
+*GitHub* : [591-626](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L591-L626)
 
 ```solidity
 File: contracts/CollateralTracker.sol
@@ -1822,7 +1824,7 @@ CollateralTracker.deposit(uint256,address) (contracts/CollateralTracker.sol#417-
 
 ```
 
-*GitHub* : [417-440](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L417-L440)
+*GitHub* : [417-440](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L417-L440)
 
 ```solidity
 File: contracts/tokens/ERC20Minimal.sol
@@ -1849,7 +1851,7 @@ ERC20Minimal._burn(address,uint256) (contracts/tokens/ERC20Minimal.sol#136-146) 
 
 ```
 
-*GitHub* : [136-146](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/tokens/ERC20Minimal.sol#L136-L146)
+*GitHub* : [136-146](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/tokens/ERC20Minimal.sol#L136-L146)
 
 ```solidity
 File: contracts/tokens/ERC1155Minimal.sol
@@ -1882,7 +1884,7 @@ ERC1155._mint(address,uint256,uint256) (contracts/tokens/ERC1155Minimal.sol#214-
 
 ```
 
-*GitHub* : [214-230](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/tokens/ERC1155Minimal.sol#L214-L230)
+*GitHub* : [214-230](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/tokens/ERC1155Minimal.sol#L214-L230)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -1899,7 +1901,7 @@ PanopticPool.settleLongPremium(TokenId[],address,uint256) (contracts/PanopticPoo
 
 ```
 
-*GitHub* : [1587-1659](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1587-L1659)
+*GitHub* : [1587-1659](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1587-L1659)
 
 ```solidity
 File: contracts/tokens/ERC1155Minimal.sol
@@ -1920,7 +1922,7 @@ ERC1155._burn(address,uint256,uint256) (contracts/tokens/ERC1155Minimal.sol#236-
 
 ```
 
-*GitHub* : [236-240](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/tokens/ERC1155Minimal.sol#L236-L240)
+*GitHub* : [236-240](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/tokens/ERC1155Minimal.sol#L236-L240)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -1937,7 +1939,7 @@ PanopticPool.forceExercise(address,TokenId[],TokenId[],TokenId[]) (contracts/Pan
 
 ```
 
-*GitHub* : [1179-1278](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1179-L1278)
+*GitHub* : [1179-1278](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1179-L1278)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -1954,7 +1956,7 @@ PanopticPool.liquidate(TokenId[],address,LeftRightUnsigned,TokenId[]) (contracts
 
 ```
 
-*GitHub* : [1017-1171](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1017-L1171)
+*GitHub* : [1017-1171](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1017-L1171)
 
 ```solidity
 File: contracts/SemiFungiblePositionManager.sol
@@ -1994,7 +1996,7 @@ SemiFungiblePositionManager.mintTokenizedPosition(TokenId,uint128,int24,int24) (
 
 ```
 
-*GitHub* : [504-527](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L504-L527)
+*GitHub* : [504-527](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L504-L527)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -2011,7 +2013,7 @@ PanopticPool._mintOptions(TokenId[],uint128,uint64,int24,int24) (contracts/Panop
 
 ```
 
-*GitHub* : [614-667](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L614-L667)
+*GitHub* : [614-667](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L614-L667)
 
 ```solidity
 File: contracts/CollateralTracker.sol
@@ -2051,7 +2053,7 @@ CollateralTracker.mint(uint256,address) (contracts/CollateralTracker.sol#477-500
 
 ```
 
-*GitHub* : [477-500](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L477-L500)
+*GitHub* : [477-500](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L477-L500)
 
 ```solidity
 File: contracts/tokens/ERC1155Minimal.sol
@@ -2068,7 +2070,7 @@ ERC1155.safeTransferFrom(address,address,uint256,uint256,bytes) (contracts/token
 
 ```
 
-*GitHub* : [94-120](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/tokens/ERC1155Minimal.sol#L94-L120)
+*GitHub* : [94-120](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/tokens/ERC1155Minimal.sol#L94-L120)
 
 ```solidity
 File: contracts/SemiFungiblePositionManager.sol
@@ -2109,7 +2111,7 @@ SemiFungiblePositionManager.burnTokenizedPosition(TokenId,uint128,int24,int24) (
 
 ```
 
-*GitHub* : [471-495](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L471-L495)
+*GitHub* : [471-495](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L471-L495)
 
 ```solidity
 File: contracts/tokens/ERC1155Minimal.sol
@@ -2126,7 +2128,7 @@ ERC1155.safeBatchTransferFrom(address,address,uint256[],uint256[],bytes) (contra
 
 ```
 
-*GitHub* : [130-171](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/tokens/ERC1155Minimal.sol#L130-L171)
+*GitHub* : [130-171](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/tokens/ERC1155Minimal.sol#L130-L171)
 
 ```solidity
 File: contracts/tokens/ERC20Minimal.sol
@@ -2149,7 +2151,7 @@ ERC20Minimal.approve(address,uint256) (contracts/tokens/ERC20Minimal.sol#49-55) 
 
 ```
 
-*GitHub* : [49-55](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/tokens/ERC20Minimal.sol#L49-L55)
+*GitHub* : [49-55](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/tokens/ERC20Minimal.sol#L49-L55)
 
 ```solidity
 File: contracts/SemiFungiblePositionManager.sol
@@ -2166,7 +2168,7 @@ SemiFungiblePositionManager.initializeAMMPool(address,address,uint24) (contracts
 
 ```
 
-*GitHub* : [350-391](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L350-L391)
+*GitHub* : [350-391](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L350-L391)
 
 ```solidity
 File: contracts/tokens/ERC20Minimal.sol
@@ -2192,7 +2194,7 @@ ERC20Minimal._mint(address,uint256) (contracts/tokens/ERC20Minimal.sol#122-131) 
 
 ```
 
-*GitHub* : [122-131](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/tokens/ERC20Minimal.sol#L122-L131)
+*GitHub* : [122-131](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/tokens/ERC20Minimal.sol#L122-L131)
 
 ### [G-05]<a name="g-05"></a> Emit event in setter function only if the state variable was changed
 
@@ -2219,7 +2221,7 @@ ERC1155.setApprovalForAll(address,bool) (contracts/tokens/ERC1155Minimal.sol#81-
 
 ```
 
-*GitHub* : [81-85](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/tokens/ERC1155Minimal.sol#L81-L85)
+*GitHub* : [81-85](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/tokens/ERC1155Minimal.sol#L81-L85)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -2236,7 +2238,7 @@ PanopticPool.settleLongPremium(TokenId[],address,uint256) (contracts/PanopticPoo
 
 ```
 
-*GitHub* : [1587-1659](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1587-L1659)
+*GitHub* : [1587-1659](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1587-L1659)
 
 ### [G-06]<a name="g-06"></a> Use nested if to save gas
 
@@ -2259,7 +2261,7 @@ SemiFungiblePositionManager.swapInAMM(IUniswapV3Pool,LeftRightSigned) (contracts
 
 ```
 
-*GitHub* : [756-852](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L756-L852)
+*GitHub* : [756-852](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L756-L852)
 
 ```solidity
 File: contracts/PanopticFactory.sol
@@ -2276,7 +2278,7 @@ PanopticFactory.deployNewPool(address,address,uint24,bytes32) (contracts/Panopti
 
 ```
 
-*GitHub* : [210-276](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticFactory.sol#L210-L276)
+*GitHub* : [210-276](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticFactory.sol#L210-L276)
 
 ```solidity
 File: contracts/libraries/PanopticMath.sol
@@ -2293,7 +2295,7 @@ PanopticMath.getLiquidationBonus(LeftRightUnsigned,LeftRightUnsigned,uint160,uin
 
 ```
 
-*GitHub* : [651-754](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L651-L754)
+*GitHub* : [651-754](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L651-L754)
 
 ```solidity
 File: contracts/libraries/PanopticMath.sol
@@ -2314,7 +2316,7 @@ PanopticMath.haircutPremia(address,TokenId[],LeftRightSigned[4][],LeftRightSigne
 
 ```
 
-*GitHub* : [768-908](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L768-L908)
+*GitHub* : [768-908](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L768-L908)
 
 ```solidity
 File: contracts/CollateralTracker.sol
@@ -2331,7 +2333,7 @@ CollateralTracker.exercise(address,int128,int128,int128,int128) (contracts/Colla
 
 ```
 
-*GitHub* : [1043-1089](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L1043-L1089)
+*GitHub* : [1043-1089](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L1043-L1089)
 
 ```solidity
 File: contracts/libraries/PanopticMath.sol
@@ -2348,7 +2350,7 @@ PanopticMath.computeInternalMedian(uint256,uint256,uint256,uint256,IUniswapV3Poo
 
 ```
 
-*GitHub* : [168-233](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L168-L233)
+*GitHub* : [168-233](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L168-L233)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -2365,7 +2367,7 @@ PanopticPool._calculateAccumulatedPremia(address,TokenId[],bool,bool,int24) (con
 
 ```
 
-*GitHub* : [429-492](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L429-L492)
+*GitHub* : [429-492](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L429-L492)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -2384,7 +2386,7 @@ TokenIdLibrary.validate(TokenId) (contracts/types/TokenId.sol#500-571) has IF st
 
 ```
 
-*GitHub* : [500-571](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L500-L571)
+*GitHub* : [500-571](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L500-L571)
 
 ```solidity
 File: contracts/CollateralTracker.sol
@@ -2405,7 +2407,7 @@ CollateralTracker._getRequiredCollateralSingleLegNoPartner(TokenId,uint256,uint1
 
 ```
 
-*GitHub* : [1311-1422](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L1311-L1422)
+*GitHub* : [1311-1422](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L1311-L1422)
 
 ```solidity
 File: contracts/CollateralTracker.sol
@@ -2423,7 +2425,7 @@ CollateralTracker.exerciseCost(int24,int24,TokenId,uint128,LeftRightSigned) (con
 
 ```
 
-*GitHub* : [650-734](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L650-L734)
+*GitHub* : [650-734](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L650-L734)
 
 ### [G-07]<a name="g-07"></a> Internal or Private Function can be Inlined to Save Gas
 
@@ -2525,7 +2527,7 @@ Math (contracts/libraries/Math.sol#13-782) may make following functions inline :
 
 ```
 
-*GitHub* : [13-782](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L13-L782)
+*GitHub* : [13-782](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L13-L782)
 
 ```solidity
 File: contracts/libraries/FeesCalc.sol
@@ -2620,7 +2622,7 @@ FeesCalc (contracts/libraries/FeesCalc.sol#39-209) may make following functions 
 
 ```
 
-*GitHub* : [39-209](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/FeesCalc.sol#L39-L209)
+*GitHub* : [39-209](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/FeesCalc.sol#L39-L209)
 
 ```solidity
 File: contracts/libraries/PanopticMath.sol
@@ -2702,23 +2704,23 @@ PanopticMath (contracts/libraries/PanopticMath.sol#18-967) may make following fu
 
 ```
 
-*GitHub* : [18-967](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L18-L967)
+*GitHub* : [18-967](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L18-L967)
 
 ```solidity
 File: contracts/types/TokenId.sol
 
 /// @audit ******************* Issue Detail *******************
 TokenIdLibrary (contracts/types/TokenId.sol#60-600) may make following functions inline :- 
+	- TokenIdLibrary.addStrike(TokenId,int24,uint256) (contracts/types/TokenId.sol#291-303)
+	- TokenIdLibrary.addIsLong(TokenId,uint256,uint256) (contracts/types/TokenId.sol#240-248)
+	- TokenIdLibrary.addWidth(TokenId,int24,uint256) (contracts/types/TokenId.sol#310-323)
 	- TokenIdLibrary.addTokenType(TokenId,uint256,uint256) (contracts/types/TokenId.sol#255-266)
 	- TokenIdLibrary.addAsset(TokenId,uint256,uint256) (contracts/types/TokenId.sol#205-214)
 	- TokenIdLibrary.addRiskPartner(TokenId,uint256,uint256) (contracts/types/TokenId.sol#273-284)
 	- TokenIdLibrary.addOptionRatio(TokenId,uint256,uint256) (contracts/types/TokenId.sol#221-232)
-	- TokenIdLibrary.addStrike(TokenId,int24,uint256) (contracts/types/TokenId.sol#291-303)
-	- TokenIdLibrary.addIsLong(TokenId,uint256,uint256) (contracts/types/TokenId.sol#240-248)
-	- TokenIdLibrary.addWidth(TokenId,int24,uint256) (contracts/types/TokenId.sol#310-323)
 
 /// @audit ************** Possible Issue Line(s) **************
-	L#255-266,  L#205-214,  L#273-284,  L#221-232,  L#291-303,  L#240-248,  L#310-323,  
+	L#291-303,  L#240-248,  L#310-323,  L#255-266,  L#205-214,  L#273-284,  L#221-232,  
 
 /// @audit ****************** Affected Code *******************
  205:     function addAsset(
@@ -2806,7 +2808,7 @@ TokenIdLibrary (contracts/types/TokenId.sol#60-600) may make following functions
 
 ```
 
-*GitHub* : [60-600](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L60-L600)
+*GitHub* : [60-600](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L60-L600)
 
 ```solidity
 File: contracts/CollateralTracker.sol
@@ -2819,13 +2821,13 @@ CollateralTracker (contracts/CollateralTracker.sol#36-1650) may make following f
 	- CollateralTracker._getRequiredCollateralAtTickSinglePosition(TokenId,uint128,int24,uint128) (contracts/CollateralTracker.sol#1245-1268)
 	- CollateralTracker._getRequiredCollateralSingleLeg(TokenId,uint256,uint128,int24,uint128) (contracts/CollateralTracker.sol#1278-1301)
 	- CollateralTracker._getRequiredCollateralSingleLegPartner(TokenId,uint256,uint128,int24,uint128) (contracts/CollateralTracker.sol#1439-1464)
-	- CollateralTracker._computeStrangle(TokenId,uint256,uint128,int24,uint128) (contracts/CollateralTracker.sol#1600-1649)
 	- CollateralTracker._computeSpread(TokenId,uint128,uint256,uint256,uint128) (contracts/CollateralTracker.sol#1510-1589)
-	- CollateralTracker._buyCollateralRatio(uint256) (contracts/CollateralTracker.sol#806-853)
+	- CollateralTracker._computeStrangle(TokenId,uint256,uint128,int24,uint128) (contracts/CollateralTracker.sol#1600-1649)
 	- CollateralTracker._sellCollateralRatio(int256) (contracts/CollateralTracker.sol#751-800)
+	- CollateralTracker._buyCollateralRatio(uint256) (contracts/CollateralTracker.sol#806-853)
 
 /// @audit ************** Possible Issue Line(s) **************
-	L#1096-1126,  L#1159-1193,  L#1200-1236,  L#1245-1268,  L#1278-1301,  L#1439-1464,  L#1600-1649,  L#1510-1589,  L#806-853,  L#751-800,  
+	L#1096-1126,  L#1159-1193,  L#1200-1236,  L#1245-1268,  L#1278-1301,  L#1439-1464,  L#1510-1589,  L#1600-1649,  L#751-800,  L#806-853,  
 
 /// @audit ****************** Affected Code *******************
  751:     function _sellCollateralRatio(
@@ -3236,7 +3238,7 @@ CollateralTracker (contracts/CollateralTracker.sol#36-1650) may make following f
 
 ```
 
-*GitHub* : [36-1650](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L36-L1650)
+*GitHub* : [36-1650](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L36-L1650)
 
 ### [G-08]<a name="g-08"></a> Modulus operations that could be unchecked
 
@@ -3264,7 +3266,7 @@ PanopticMath.computeMedianObservedPrice(IUniswapV3Pool,uint256,uint256,uint256,u
 
 ```
 
-*GitHub* : [125-157](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L125-L157)
+*GitHub* : [125-157](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L125-L157)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -3285,7 +3287,7 @@ TokenIdLibrary.isLong(TokenId,uint256) (contracts/types/TokenId.sol#128-132) per
 
 ```
 
-*GitHub* : [128-132](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L128-L132)
+*GitHub* : [128-132](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L128-L132)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -3313,7 +3315,7 @@ TokenIdLibrary.addOptionRatio(TokenId,uint256,uint256) (contracts/types/TokenId.
 
 ```
 
-*GitHub* : [221-232](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L221-L232)
+*GitHub* : [221-232](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L221-L232)
 
 ```solidity
 File: contracts/libraries/PanopticMath.sol
@@ -3333,7 +3335,7 @@ PanopticMath.getTicks(int24,int24,int24) (contracts/libraries/PanopticMath.sol#3
 
 ```
 
-*GitHub* : [338-363](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L338-L363)
+*GitHub* : [338-363](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L338-L363)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -3361,7 +3363,7 @@ TokenIdLibrary.addTokenType(TokenId,uint256,uint256) (contracts/types/TokenId.so
 
 ```
 
-*GitHub* : [255-266](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L255-L266)
+*GitHub* : [255-266](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L255-L266)
 
 ```solidity
 File: contracts/libraries/Math.sol
@@ -3378,7 +3380,7 @@ Math.getSqrtRatioAtTick(int24) (contracts/libraries/Math.sol#128-181) perform mo
 
 ```
 
-*GitHub* : [128-181](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L128-L181)
+*GitHub* : [128-181](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L128-L181)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -3404,7 +3406,7 @@ TokenIdLibrary.addAsset(TokenId,uint256,uint256) (contracts/types/TokenId.sol#20
 
 ```
 
-*GitHub* : [205-214](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L205-L214)
+*GitHub* : [205-214](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L205-L214)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -3432,7 +3434,7 @@ TokenIdLibrary.addRiskPartner(TokenId,uint256,uint256) (contracts/types/TokenId.
 
 ```
 
-*GitHub* : [273-284](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L273-L284)
+*GitHub* : [273-284](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L273-L284)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -3453,7 +3455,7 @@ TokenIdLibrary.riskPartner(TokenId,uint256) (contracts/types/TokenId.sol#148-152
 
 ```
 
-*GitHub* : [148-152](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L148-L152)
+*GitHub* : [148-152](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L148-L152)
 
 ```solidity
 File: contracts/libraries/Math.sol
@@ -3474,7 +3476,7 @@ Math.unsafeDivRoundingUp(uint256,uint256) (contracts/libraries/Math.sol#738-742)
 
 ```
 
-*GitHub* : [738-742](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L738-L742)
+*GitHub* : [738-742](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L738-L742)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -3495,7 +3497,7 @@ TokenIdLibrary.optionRatio(TokenId,uint256) (contracts/types/TokenId.sol#118-122
 
 ```
 
-*GitHub* : [118-122](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L118-L122)
+*GitHub* : [118-122](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L118-L122)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -3516,7 +3518,7 @@ TokenIdLibrary.tickSpacing(TokenId) (contracts/types/TokenId.sol#96-100) perform
 
 ```
 
-*GitHub* : [96-100](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L96-L100)
+*GitHub* : [96-100](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L96-L100)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -3537,7 +3539,7 @@ TokenIdLibrary.tokenType(TokenId,uint256) (contracts/types/TokenId.sol#138-142) 
 
 ```
 
-*GitHub* : [138-142](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L138-L142)
+*GitHub* : [138-142](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L138-L142)
 
 ```solidity
 File: contracts/libraries/PanopticMath.sol
@@ -3565,7 +3567,7 @@ PanopticMath.computeInternalMedian(uint256,uint256,uint256,uint256,IUniswapV3Poo
 
 ```
 
-*GitHub* : [168-233](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L168-L233)
+*GitHub* : [168-233](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L168-L233)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -3586,7 +3588,7 @@ TokenIdLibrary.width(TokenId,uint256) (contracts/types/TokenId.sol#169-173) perf
 
 ```
 
-*GitHub* : [169-173](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L169-L173)
+*GitHub* : [169-173](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L169-L173)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -3616,7 +3618,7 @@ TokenIdLibrary.addWidth(TokenId,int24,uint256) (contracts/types/TokenId.sol#310-
 
 ```
 
-*GitHub* : [310-323](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L310-L323)
+*GitHub* : [310-323](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L310-L323)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -3637,7 +3639,7 @@ TokenIdLibrary.asset(TokenId,uint256) (contracts/types/TokenId.sol#108-112) perf
 
 ```
 
-*GitHub* : [108-112](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L108-L112)
+*GitHub* : [108-112](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L108-L112)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -3662,7 +3664,7 @@ TokenIdLibrary.addIsLong(TokenId,uint256,uint256) (contracts/types/TokenId.sol#2
 
 ```
 
-*GitHub* : [240-248](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L240-L248)
+*GitHub* : [240-248](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L240-L248)
 
 ### [G-09]<a name="g-09"></a> Functions guaranteed to revert when called by normal users can be marked `payable`
 
@@ -3690,7 +3692,7 @@ PanopticPool._mintOptions(TokenId[],uint128,uint64,int24,int24) (contracts/Panop
 
 ```
 
-*GitHub* : [614-667](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L614-L667)
+*GitHub* : [614-667](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L614-L667)
 
 ```solidity
 File: contracts/CollateralTracker.sol
@@ -3712,7 +3714,7 @@ CollateralTracker.withdraw(uint256,address,address) (contracts/CollateralTracker
 
 ```
 
-*GitHub* : [531-566](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L531-L566)
+*GitHub* : [531-566](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L531-L566)
 
 ```solidity
 File: contracts/CollateralTracker.sol
@@ -3736,7 +3738,7 @@ CollateralTracker.transfer(address,uint256) (contracts/CollateralTracker.sol#323
 
 ```
 
-*GitHub* : [323-334](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L323-L334)
+*GitHub* : [323-334](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L323-L334)
 
 ```solidity
 File: contracts/tokens/ERC1155Minimal.sol
@@ -3758,7 +3760,7 @@ ERC1155.safeBatchTransferFrom(address,address,uint256[],uint256[],bytes) (contra
 
 ```
 
-*GitHub* : [130-171](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/tokens/ERC1155Minimal.sol#L130-L171)
+*GitHub* : [130-171](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/tokens/ERC1155Minimal.sol#L130-L171)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -3780,7 +3782,7 @@ PanopticPool.liquidate(TokenId[],address,LeftRightUnsigned,TokenId[]) (contracts
 
 ```
 
-*GitHub* : [1017-1171](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1017-L1171)
+*GitHub* : [1017-1171](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1017-L1171)
 
 ```solidity
 File: contracts/PanopticFactory.sol
@@ -3801,7 +3803,7 @@ PanopticFactory.transferOwnership(address) (contracts/PanopticFactory.sol#147-15
 
 ```
 
-*GitHub* : [147-155](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticFactory.sol#L147-L155)
+*GitHub* : [147-155](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticFactory.sol#L147-L155)
 
 ```solidity
 File: contracts/tokens/ERC1155Minimal.sol
@@ -3830,7 +3832,7 @@ ERC1155._mint(address,uint256,uint256) (contracts/tokens/ERC1155Minimal.sol#214-
 
 ```
 
-*GitHub* : [214-230](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/tokens/ERC1155Minimal.sol#L214-L230)
+*GitHub* : [214-230](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/tokens/ERC1155Minimal.sol#L214-L230)
 
 ```solidity
 File: contracts/CollateralTracker.sol
@@ -3852,7 +3854,7 @@ CollateralTracker.redeem(uint256,address,address) (contracts/CollateralTracker.s
 
 ```
 
-*GitHub* : [591-626](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L591-L626)
+*GitHub* : [591-626](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L591-L626)
 
 ```solidity
 File: contracts/tokens/ERC1155Minimal.sol
@@ -3874,7 +3876,7 @@ ERC1155.safeTransferFrom(address,address,uint256,uint256,bytes) (contracts/token
 
 ```
 
-*GitHub* : [94-120](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/tokens/ERC1155Minimal.sol#L94-L120)
+*GitHub* : [94-120](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/tokens/ERC1155Minimal.sol#L94-L120)
 
 ```solidity
 File: contracts/PanopticFactory.sol
@@ -3896,7 +3898,7 @@ PanopticFactory.deployNewPool(address,address,uint24,bytes32) (contracts/Panopti
 
 ```
 
-*GitHub* : [210-276](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticFactory.sol#L210-L276)
+*GitHub* : [210-276](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticFactory.sol#L210-L276)
 
 ### [G-10]<a name="g-10"></a> if variable is casted more than once, consider caching the result to save gas
 
@@ -3927,7 +3929,7 @@ PanopticMath.getPoolId(address) (contracts/libraries/PanopticMath.sol#47-54) cas
 
 ```
 
-*GitHub* : [47-54](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L47-L54)
+*GitHub* : [47-54](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L47-L54)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -3952,7 +3954,7 @@ PanopticPool._updateSettlementPostBurn(address,TokenId,LeftRightUnsigned[4],uint
 
 ```
 
-*GitHub* : [1833-1980](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1833-L1980)
+*GitHub* : [1833-1980](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1833-L1980)
 
 ```solidity
 File: contracts/libraries/PanopticMath.sol
@@ -3974,7 +3976,7 @@ PanopticMath.haircutPremia(address,TokenId[],LeftRightSigned[4][],LeftRightSigne
 
 ```
 
-*GitHub* : [768-908](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L768-L908)
+*GitHub* : [768-908](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L768-L908)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -3993,7 +3995,7 @@ TokenIdLibrary.validate(TokenId) (contracts/types/TokenId.sol#500-571) casts (To
 
 ```
 
-*GitHub* : [500-571](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L500-L571)
+*GitHub* : [500-571](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L500-L571)
 
 ```solidity
 File: contracts/libraries/PanopticMath.sol
@@ -4015,7 +4017,7 @@ PanopticMath.haircutPremia(address,TokenId[],LeftRightSigned[4][],LeftRightSigne
 
 ```
 
-*GitHub* : [768-908](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L768-L908)
+*GitHub* : [768-908](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L768-L908)
 
 ```solidity
 File: contracts/SemiFungiblePositionManager.sol
@@ -4050,7 +4052,7 @@ SemiFungiblePositionManager.registerTokenTransfer(address,address,TokenId,uint25
 
 ```
 
-*GitHub* : [593-653](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L593-L653)
+*GitHub* : [593-653](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L593-L653)
 
 ```solidity
 File: contracts/PanopticFactory.sol
@@ -4071,7 +4073,7 @@ PanopticFactory.minePoolAddress(bytes32,uint256,uint256) (contracts/PanopticFact
 
 ```
 
-*GitHub* : [290-326](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticFactory.sol#L290-L326)
+*GitHub* : [290-326](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticFactory.sol#L290-L326)
 
 ```solidity
 File: contracts/libraries/InteractionHelper.sol
@@ -4103,7 +4105,7 @@ InteractionHelper.doApprovals(SemiFungiblePositionManager,CollateralTracker,Coll
 
 ```
 
-*GitHub* : [24-38](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/InteractionHelper.sol#L24-L38)
+*GitHub* : [24-38](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/InteractionHelper.sol#L24-L38)
 
 ```solidity
 File: contracts/libraries/FeesCalc.sol
@@ -4122,7 +4124,7 @@ FeesCalc.getPortfolioValue(int24,mapping(TokenId => LeftRightUnsigned),TokenId[]
 
 ```
 
-*GitHub* : [46-87](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/FeesCalc.sol#L46-L87)
+*GitHub* : [46-87](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/FeesCalc.sol#L46-L87)
 
 ```solidity
 File: contracts/CollateralTracker.sol
@@ -4142,7 +4144,7 @@ CollateralTracker._computeStrangle(TokenId,uint256,uint128,int24,uint128) (contr
 
 ```
 
-*GitHub* : [1600-1649](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L1600-L1649)
+*GitHub* : [1600-1649](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L1600-L1649)
 
 ```solidity
 File: contracts/types/LeftRight.sol
@@ -4177,7 +4179,7 @@ LeftRightLibrary.add(LeftRightUnsigned,LeftRightUnsigned) (contracts/types/LeftR
 
 ```
 
-*GitHub* : [148-165](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/LeftRight.sol#L148-L165)
+*GitHub* : [148-165](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/LeftRight.sol#L148-L165)
 
 ```solidity
 File: contracts/types/LeftRight.sol
@@ -4212,7 +4214,7 @@ LeftRightLibrary.sub(LeftRightUnsigned,LeftRightUnsigned) (contracts/types/LeftR
 
 ```
 
-*GitHub* : [171-188](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/LeftRight.sol#L171-L188)
+*GitHub* : [171-188](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/LeftRight.sol#L171-L188)
 
 ```solidity
 File: contracts/libraries/FeesCalc.sol
@@ -4231,7 +4233,7 @@ FeesCalc.getPortfolioValue(int24,mapping(TokenId => LeftRightUnsigned),TokenId[]
 
 ```
 
-*GitHub* : [46-87](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/FeesCalc.sol#L46-L87)
+*GitHub* : [46-87](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/FeesCalc.sol#L46-L87)
 
 ```solidity
 File: contracts/SemiFungiblePositionManager.sol
@@ -4265,7 +4267,7 @@ SemiFungiblePositionManager.safeTransferFrom(address,address,uint256,uint256,byt
 
 ```
 
-*GitHub* : [540-556](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L540-L556)
+*GitHub* : [540-556](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L540-L556)
 
 ```solidity
 File: contracts/libraries/Math.sol
@@ -4301,7 +4303,7 @@ Math.quickSort(int256[],int256,int256) (contracts/libraries/Math.sol#753-771) ca
 
 ```
 
-*GitHub* : [753-771](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L753-L771)
+*GitHub* : [753-771](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L753-L771)
 
 ```solidity
 File: contracts/CollateralTracker.sol
@@ -4320,7 +4322,7 @@ CollateralTracker._sellCollateralRatio(int256) (contracts/CollateralTracker.sol#
 
 ```
 
-*GitHub* : [751-800](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L751-L800)
+*GitHub* : [751-800](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L751-L800)
 
 ```solidity
 File: contracts/libraries/Math.sol
@@ -4338,7 +4340,7 @@ Math.getSqrtRatioAtTick(int24) (contracts/libraries/Math.sol#128-181) casts (int
 
 ```
 
-*GitHub* : [128-181](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L128-L181)
+*GitHub* : [128-181](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L128-L181)
 
 ```solidity
 File: contracts/libraries/InteractionHelper.sol
@@ -4370,7 +4372,7 @@ InteractionHelper.doApprovals(SemiFungiblePositionManager,CollateralTracker,Coll
 
 ```
 
-*GitHub* : [24-38](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/InteractionHelper.sol#L24-L38)
+*GitHub* : [24-38](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/InteractionHelper.sol#L24-L38)
 
 ```solidity
 File: contracts/libraries/InteractionHelper.sol
@@ -4402,7 +4404,7 @@ InteractionHelper.doApprovals(SemiFungiblePositionManager,CollateralTracker,Coll
 
 ```
 
-*GitHub* : [24-38](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/InteractionHelper.sol#L24-L38)
+*GitHub* : [24-38](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/InteractionHelper.sol#L24-L38)
 
 ```solidity
 File: contracts/libraries/Math.sol
@@ -4438,7 +4440,7 @@ Math.quickSort(int256[],int256,int256) (contracts/libraries/Math.sol#753-771) ca
 
 ```
 
-*GitHub* : [753-771](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L753-L771)
+*GitHub* : [753-771](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L753-L771)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -4457,7 +4459,7 @@ PanopticPool.startPool(IUniswapV3Pool,address,address,CollateralTracker,Collater
 
 ```
 
-*GitHub* : [291-327](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L291-L327)
+*GitHub* : [291-327](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L291-L327)
 
 ### [G-11]<a name="g-11"></a> Inefficient Parameter Storage
 
@@ -4501,7 +4503,7 @@ LeftRightLibrary.subRect(LeftRightSigned,LeftRightSigned) (contracts/types/LeftR
 
 ```
 
-*GitHub* : [251-269](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/LeftRight.sol#L251-L269)
+*GitHub* : [251-269](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/LeftRight.sol#L251-L269)
 
 ```solidity
 File: contracts/types/LeftRight.sol
@@ -4531,7 +4533,7 @@ LeftRightLibrary.sub(LeftRightSigned,LeftRightSigned) (contracts/types/LeftRight
 
 ```
 
-*GitHub* : [232-244](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/LeftRight.sol#L232-L244)
+*GitHub* : [232-244](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/LeftRight.sol#L232-L244)
 
 ```solidity
 File: contracts/libraries/PanopticMath.sol
@@ -4548,7 +4550,7 @@ PanopticMath.getAmountsMoved(TokenId,uint128,uint256) (contracts/libraries/Panop
 
 ```
 
-*GitHub* : [574-599](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L574-L599)
+*GitHub* : [574-599](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L574-L599)
 
 ```solidity
 File: contracts/CollateralTracker.sol
@@ -4565,7 +4567,7 @@ CollateralTracker._getRequiredCollateralSingleLegPartner(TokenId,uint256,uint128
 
 ```
 
-*GitHub* : [1439-1464](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L1439-L1464)
+*GitHub* : [1439-1464](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L1439-L1464)
 
 ```solidity
 File: contracts/types/LiquidityChunk.sol
@@ -4593,7 +4595,7 @@ LiquidityChunkLibrary.addTickUpper(LiquidityChunk,int24) (contracts/types/Liquid
 
 ```
 
-*GitHub* : [118-129](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/LiquidityChunk.sol#L118-L129)
+*GitHub* : [118-129](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/LiquidityChunk.sol#L118-L129)
 
 ```solidity
 File: contracts/types/LiquidityChunk.sol
@@ -4620,7 +4622,7 @@ LiquidityChunkLibrary.addTickLower(LiquidityChunk,int24) (contracts/types/Liquid
 
 ```
 
-*GitHub* : [102-112](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/LiquidityChunk.sol#L102-L112)
+*GitHub* : [102-112](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/LiquidityChunk.sol#L102-L112)
 
 ```solidity
 File: contracts/CollateralTracker.sol
@@ -4637,7 +4639,7 @@ CollateralTracker._getAccountMargin(address,int24,uint256[2][],int128) (contract
 
 ```
 
-*GitHub* : [1159-1193](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L1159-L1193)
+*GitHub* : [1159-1193](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L1159-L1193)
 
 ```solidity
 File: contracts/SemiFungiblePositionManager.sol
@@ -4678,7 +4680,7 @@ SemiFungiblePositionManager.burnTokenizedPosition(TokenId,uint128,int24,int24) (
 
 ```
 
-*GitHub* : [471-495](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L471-L495)
+*GitHub* : [471-495](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L471-L495)
 
 ```solidity
 File: contracts/libraries/PanopticMath.sol
@@ -4695,7 +4697,7 @@ PanopticMath._calculateIOAmounts(TokenId,uint128,uint256) (contracts/libraries/P
 
 ```
 
-*GitHub* : [607-635](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L607-L635)
+*GitHub* : [607-635](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L607-L635)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -4716,7 +4718,7 @@ TokenIdLibrary.poolId(TokenId) (contracts/types/TokenId.sol#87-91) should use ca
 
 ```
 
-*GitHub* : [87-91](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L87-L91)
+*GitHub* : [87-91](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L87-L91)
 
 ```solidity
 File: contracts/libraries/CallbackLib.sol
@@ -4742,7 +4744,7 @@ CallbackLib.validateCallback(address,IUniswapV3Factory,CallbackLib.PoolFeatures)
 
 ```
 
-*GitHub* : [30-38](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/CallbackLib.sol#L30-L38)
+*GitHub* : [30-38](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/CallbackLib.sol#L30-L38)
 
 ```solidity
 File: contracts/types/LiquidityChunk.sol
@@ -4763,7 +4765,7 @@ LiquidityChunkLibrary.tickUpper(LiquidityChunk) (contracts/types/LiquidityChunk.
 
 ```
 
-*GitHub* : [180-184](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/LiquidityChunk.sol#L180-L184)
+*GitHub* : [180-184](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/LiquidityChunk.sol#L180-L184)
 
 ```solidity
 File: contracts/SemiFungiblePositionManager.sol
@@ -4782,7 +4784,7 @@ SemiFungiblePositionManager.constructor(IUniswapV3Factory) (contracts/SemiFungib
 
 ```
 
-*GitHub* : [341-343](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L341-L343)
+*GitHub* : [341-343](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L341-L343)
 
 ```solidity
 File: contracts/libraries/InteractionHelper.sol
@@ -4815,7 +4817,7 @@ InteractionHelper.doApprovals(SemiFungiblePositionManager,CollateralTracker,Coll
 
 ```
 
-*GitHub* : [24-38](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/InteractionHelper.sol#L24-L38)
+*GitHub* : [24-38](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/InteractionHelper.sol#L24-L38)
 
 ```solidity
 File: contracts/libraries/PanopticMath.sol
@@ -4836,7 +4838,7 @@ PanopticMath.getRefundAmounts(address,LeftRightSigned,int24,CollateralTracker,Co
 
 ```
 
-*GitHub* : [917-966](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L917-L966)
+*GitHub* : [917-966](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L917-L966)
 
 ```solidity
 File: contracts/CollateralTracker.sol
@@ -4860,7 +4862,7 @@ CollateralTracker.getAccountMarginDetails(address,int24,uint256[2][],int128) (co
 
 ```
 
-*GitHub* : [1141-1148](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L1141-L1148)
+*GitHub* : [1141-1148](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L1141-L1148)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -4881,7 +4883,7 @@ TokenIdLibrary.width(TokenId,uint256) (contracts/types/TokenId.sol#169-173) shou
 
 ```
 
-*GitHub* : [169-173](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L169-L173)
+*GitHub* : [169-173](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L169-L173)
 
 ```solidity
 File: contracts/types/LeftRight.sol
@@ -4900,7 +4902,7 @@ LeftRightLibrary.rightSlot(LeftRightUnsigned) (contracts/types/LeftRight.sol#39-
 
 ```
 
-*GitHub* : [39-41](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/LeftRight.sol#L39-L41)
+*GitHub* : [39-41](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/LeftRight.sol#L39-L41)
 
 ```solidity
 File: contracts/libraries/PanopticMath.sol
@@ -4917,7 +4919,7 @@ PanopticMath.twapFilter(IUniswapV3Pool,uint32) (contracts/libraries/PanopticMath
 
 ```
 
-*GitHub* : [241-268](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L241-L268)
+*GitHub* : [241-268](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L241-L268)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -4938,7 +4940,7 @@ TokenIdLibrary.countLongs(TokenId) (contracts/types/TokenId.sol#404-408) should 
 
 ```
 
-*GitHub* : [404-408](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L404-L408)
+*GitHub* : [404-408](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L404-L408)
 
 ```solidity
 File: contracts/SemiFungiblePositionManager.sol
@@ -4977,7 +4979,7 @@ SemiFungiblePositionManager._burnLiquidity(LiquidityChunk,IUniswapV3Pool) (contr
 
 ```
 
-*GitHub* : [1224-1245](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L1224-L1245)
+*GitHub* : [1224-1245](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L1224-L1245)
 
 ```solidity
 File: contracts/types/LeftRight.sol
@@ -4996,7 +4998,7 @@ LeftRightLibrary.leftSlot(LeftRightSigned) (contracts/types/LeftRight.sol#108-11
 
 ```
 
-*GitHub* : [108-110](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/LeftRight.sol#L108-L110)
+*GitHub* : [108-110](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/LeftRight.sol#L108-L110)
 
 ```solidity
 File: contracts/PanopticFactory.sol
@@ -5015,7 +5017,7 @@ PanopticFactory.getPanopticPool(IUniswapV3Pool) (contracts/PanopticFactory.sol#4
 
 ```
 
-*GitHub* : [420-422](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticFactory.sol#L420-L422)
+*GitHub* : [420-422](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticFactory.sol#L420-L422)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -5043,7 +5045,7 @@ TokenIdLibrary.addOptionRatio(TokenId,uint256,uint256) (contracts/types/TokenId.
 
 ```
 
-*GitHub* : [221-232](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L221-L232)
+*GitHub* : [221-232](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L221-L232)
 
 ```solidity
 File: contracts/types/LeftRight.sol
@@ -5078,7 +5080,7 @@ LeftRightLibrary.sub(LeftRightUnsigned,LeftRightUnsigned) (contracts/types/LeftR
 
 ```
 
-*GitHub* : [171-188](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/LeftRight.sol#L171-L188)
+*GitHub* : [171-188](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/LeftRight.sol#L171-L188)
 
 ```solidity
 File: contracts/CollateralTracker.sol
@@ -5095,7 +5097,7 @@ CollateralTracker._computeSpread(TokenId,uint128,uint256,uint256,uint128) (contr
 
 ```
 
-*GitHub* : [1510-1589](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L1510-L1589)
+*GitHub* : [1510-1589](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L1510-L1589)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -5112,7 +5114,7 @@ PanopticPool._getPremia(TokenId,uint128,address,bool,int24) (contracts/PanopticP
 
 ```
 
-*GitHub* : [1503-1575](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1503-L1575)
+*GitHub* : [1503-1575](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1503-L1575)
 
 ```solidity
 File: contracts/types/LeftRight.sol
@@ -5147,7 +5149,7 @@ LeftRightLibrary.add(LeftRightUnsigned,LeftRightUnsigned) (contracts/types/LeftR
 
 ```
 
-*GitHub* : [148-165](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/LeftRight.sol#L148-L165)
+*GitHub* : [148-165](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/LeftRight.sol#L148-L165)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -5168,7 +5170,7 @@ TokenIdLibrary.strike(TokenId,uint256) (contracts/types/TokenId.sol#158-162) sho
 
 ```
 
-*GitHub* : [158-162](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L158-L162)
+*GitHub* : [158-162](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L158-L162)
 
 ```solidity
 File: contracts/types/LeftRight.sol
@@ -5189,7 +5191,7 @@ LeftRightLibrary.toLeftSlot(LeftRightSigned,int128) (contracts/types/LeftRight.s
 
 ```
 
-*GitHub* : [134-138](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/LeftRight.sol#L134-L138)
+*GitHub* : [134-138](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/LeftRight.sol#L134-L138)
 
 ```solidity
 File: contracts/libraries/Math.sol
@@ -5218,7 +5220,7 @@ Math.getAmountsForLiquidity(int24,LiquidityChunk) (contracts/libraries/Math.sol#
 
 ```
 
-*GitHub* : [221-233](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L221-L233)
+*GitHub* : [221-233](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L221-L233)
 
 ```solidity
 File: contracts/CollateralTracker.sol
@@ -5235,7 +5237,7 @@ CollateralTracker.startToken(bool,address,address,uint24,PanopticPool) (contract
 
 ```
 
-*GitHub* : [221-264](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L221-L264)
+*GitHub* : [221-264](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L221-L264)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -5271,7 +5273,7 @@ PanopticPool._updatePositionDataBurn(address,TokenId) (contracts/PanopticPool.so
 
 ```
 
-*GitHub* : [859-878](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L859-L878)
+*GitHub* : [859-878](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L859-L878)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -5308,7 +5310,7 @@ PanopticPool._getTotalLiquidity(TokenId,uint256) (contracts/PanopticPool.sol#180
 
 ```
 
-*GitHub* : [1802-1822](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1802-L1822)
+*GitHub* : [1802-1822](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1802-L1822)
 
 ```solidity
 File: contracts/types/LeftRight.sol
@@ -5340,7 +5342,7 @@ LeftRightLibrary.add(LeftRightUnsigned,LeftRightSigned) (contracts/types/LeftRig
 
 ```
 
-*GitHub* : [194-208](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/LeftRight.sol#L194-L208)
+*GitHub* : [194-208](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/LeftRight.sol#L194-L208)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -5374,7 +5376,7 @@ TokenIdLibrary.countLegs(TokenId) (contracts/types/TokenId.sol#432-449) should u
 
 ```
 
-*GitHub* : [432-449](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L432-L449)
+*GitHub* : [432-449](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L432-L449)
 
 ```solidity
 File: contracts/libraries/PanopticMath.sol
@@ -5391,7 +5393,7 @@ PanopticMath.computeInternalMedian(uint256,uint256,uint256,uint256,IUniswapV3Poo
 
 ```
 
-*GitHub* : [168-233](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L168-L233)
+*GitHub* : [168-233](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L168-L233)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -5417,7 +5419,7 @@ PanopticPool.burnOptions(TokenId,TokenId[],int24,int24) (contracts/PanopticPool.
 
 ```
 
-*GitHub* : [569-578](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L569-L578)
+*GitHub* : [569-578](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L569-L578)
 
 ```solidity
 File: contracts/types/LiquidityChunk.sol
@@ -5438,7 +5440,7 @@ LiquidityChunkLibrary.liquidity(LiquidityChunk) (contracts/types/LiquidityChunk.
 
 ```
 
-*GitHub* : [189-193](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/LiquidityChunk.sol#L189-L193)
+*GitHub* : [189-193](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/LiquidityChunk.sol#L189-L193)
 
 ```solidity
 File: contracts/types/LeftRight.sol
@@ -5468,7 +5470,7 @@ LeftRightLibrary.add(LeftRightSigned,LeftRightSigned) (contracts/types/LeftRight
 
 ```
 
-*GitHub* : [214-226](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/LeftRight.sol#L214-L226)
+*GitHub* : [214-226](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/LeftRight.sol#L214-L226)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -5494,7 +5496,7 @@ TokenIdLibrary.addAsset(TokenId,uint256,uint256) (contracts/types/TokenId.sol#20
 
 ```
 
-*GitHub* : [205-214](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L205-L214)
+*GitHub* : [205-214](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L205-L214)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -5513,7 +5515,7 @@ PanopticPool._updateSettlementPostMint(TokenId,LeftRightUnsigned[4],uint128) (co
 
 ```
 
-*GitHub* : [1666-1746](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1666-L1746)
+*GitHub* : [1666-1746](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1666-L1746)
 
 ```solidity
 File: contracts/SemiFungiblePositionManager.sol
@@ -5532,7 +5534,7 @@ SemiFungiblePositionManager._mintLiquidity(LiquidityChunk,IUniswapV3Pool) (contr
 
 ```
 
-*GitHub* : [1185-1217](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L1185-L1217)
+*GitHub* : [1185-1217](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L1185-L1217)
 
 ```solidity
 File: contracts/CollateralTracker.sol
@@ -5572,7 +5574,7 @@ CollateralTracker._getRequiredCollateralAtTickSinglePosition(TokenId,uint128,int
 
 ```
 
-*GitHub* : [1245-1268](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L1245-L1268)
+*GitHub* : [1245-1268](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L1245-L1268)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -5595,7 +5597,7 @@ PanopticPool._getAvailablePremium(uint256,LeftRightUnsigned,LeftRightUnsigned,Le
 
 ```
 
-*GitHub* : [1757-1796](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1757-L1796)
+*GitHub* : [1757-1796](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1757-L1796)
 
 ```solidity
 File: contracts/libraries/Math.sol
@@ -5619,7 +5621,7 @@ Math.getAmount1ForLiquidity(LiquidityChunk) (contracts/libraries/Math.sol#207-21
 
 ```
 
-*GitHub* : [207-214](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L207-L214)
+*GitHub* : [207-214](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L207-L214)
 
 ```solidity
 File: contracts/types/LiquidityChunk.sol
@@ -5646,7 +5648,7 @@ LiquidityChunkLibrary.updateTickLower(LiquidityChunk,int24) (contracts/types/Liq
 
 ```
 
-*GitHub* : [135-145](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/LiquidityChunk.sol#L135-L145)
+*GitHub* : [135-145](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/LiquidityChunk.sol#L135-L145)
 
 ```solidity
 File: contracts/PanopticFactory.sol
@@ -5680,7 +5682,7 @@ PanopticFactory.constructor(address,SemiFungiblePositionManager,IUniswapV3Factor
 
 ```
 
-*GitHub* : [115-130](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticFactory.sol#L115-L130)
+*GitHub* : [115-130](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticFactory.sol#L115-L130)
 
 ```solidity
 File: contracts/libraries/PanopticMath.sol
@@ -5705,7 +5707,7 @@ PanopticMath.haircutPremia(address,TokenId[],LeftRightSigned[4][],LeftRightSigne
 
 ```
 
-*GitHub* : [768-908](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L768-L908)
+*GitHub* : [768-908](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L768-L908)
 
 ```solidity
 File: contracts/SemiFungiblePositionManager.sol
@@ -5724,7 +5726,7 @@ SemiFungiblePositionManager._createPositionInAMM(IUniswapV3Pool,TokenId,uint128,
 
 ```
 
-*GitHub* : [863-941](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L863-L941)
+*GitHub* : [863-941](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L863-L941)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -5752,7 +5754,7 @@ TokenIdLibrary.addTokenType(TokenId,uint256,uint256) (contracts/types/TokenId.so
 
 ```
 
-*GitHub* : [255-266](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L255-L266)
+*GitHub* : [255-266](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L255-L266)
 
 ```solidity
 File: contracts/types/LeftRight.sol
@@ -5771,7 +5773,7 @@ LeftRightLibrary.rightSlot(LeftRightSigned) (contracts/types/LeftRight.sol#46-48
 
 ```
 
-*GitHub* : [46-48](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/LeftRight.sol#L46-L48)
+*GitHub* : [46-48](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/LeftRight.sol#L46-L48)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -5792,7 +5794,7 @@ TokenIdLibrary.asset(TokenId,uint256) (contracts/types/TokenId.sol#108-112) shou
 
 ```
 
-*GitHub* : [108-112](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L108-L112)
+*GitHub* : [108-112](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L108-L112)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -5809,7 +5811,7 @@ PanopticPool._burnOptions(bool,TokenId,address,int24,int24) (contracts/PanopticP
 
 ```
 
-*GitHub* : [826-854](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L826-L854)
+*GitHub* : [826-854](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L826-L854)
 
 ```solidity
 File: contracts/libraries/PanopticMath.sol
@@ -5844,7 +5846,7 @@ PanopticMath.updatePositionsHash(uint256,TokenId,bool) (contracts/libraries/Pano
 
 ```
 
-*GitHub* : [92-110](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L92-L110)
+*GitHub* : [92-110](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L92-L110)
 
 ```solidity
 File: contracts/PanopticFactory.sol
@@ -5861,7 +5863,7 @@ PanopticFactory._mintFullRange(IUniswapV3Pool,address,address,uint24) (contracts
 
 ```
 
-*GitHub* : [335-411](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticFactory.sol#L335-L411)
+*GitHub* : [335-411](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticFactory.sol#L335-L411)
 
 ```solidity
 File: contracts/SemiFungiblePositionManager.sol
@@ -5899,7 +5901,7 @@ SemiFungiblePositionManager._updateStoredPremia(bytes32,LeftRightUnsigned,LeftRi
 
 ```
 
-*GitHub* : [1110-1130](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L1110-L1130)
+*GitHub* : [1110-1130](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L1110-L1130)
 
 ```solidity
 File: contracts/types/LeftRight.sol
@@ -5923,7 +5925,7 @@ LeftRightLibrary.toLeftSlot(LeftRightUnsigned,uint128) (contracts/types/LeftRigh
 
 ```
 
-*GitHub* : [121-128](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/LeftRight.sol#L121-L128)
+*GitHub* : [121-128](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/LeftRight.sol#L121-L128)
 
 ```solidity
 File: contracts/tokens/interfaces/IDonorNFT.sol
@@ -5946,7 +5948,7 @@ IDonorNFT.issueNFT(address,PanopticPool,address,address,uint24) (contracts/token
 
 ```
 
-*GitHub* : [13-19](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/tokens/interfaces/IDonorNFT.sol#L13-L19)
+*GitHub* : [13-19](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/tokens/interfaces/IDonorNFT.sol#L13-L19)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -5963,7 +5965,7 @@ TokenIdLibrary.clearLeg(TokenId,uint256) (contracts/types/TokenId.sol#464-491) s
 
 ```
 
-*GitHub* : [464-491](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L464-L491)
+*GitHub* : [464-491](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L464-L491)
 
 ```solidity
 File: contracts/libraries/Math.sol
@@ -5991,7 +5993,7 @@ Math.getAmount0ForLiquidity(LiquidityChunk) (contracts/libraries/Math.sol#191-20
 
 ```
 
-*GitHub* : [191-202](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L191-L202)
+*GitHub* : [191-202](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L191-L202)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -6019,7 +6021,7 @@ TokenIdLibrary.addRiskPartner(TokenId,uint256,uint256) (contracts/types/TokenId.
 
 ```
 
-*GitHub* : [273-284](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L273-L284)
+*GitHub* : [273-284](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L273-L284)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -6036,7 +6038,7 @@ TokenIdLibrary.validate(TokenId) (contracts/types/TokenId.sol#500-571) should us
 
 ```
 
-*GitHub* : [500-571](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L500-L571)
+*GitHub* : [500-571](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L500-L571)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -6057,7 +6059,7 @@ PanopticPool.startPool(IUniswapV3Pool,address,address,CollateralTracker,Collater
 
 ```
 
-*GitHub* : [291-327](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L291-L327)
+*GitHub* : [291-327](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L291-L327)
 
 ```solidity
 File: contracts/libraries/PanopticMath.sol
@@ -6083,7 +6085,7 @@ PanopticMath.convertCollateralData(LeftRightUnsigned,LeftRightUnsigned,uint256,i
 
 ```
 
-*GitHub* : [445-453](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L445-L453)
+*GitHub* : [445-453](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L445-L453)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -6100,7 +6102,7 @@ PanopticPool._addUserOption(TokenId,uint64) (contracts/PanopticPool.sol#739-782)
 
 ```
 
-*GitHub* : [739-782](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L739-L782)
+*GitHub* : [739-782](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L739-L782)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -6138,7 +6140,7 @@ TokenIdLibrary.validateIsExercisable(TokenId,int24) (contracts/types/TokenId.sol
 
 ```
 
-*GitHub* : [578-599](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L578-L599)
+*GitHub* : [578-599](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L578-L599)
 
 ```solidity
 File: contracts/CollateralTracker.sol
@@ -6155,7 +6157,7 @@ CollateralTracker._computeStrangle(TokenId,uint256,uint128,int24,uint128) (contr
 
 ```
 
-*GitHub* : [1600-1649](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L1600-L1649)
+*GitHub* : [1600-1649](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L1600-L1649)
 
 ```solidity
 File: contracts/libraries/FeesCalc.sol
@@ -6194,7 +6196,7 @@ FeesCalc.calculateAMMSwapFees(IUniswapV3Pool,int24,int24,int24,uint128) (contrac
 
 ```
 
-*GitHub* : [97-119](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/FeesCalc.sol#L97-L119)
+*GitHub* : [97-119](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/FeesCalc.sol#L97-L119)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -6213,7 +6215,7 @@ PanopticPool.constructor(SemiFungiblePositionManager) (contracts/PanopticPool.so
 
 ```
 
-*GitHub* : [280-282](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L280-L282)
+*GitHub* : [280-282](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L280-L282)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -6232,7 +6234,7 @@ PanopticPool._updateSettlementPostBurn(address,TokenId,LeftRightUnsigned[4],uint
 
 ```
 
-*GitHub* : [1833-1980](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1833-L1980)
+*GitHub* : [1833-1980](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1833-L1980)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -6253,7 +6255,7 @@ TokenIdLibrary.tokenType(TokenId,uint256) (contracts/types/TokenId.sol#138-142) 
 
 ```
 
-*GitHub* : [138-142](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L138-L142)
+*GitHub* : [138-142](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L138-L142)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -6289,7 +6291,7 @@ PanopticPool.optionPositionBalance(address,TokenId) (contracts/PanopticPool.sol#
 
 ```
 
-*GitHub* : [352-371](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L352-L371)
+*GitHub* : [352-371](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L352-L371)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -6306,7 +6308,7 @@ PanopticPool.liquidate(TokenId[],address,LeftRightUnsigned,TokenId[]) (contracts
 
 ```
 
-*GitHub* : [1017-1171](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1017-L1171)
+*GitHub* : [1017-1171](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1017-L1171)
 
 ```solidity
 File: contracts/types/LiquidityChunk.sol
@@ -6330,7 +6332,7 @@ LiquidityChunkLibrary.addLiquidity(LiquidityChunk,uint128) (contracts/types/Liqu
 
 ```
 
-*GitHub* : [89-96](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/LiquidityChunk.sol#L89-L96)
+*GitHub* : [89-96](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/LiquidityChunk.sol#L89-L96)
 
 ```solidity
 File: contracts/SemiFungiblePositionManager.sol
@@ -6351,7 +6353,7 @@ SemiFungiblePositionManager._createLegInAMM(IUniswapV3Pool,TokenId,uint256,Liqui
 
 ```
 
-*GitHub* : [958-1104](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L958-L1104)
+*GitHub* : [958-1104](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L958-L1104)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -6372,7 +6374,7 @@ TokenIdLibrary.riskPartner(TokenId,uint256) (contracts/types/TokenId.sol#148-152
 
 ```
 
-*GitHub* : [148-152](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L148-L152)
+*GitHub* : [148-152](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L148-L152)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -6407,7 +6409,7 @@ PanopticPool._getSolvencyBalances(LeftRightUnsigned,LeftRightUnsigned,uint160) (
 
 ```
 
-*GitHub* : [1339-1356](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1339-L1356)
+*GitHub* : [1339-1356](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1339-L1356)
 
 ```solidity
 File: contracts/types/LeftRight.sol
@@ -6449,7 +6451,7 @@ LeftRightLibrary.addCapped(LeftRightUnsigned,LeftRightUnsigned,LeftRightUnsigned
 
 ```
 
-*GitHub* : [279-301](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/LeftRight.sol#L279-L301)
+*GitHub* : [279-301](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/LeftRight.sol#L279-L301)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -6485,7 +6487,7 @@ PanopticPool._mintInSFPMAndUpdateCollateral(TokenId,uint128,int24,int24) (contra
 
 ```
 
-*GitHub* : [677-696](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L677-L696)
+*GitHub* : [677-696](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L677-L696)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -6515,7 +6517,7 @@ TokenIdLibrary.addWidth(TokenId,int24,uint256) (contracts/types/TokenId.sol#310-
 
 ```
 
-*GitHub* : [310-323](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L310-L323)
+*GitHub* : [310-323](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L310-L323)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -6532,7 +6534,7 @@ PanopticPool._burnAndHandleExercise(bool,int24,int24,TokenId,uint128,address) (c
 
 ```
 
-*GitHub* : [955-1005](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L955-L1005)
+*GitHub* : [955-1005](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L955-L1005)
 
 ```solidity
 File: contracts/libraries/Math.sol
@@ -6554,7 +6556,7 @@ Math.sort(int256[]) (contracts/libraries/Math.sol#776-781) should use calldata i
 
 ```
 
-*GitHub* : [776-781](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L776-L781)
+*GitHub* : [776-781](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L776-L781)
 
 ```solidity
 File: contracts/CollateralTracker.sol
@@ -6571,7 +6573,7 @@ CollateralTracker._getRequiredCollateralSingleLegNoPartner(TokenId,uint256,uint1
 
 ```
 
-*GitHub* : [1311-1422](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L1311-L1422)
+*GitHub* : [1311-1422](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L1311-L1422)
 
 ```solidity
 File: contracts/libraries/PanopticMath.sol
@@ -6594,7 +6596,7 @@ PanopticMath.getLiquidationBonus(LeftRightUnsigned,LeftRightUnsigned,uint160,uin
 
 ```
 
-*GitHub* : [651-754](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L651-L754)
+*GitHub* : [651-754](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L651-L754)
 
 ```solidity
 File: contracts/CollateralTracker.sol
@@ -6634,7 +6636,7 @@ CollateralTracker._getRequiredCollateralSingleLeg(TokenId,uint256,uint128,int24,
 
 ```
 
-*GitHub* : [1278-1301](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L1278-L1301)
+*GitHub* : [1278-1301](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L1278-L1301)
 
 ```solidity
 File: contracts/SemiFungiblePositionManager.sol
@@ -6653,7 +6655,7 @@ SemiFungiblePositionManager.swapInAMM(IUniswapV3Pool,LeftRightSigned) (contracts
 
 ```
 
-*GitHub* : [756-852](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L756-L852)
+*GitHub* : [756-852](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L756-L852)
 
 ```solidity
 File: contracts/types/LeftRight.sol
@@ -6684,7 +6686,7 @@ LeftRightLibrary.toRightSlot(LeftRightSigned,int128) (contracts/types/LeftRight.
 
 ```
 
-*GitHub* : [78-92](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/LeftRight.sol#L78-L92)
+*GitHub* : [78-92](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/LeftRight.sol#L78-L92)
 
 ```solidity
 File: contracts/SemiFungiblePositionManager.sol
@@ -6701,7 +6703,7 @@ SemiFungiblePositionManager.registerTokenTransfer(address,address,TokenId,uint25
 
 ```
 
-*GitHub* : [593-653](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L593-L653)
+*GitHub* : [593-653](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L593-L653)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -6720,7 +6722,7 @@ PanopticPool._payCommissionAndWriteData(TokenId,uint128,LeftRightSigned) (contra
 
 ```
 
-*GitHub* : [706-732](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L706-L732)
+*GitHub* : [706-732](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L706-L732)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -6746,7 +6748,7 @@ TokenIdLibrary.asTicks(TokenId,uint256) (contracts/types/TokenId.sol#416-425) sh
 
 ```
 
-*GitHub* : [416-425](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L416-L425)
+*GitHub* : [416-425](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L416-L425)
 
 ```solidity
 File: contracts/libraries/FeesCalc.sol
@@ -6763,7 +6765,7 @@ FeesCalc._getAMMSwapFeesPerLiquidityCollected(IUniswapV3Pool,int24,int24,int24) 
 
 ```
 
-*GitHub* : [130-208](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/FeesCalc.sol#L130-L208)
+*GitHub* : [130-208](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/FeesCalc.sol#L130-L208)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -6792,7 +6794,7 @@ PanopticPool._updatePositionsHash(address,TokenId,bool) (contracts/PanopticPool.
 
 ```
 
-*GitHub* : [1405-1417](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1405-L1417)
+*GitHub* : [1405-1417](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1405-L1417)
 
 ```solidity
 File: contracts/libraries/PanopticMath.sol
@@ -6809,7 +6811,7 @@ PanopticMath.computeMedianObservedPrice(IUniswapV3Pool,uint256,uint256,uint256,u
 
 ```
 
-*GitHub* : [125-157](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L125-L157)
+*GitHub* : [125-157](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L125-L157)
 
 ```solidity
 File: contracts/SemiFungiblePositionManager.sol
@@ -6828,7 +6830,7 @@ SemiFungiblePositionManager._getPremiaDeltas(LeftRightUnsigned,LeftRightUnsigned
 
 ```
 
-*GitHub* : [1321-1407](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L1321-L1407)
+*GitHub* : [1321-1407](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L1321-L1407)
 
 ```solidity
 File: contracts/types/LiquidityChunk.sol
@@ -6856,7 +6858,7 @@ LiquidityChunkLibrary.updateTickUpper(LiquidityChunk,int24) (contracts/types/Liq
 
 ```
 
-*GitHub* : [151-162](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/LiquidityChunk.sol#L151-L162)
+*GitHub* : [151-162](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/LiquidityChunk.sol#L151-L162)
 
 ```solidity
 File: contracts/types/LeftRight.sol
@@ -6875,7 +6877,7 @@ LeftRightLibrary.leftSlot(LeftRightUnsigned) (contracts/types/LeftRight.sol#101-
 
 ```
 
-*GitHub* : [101-103](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/LeftRight.sol#L101-L103)
+*GitHub* : [101-103](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/LeftRight.sol#L101-L103)
 
 ```solidity
 File: contracts/types/LeftRight.sol
@@ -6905,7 +6907,7 @@ LeftRightLibrary.toRightSlot(LeftRightUnsigned,uint128) (contracts/types/LeftRig
 
 ```
 
-*GitHub* : [59-72](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/LeftRight.sol#L59-L72)
+*GitHub* : [59-72](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/LeftRight.sol#L59-L72)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -6926,7 +6928,7 @@ TokenIdLibrary.isLong(TokenId,uint256) (contracts/types/TokenId.sol#128-132) sho
 
 ```
 
-*GitHub* : [128-132](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L128-L132)
+*GitHub* : [128-132](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L128-L132)
 
 ```solidity
 File: contracts/libraries/PanopticMath.sol
@@ -6961,7 +6963,7 @@ PanopticMath.convertCollateralData(LeftRightUnsigned,LeftRightUnsigned,uint256,u
 
 ```
 
-*GitHub* : [419-436](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L419-L436)
+*GitHub* : [419-436](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L419-L436)
 
 ```solidity
 File: contracts/SemiFungiblePositionManager.sol
@@ -6980,7 +6982,7 @@ SemiFungiblePositionManager._getFeesBase(IUniswapV3Pool,uint128,LiquidityChunk,b
 
 ```
 
-*GitHub* : [1138-1178](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L1138-L1178)
+*GitHub* : [1138-1178](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L1138-L1178)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -7015,7 +7017,7 @@ TokenIdLibrary.addLeg(TokenId,uint256,uint256,uint256,uint256,uint256,uint256,in
 
 ```
 
-*GitHub* : [336-354](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L336-L354)
+*GitHub* : [336-354](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L336-L354)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -7032,7 +7034,7 @@ TokenIdLibrary.flipToBurnToken(TokenId) (contracts/types/TokenId.sol#366-398) sh
 
 ```
 
-*GitHub* : [366-398](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L366-L398)
+*GitHub* : [366-398](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L366-L398)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -7053,7 +7055,7 @@ TokenIdLibrary.addPoolId(TokenId,uint64) (contracts/types/TokenId.sol#183-187) s
 
 ```
 
-*GitHub* : [183-187](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L183-L187)
+*GitHub* : [183-187](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L183-L187)
 
 ```solidity
 File: contracts/SemiFungiblePositionManager.sol
@@ -7076,7 +7078,7 @@ SemiFungiblePositionManager._collectAndWritePositionData(LiquidityChunk,IUniswap
 
 ```
 
-*GitHub* : [1255-1313](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L1255-L1313)
+*GitHub* : [1255-1313](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L1255-L1313)
 
 ```solidity
 File: contracts/SemiFungiblePositionManager.sol
@@ -7116,7 +7118,7 @@ SemiFungiblePositionManager.mintTokenizedPosition(TokenId,uint128,int24,int24) (
 
 ```
 
-*GitHub* : [504-527](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L504-L527)
+*GitHub* : [504-527](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L504-L527)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -7137,7 +7139,7 @@ TokenIdLibrary.tickSpacing(TokenId) (contracts/types/TokenId.sol#96-100) should 
 
 ```
 
-*GitHub* : [96-100](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L96-L100)
+*GitHub* : [96-100](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L96-L100)
 
 ```solidity
 File: contracts/libraries/PanopticMath.sol
@@ -7154,7 +7156,7 @@ PanopticMath.getLiquidityChunk(TokenId,uint256,uint128) (contracts/libraries/Pan
 
 ```
 
-*GitHub* : [289-330](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L289-L330)
+*GitHub* : [289-330](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L289-L330)
 
 ```solidity
 File: contracts/libraries/PanopticMath.sol
@@ -7191,7 +7193,7 @@ PanopticMath.computeExercisedAmounts(TokenId,uint128) (contracts/libraries/Panop
 
 ```
 
-*GitHub* : [390-410](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L390-L410)
+*GitHub* : [390-410](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L390-L410)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -7216,7 +7218,7 @@ TokenIdLibrary.addIsLong(TokenId,uint256,uint256) (contracts/types/TokenId.sol#2
 
 ```
 
-*GitHub* : [240-248](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L240-L248)
+*GitHub* : [240-248](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L240-L248)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -7237,7 +7239,7 @@ TokenIdLibrary.optionRatio(TokenId,uint256) (contracts/types/TokenId.sol#118-122
 
 ```
 
-*GitHub* : [118-122](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L118-L122)
+*GitHub* : [118-122](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L118-L122)
 
 ```solidity
 File: contracts/CollateralTracker.sol
@@ -7256,7 +7258,7 @@ CollateralTracker.exerciseCost(int24,int24,TokenId,uint128,LeftRightSigned) (con
 
 ```
 
-*GitHub* : [650-734](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L650-L734)
+*GitHub* : [650-734](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L650-L734)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -7285,7 +7287,7 @@ TokenIdLibrary.addStrike(TokenId,int24,uint256) (contracts/types/TokenId.sol#291
 
 ```
 
-*GitHub* : [291-303](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L291-L303)
+*GitHub* : [291-303](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L291-L303)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -7302,7 +7304,7 @@ PanopticPool._checkLiquiditySpread(TokenId,uint256,int24,int24,uint64) (contract
 
 ```
 
-*GitHub* : [1465-1494](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1465-L1494)
+*GitHub* : [1465-1494](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1465-L1494)
 
 ```solidity
 File: contracts/CollateralTracker.sol
@@ -7319,7 +7321,7 @@ CollateralTracker._getTotalRequiredCollateral(int24,uint256[2][]) (contracts/Col
 
 ```
 
-*GitHub* : [1200-1236](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L1200-L1236)
+*GitHub* : [1200-1236](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L1200-L1236)
 
 ```solidity
 File: contracts/types/LiquidityChunk.sol
@@ -7340,7 +7342,7 @@ LiquidityChunkLibrary.tickLower(LiquidityChunk) (contracts/types/LiquidityChunk.
 
 ```
 
-*GitHub* : [171-175](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/LiquidityChunk.sol#L171-L175)
+*GitHub* : [171-175](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/LiquidityChunk.sol#L171-L175)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -7361,9 +7363,34 @@ TokenIdLibrary.addTickSpacing(TokenId,int24) (contracts/types/TokenId.sol#193-19
 
 ```
 
-*GitHub* : [193-197](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L193-L197)
+*GitHub* : [193-197](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L193-L197)
 
-### [G-12]<a name="g-12"></a> Avoid updating storage when the value hasn't changed
+### [G-12]<a name="g-12"></a> Consider Merge Sequential Loops
+
+Multiple loops appear sequentially in the same function. This may indicate an opportunity for loop fusion, a code optimization technique that merges multiple loops into a single one to save gas.
+
+*There are 1 instance(s) of this issue:*
+
+```solidity
+File: contracts/libraries/PanopticMath.sol
+
+/// @audit ******************* Issue Detail *******************
+PanopticMath.haircutPremia(address,TokenId[],LeftRightSigned[4][],LeftRightSigned,CollateralTracker,CollateralTracker,uint160,mapping(bytes32 => LeftRightUnsigned)) (contracts/libraries/PanopticMath.sol#768-908) may merge sequential loop(s) :- 
+	- i < positionIdList.length (contracts/libraries/PanopticMath.sol#781)
+	- i_scope_0 < positionIdList.length (contracts/libraries/PanopticMath.sol#860)
+
+/// @audit ************** Possible Issue Line(s) **************
+	L#781,  L#860,  
+
+/// @audit ****************** Affected Code *******************
+ 781:             for (uint256 i = 0; i < positionIdList.length; ++i) {
+ 860:             for (uint256 i = 0; i < positionIdList.length; i++) {
+
+```
+
+*GitHub* : [768-908](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L768-L908)
+
+### [G-13]<a name="g-13"></a> Avoid updating storage when the value hasn't changed
 
 If the old value is equal to the new value, not re-storing the value will avoid a Gsreset (**2900 gas**), potentially at the expense of a Gcoldsload (**2100 gas**) or a Gwarmaccess (**100 gas**)
 
@@ -7389,9 +7416,9 @@ PanopticPool.settleLongPremium(TokenId[],address,uint256) (contracts/PanopticPoo
 
 ```
 
-*GitHub* : [1587-1659](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1587-L1659)
+*GitHub* : [1587-1659](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1587-L1659)
 
-### [G-13]<a name="g-13"></a> smaller uint/int types cause gas overhead
+### [G-14]<a name="g-14"></a> smaller uint/int types cause gas overhead
 
 When using a smaller int/uint type it first needs to be converted to it's 258 bit counterpart to be operated, this increases the gass cost and thus should be avoided. However it does make sense to use smaller int/uint values within structs provided you pack the struct properly.
 
@@ -7416,102 +7443,44 @@ PanopticPool.forceExercise(address,TokenId[],TokenId[],TokenId[]) (contracts/Pan
 
 ```
 
-*GitHub* : [1179-1278](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1179-L1278)
+*GitHub* : [1179-1278](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1179-L1278)
 
 ```solidity
-File: contracts/libraries/PanopticMath.sol
+File: contracts/PanopticFactory.sol
 
 /// @audit ******************* Issue Detail *******************
-PanopticMath.getPoolId(address) (contracts/libraries/PanopticMath.sol#47-54) has uint/ int smaller than 256-bit:
-	- PanopticMath.getPoolId(address).poolId (contracts/libraries/PanopticMath.sol#50)
-	- PanopticMath.getPoolId(address).tickSpacing (contracts/libraries/PanopticMath.sol#49)
+PanopticFactory._mintFullRange(IUniswapV3Pool,address,address,uint24) (contracts/PanopticFactory.sol#335-411) has uint/ int smaller than 256-bit:
+	- PanopticFactory._mintFullRange(IUniswapV3Pool,address,address,uint24).tickSpacing (contracts/PanopticFactory.sol#391)
+	- PanopticFactory._mintFullRange(IUniswapV3Pool,address,address,uint24).currentSqrtPriceX96 (contracts/PanopticFactory.sol#341)
+	- PanopticFactory._mintFullRange(IUniswapV3Pool,address,address,uint24).liquidity1 (contracts/PanopticFactory.sol#368-374)
+	- PanopticFactory._mintFullRange(IUniswapV3Pool,address,address,uint24).liquidity0 (contracts/PanopticFactory.sol#365-367)
+	- PanopticFactory._mintFullRange(IUniswapV3Pool,address,address,uint24).fullRangeLiquidity (contracts/PanopticFactory.sol#348)
+	- PanopticFactory._mintFullRange(IUniswapV3Pool,address,address,uint24).tickLower (contracts/PanopticFactory.sol#388)
+	- PanopticFactory._mintFullRange(IUniswapV3Pool,address,address,uint24).tickUpper (contracts/PanopticFactory.sol#389)
 
 /// @audit ************** Possible Issue Line(s) **************
-	L#50,  L#49,  
+	L#391,  L#341,  L#368-374,  L#365-367,  L#348,  L#388,  L#389,  
 
 /// @audit ****************** Affected Code *******************
-  47:     function getPoolId(address univ3pool) internal view returns (uint64) {
-  48:         unchecked {
-  49:             int24 tickSpacing = IUniswapV3Pool(univ3pool).tickSpacing();
-  50:             uint64 poolId = uint64(uint160(univ3pool) >> 112);
-  51:             poolId += uint64(uint24(tickSpacing)) << 48;
-  52:             return poolId;
-  53:         }
-  54:     }
+ 341:         (uint160 currentSqrtPriceX96, , , , , , ) = v3Pool.slot0();
+ 348:         uint128 fullRangeLiquidity;
+ 365:                 uint128 liquidity0 = uint128(
+ 366:                     Math.mulDiv96RoundingUp(FULL_RANGE_LIQUIDITY_AMOUNT_TOKEN, currentSqrtPriceX96)
+ 367:                 );
+ 368:                 uint128 liquidity1 = uint128(
+ 369:                     Math.mulDivRoundingUp(
+ 370:                         FULL_RANGE_LIQUIDITY_AMOUNT_TOKEN,
+ 371:                         Constants.FP96,
+ 372:                         currentSqrtPriceX96
+ 373:                     )
+ 374:                 );
+ 388:         int24 tickLower;
+ 389:         int24 tickUpper;
+ 391:             int24 tickSpacing = v3Pool.tickSpacing();
 
 ```
 
-*GitHub* : [47-54](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L47-L54)
-
-```solidity
-File: contracts/types/LeftRight.sol
-
-/// @audit ******************* Issue Detail *******************
-LeftRightLibrary.add(LeftRightUnsigned,LeftRightSigned) (contracts/types/LeftRight.sol#194-208) has uint/ int smaller than 256-bit:
-	- LeftRightLibrary.add(LeftRightUnsigned,LeftRightSigned).left128 (contracts/types/LeftRight.sol#197)
-	- LeftRightLibrary.add(LeftRightUnsigned,LeftRightSigned).right128 (contracts/types/LeftRight.sol#202)
-
-/// @audit ************** Possible Issue Line(s) **************
-	L#197,  L#202,  
-
-/// @audit ****************** Affected Code *******************
- 194:     function add(LeftRightUnsigned x, LeftRightSigned y) internal pure returns (LeftRightSigned z) {
- 195:         unchecked {
- 196:             int256 left = int256(uint256(x.leftSlot())) + y.leftSlot();
- 197:             int128 left128 = int128(left);
- 198: 
- 199:             if (left128 != left) revert Errors.UnderOverFlow();
- 200: 
- 201:             int256 right = int256(uint256(x.rightSlot())) + y.rightSlot();
- 202:             int128 right128 = int128(right);
- 203: 
- 204:             if (right128 != right) revert Errors.UnderOverFlow();
- 205: 
- 206:             return z.toRightSlot(right128).toLeftSlot(left128);
- 207:         }
- 208:     }
-
-```
-
-*GitHub* : [194-208](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/LeftRight.sol#L194-L208)
-
-```solidity
-File: contracts/CollateralTracker.sol
-
-/// @audit ******************* Issue Detail *******************
-CollateralTracker._getRequiredCollateralSingleLegNoPartner(TokenId,uint256,uint128,int24,uint128) (contracts/CollateralTracker.sol#1311-1422) has uint/ int smaller than 256-bit:
-	- CollateralTracker._getRequiredCollateralSingleLegNoPartner(TokenId,uint256,uint128,int24,uint128).amountMoved (contracts/CollateralTracker.sol#1325)
-	- CollateralTracker._getRequiredCollateralSingleLegNoPartner(TokenId,uint256,uint128,int24,uint128).utilization (contracts/CollateralTracker.sol#1328-1330)
-	- CollateralTracker._getRequiredCollateralSingleLegNoPartner(TokenId,uint256,uint128,int24,uint128).tickLower (contracts/CollateralTracker.sol#1342)
-	- CollateralTracker._getRequiredCollateralSingleLegNoPartner(TokenId,uint256,uint128,int24,uint128).tickUpper (contracts/CollateralTracker.sol#1342)
-	- CollateralTracker._getRequiredCollateralSingleLegNoPartner(TokenId,uint256,uint128,int24,uint128).scaleFactor (contracts/CollateralTracker.sol#1408-1410)
-	- CollateralTracker._getRequiredCollateralSingleLegNoPartner(TokenId,uint256,uint128,int24,uint128).ratio (contracts/CollateralTracker.sol#1362-1368)
-	- CollateralTracker._getRequiredCollateralSingleLegNoPartner(TokenId,uint256,uint128,int24,uint128).strike (contracts/CollateralTracker.sol#1352)
-
-/// @audit ************** Possible Issue Line(s) **************
-	L#1325,  L#1328-1330,  L#1342,  L#1408-1410,  L#1362-1368,  L#1352,  
-
-/// @audit ****************** Affected Code *******************
-1325:         uint128 amountMoved = tokenType == 0 ? amountsMoved.rightSlot() : amountsMoved.leftSlot();
-1328:         int64 utilization = tokenType == 0
-1329:             ? int64(uint64(poolUtilization))
-1330:             : int64(uint64(poolUtilization >> 64));
-1342:                 (int24 tickLower, int24 tickUpper) = tokenId.asTicks(index);
-1352:                     int24 strike = tokenId.strike(index);
-1362:                     uint160 ratio = tokenType == 1 // tokenType
-1363:                         ? Math.getSqrtRatioAtTick(
-1364:                             Math.max24(2 * (atTick - strike), Constants.MIN_V3POOL_TICK)
-1365:                         ) // puts ->  price/strike
-1366:                         : Math.getSqrtRatioAtTick(
-1367:                             Math.max24(2 * (strike - atTick), Constants.MIN_V3POOL_TICK)
-1368:                         ); // calls -> strike/price
-1408:                         uint160 scaleFactor = Math.getSqrtRatioAtTick(
-1409:                             (tickUpper - strike) + (strike - tickLower)
-1410:                         );
-
-```
-
-*GitHub* : [1311-1422](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L1311-L1422)
+*GitHub* : [335-411](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticFactory.sol#L335-L411)
 
 ```solidity
 File: contracts/libraries/Math.sol
@@ -7536,7 +7505,7 @@ Math.getAmount1ForLiquidity(LiquidityChunk) (contracts/libraries/Math.sol#207-21
 
 ```
 
-*GitHub* : [207-214](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L207-L214)
+*GitHub* : [207-214](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L207-L214)
 
 ```solidity
 File: contracts/libraries/PanopticMath.sol
@@ -7571,7 +7540,40 @@ PanopticMath.updatePositionsHash(uint256,TokenId,bool) (contracts/libraries/Pano
 
 ```
 
-*GitHub* : [92-110](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L92-L110)
+*GitHub* : [92-110](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L92-L110)
+
+```solidity
+File: contracts/libraries/PanopticMath.sol
+
+/// @audit ******************* Issue Detail *******************
+PanopticMath.computeInternalMedian(uint256,uint256,uint256,uint256,IUniswapV3Pool) (contracts/libraries/PanopticMath.sol#168-233) has uint/ int smaller than 256-bit:
+	- PanopticMath.computeInternalMedian(uint256,uint256,uint256,uint256,IUniswapV3Pool).newOrderMap (contracts/libraries/PanopticMath.sol#202)
+	- PanopticMath.computeInternalMedian(uint256,uint256,uint256,uint256,IUniswapV3Pool).entry (contracts/libraries/PanopticMath.sol#206)
+	- PanopticMath.computeInternalMedian(uint256,uint256,uint256,uint256,IUniswapV3Pool).tickCumulative_last (contracts/libraries/PanopticMath.sol#192)
+	- PanopticMath.computeInternalMedian(uint256,uint256,uint256,uint256,IUniswapV3Pool).shift (contracts/libraries/PanopticMath.sol#203)
+	- PanopticMath.computeInternalMedian(uint256,uint256,uint256,uint256,IUniswapV3Pool).tickCumulative_old (contracts/libraries/PanopticMath.sol#186)
+	- PanopticMath.computeInternalMedian(uint256,uint256,uint256,uint256,IUniswapV3Pool).i (contracts/libraries/PanopticMath.sol#207)
+	- PanopticMath.computeInternalMedian(uint256,uint256,uint256,uint256,IUniswapV3Pool).orderMap (contracts/libraries/PanopticMath.sol#200)
+	- PanopticMath.computeInternalMedian(uint256,uint256,uint256,uint256,IUniswapV3Pool).rank (contracts/libraries/PanopticMath.sol#205)
+	- PanopticMath.computeInternalMedian(uint256,uint256,uint256,uint256,IUniswapV3Pool).lastObservedTick (contracts/libraries/PanopticMath.sol#184)
+
+/// @audit ************** Possible Issue Line(s) **************
+	L#202,  L#206,  L#192,  L#203,  L#186,  L#207,  L#200,  L#205,  L#184,  
+
+/// @audit ****************** Affected Code *******************
+ 184:                 int24 lastObservedTick;
+ 186:                     (uint256 timestamp_old, int56 tickCumulative_old, , ) = univ3pool.observations(
+ 192:                     (uint256 timestamp_last, int56 tickCumulative_last, , ) = univ3pool
+ 200:                 uint24 orderMap = uint24(medianData >> 192);
+ 202:                 uint24 newOrderMap;
+ 203:                 uint24 shift = 1;
+ 205:                 uint24 rank;
+ 206:                 int24 entry;
+ 207:                 for (uint8 i; i < 8; ++i) {
+
+```
+
+*GitHub* : [168-233](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L168-L233)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -7609,7 +7611,7 @@ PanopticPool._getTotalLiquidity(TokenId,uint256) (contracts/PanopticPool.sol#180
 
 ```
 
-*GitHub* : [1802-1822](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1802-L1822)
+*GitHub* : [1802-1822](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1802-L1822)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -7632,31 +7634,34 @@ PanopticPool.assertPriceWithinBounds(uint160,uint160) (contracts/PanopticPool.so
 
 ```
 
-*GitHub* : [338-344](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L338-L344)
+*GitHub* : [338-344](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L338-L344)
 
 ```solidity
 File: contracts/SemiFungiblePositionManager.sol
 
 /// @audit ******************* Issue Detail *******************
-SemiFungiblePositionManager._collectAndWritePositionData(LiquidityChunk,IUniswapV3Pool,LeftRightUnsigned,bytes32,LeftRightSigned,uint256) (contracts/SemiFungiblePositionManager.sol#1255-1313) has uint/ int smaller than 256-bit:
-	- SemiFungiblePositionManager._collectAndWritePositionData(LiquidityChunk,IUniswapV3Pool,LeftRightUnsigned,bytes32,LeftRightSigned,uint256).startingLiquidity (contracts/SemiFungiblePositionManager.sol#1263)
-	- SemiFungiblePositionManager._collectAndWritePositionData(LiquidityChunk,IUniswapV3Pool,LeftRightUnsigned,bytes32,LeftRightSigned,uint256).receivedAmount0 (contracts/SemiFungiblePositionManager.sol#1284)
-	- SemiFungiblePositionManager._collectAndWritePositionData(LiquidityChunk,IUniswapV3Pool,LeftRightUnsigned,bytes32,LeftRightSigned,uint256).collected0 (contracts/SemiFungiblePositionManager.sol#1293)
-	- SemiFungiblePositionManager._collectAndWritePositionData(LiquidityChunk,IUniswapV3Pool,LeftRightUnsigned,bytes32,LeftRightSigned,uint256).receivedAmount1 (contracts/SemiFungiblePositionManager.sol#1284)
-	- SemiFungiblePositionManager._collectAndWritePositionData(LiquidityChunk,IUniswapV3Pool,LeftRightUnsigned,bytes32,LeftRightSigned,uint256).collected1 (contracts/SemiFungiblePositionManager.sol#1294)
+SemiFungiblePositionManager._getPremiaDeltas(LeftRightUnsigned,LeftRightUnsigned) (contracts/SemiFungiblePositionManager.sol#1321-1407) has uint/ int smaller than 256-bit:
+	- SemiFungiblePositionManager._getPremiaDeltas(LeftRightUnsigned,LeftRightUnsigned).premium0X64_gross (contracts/SemiFungiblePositionManager.sol#1384)
+	- SemiFungiblePositionManager._getPremiaDeltas(LeftRightUnsigned,LeftRightUnsigned).premium1X64_gross (contracts/SemiFungiblePositionManager.sol#1385)
+	- SemiFungiblePositionManager._getPremiaDeltas(LeftRightUnsigned,LeftRightUnsigned).premium0X64_owed (contracts/SemiFungiblePositionManager.sol#1363)
+	- SemiFungiblePositionManager._getPremiaDeltas(LeftRightUnsigned,LeftRightUnsigned).premium1X64_owed (contracts/SemiFungiblePositionManager.sol#1364)
+	- SemiFungiblePositionManager._getPremiaDeltas(LeftRightUnsigned,LeftRightUnsigned).collected0 (contracts/SemiFungiblePositionManager.sol#1346)
+	- SemiFungiblePositionManager._getPremiaDeltas(LeftRightUnsigned,LeftRightUnsigned).collected1 (contracts/SemiFungiblePositionManager.sol#1347)
 
 /// @audit ************** Possible Issue Line(s) **************
-	L#1263,  L#1284,  L#1293,  L#1294,  
+	L#1384,  L#1385,  L#1363,  L#1364,  L#1346,  L#1347,  
 
 /// @audit ****************** Affected Code *******************
-1263:         uint128 startingLiquidity = currentLiquidity.rightSlot();
-1284:             (uint128 receivedAmount0, uint128 receivedAmount1) = univ3pool.collect(
-1293:             uint128 collected0;
-1294:             uint128 collected1;
+1346:                 uint128 collected0 = collectedAmounts.rightSlot();
+1347:                 uint128 collected1 = collectedAmounts.leftSlot();
+1363:                 uint128 premium0X64_owed;
+1364:                 uint128 premium1X64_owed;
+1384:                 uint128 premium0X64_gross;
+1385:                 uint128 premium1X64_gross;
 
 ```
 
-*GitHub* : [1255-1313](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L1255-L1313)
+*GitHub* : [1321-1407](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L1321-L1407)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -7678,7 +7683,37 @@ PanopticPool._mintOptions(TokenId[],uint128,uint64,int24,int24) (contracts/Panop
 
 ```
 
-*GitHub* : [614-667](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L614-L667)
+*GitHub* : [614-667](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L614-L667)
+
+```solidity
+File: contracts/types/LeftRight.sol
+
+/// @audit ******************* Issue Detail *******************
+LeftRightLibrary.add(LeftRightSigned,LeftRightSigned) (contracts/types/LeftRight.sol#214-226) has uint/ int smaller than 256-bit:
+	- LeftRightLibrary.add(LeftRightSigned,LeftRightSigned).left128 (contracts/types/LeftRight.sol#217)
+	- LeftRightLibrary.add(LeftRightSigned,LeftRightSigned).right128 (contracts/types/LeftRight.sol#220)
+
+/// @audit ************** Possible Issue Line(s) **************
+	L#217,  L#220,  
+
+/// @audit ****************** Affected Code *******************
+ 214:     function add(LeftRightSigned x, LeftRightSigned y) internal pure returns (LeftRightSigned z) {
+ 215:         unchecked {
+ 216:             int256 left256 = int256(x.leftSlot()) + y.leftSlot();
+ 217:             int128 left128 = int128(left256);
+ 218: 
+ 219:             int256 right256 = int256(x.rightSlot()) + y.rightSlot();
+ 220:             int128 right128 = int128(right256);
+ 221: 
+ 222:             if (left128 != left256 || right128 != right256) revert Errors.UnderOverFlow();
+ 223: 
+ 224:             return z.toRightSlot(right128).toLeftSlot(left128);
+ 225:         }
+ 226:     }
+
+```
+
+*GitHub* : [214-226](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/LeftRight.sol#L214-L226)
 
 ```solidity
 File: contracts/CollateralTracker.sol
@@ -7702,7 +7737,7 @@ CollateralTracker.exerciseCost(int24,int24,TokenId,uint128,LeftRightSigned) (con
 
 ```
 
-*GitHub* : [650-734](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L650-L734)
+*GitHub* : [650-734](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L650-L734)
 
 ```solidity
 File: contracts/libraries/PanopticMath.sol
@@ -7719,7 +7754,7 @@ PanopticMath.getRefundAmounts(address,LeftRightSigned,int24,CollateralTracker,Co
 
 ```
 
-*GitHub* : [917-966](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L917-L966)
+*GitHub* : [917-966](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L917-L966)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -7755,7 +7790,25 @@ PanopticPool._mintInSFPMAndUpdateCollateral(TokenId,uint128,int24,int24) (contra
 
 ```
 
-*GitHub* : [677-696](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L677-L696)
+*GitHub* : [677-696](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L677-L696)
+
+```solidity
+File: contracts/libraries/PanopticMath.sol
+
+/// @audit ******************* Issue Detail *******************
+PanopticMath.getLiquidityChunk(TokenId,uint256,uint128) (contracts/libraries/PanopticMath.sol#289-330) has uint/ int smaller than 256-bit:
+	- PanopticMath.getLiquidityChunk(TokenId,uint256,uint128).tickUpper (contracts/libraries/PanopticMath.sol#295)
+	- PanopticMath.getLiquidityChunk(TokenId,uint256,uint128).tickLower (contracts/libraries/PanopticMath.sol#295)
+
+/// @audit ************** Possible Issue Line(s) **************
+	L#295,  
+
+/// @audit ****************** Affected Code *******************
+ 295:         (int24 tickLower, int24 tickUpper) = tokenId.asTicks(legIndex);
+
+```
+
+*GitHub* : [289-330](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L289-L330)
 
 ```solidity
 File: contracts/SemiFungiblePositionManager.sol
@@ -7772,7 +7825,7 @@ SemiFungiblePositionManager._validateAndForwardToAMM(TokenId,uint128,int24,int24
 
 ```
 
-*GitHub* : [680-729](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L680-L729)
+*GitHub* : [680-729](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L680-L729)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -7789,7 +7842,7 @@ PanopticPool._burnOptions(bool,TokenId,address,int24,int24) (contracts/PanopticP
 
 ```
 
-*GitHub* : [826-854](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L826-L854)
+*GitHub* : [826-854](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L826-L854)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -7820,7 +7873,32 @@ PanopticPool._burnAndHandleExercise(bool,int24,int24,TokenId,uint128,address) (c
 
 ```
 
-*GitHub* : [955-1005](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L955-L1005)
+*GitHub* : [955-1005](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L955-L1005)
+
+```solidity
+File: contracts/CollateralTracker.sol
+
+/// @audit ******************* Issue Detail *******************
+CollateralTracker._computeSpread(TokenId,uint128,uint256,uint256,uint128) (contracts/CollateralTracker.sol#1510-1589) has uint/ int smaller than 256-bit:
+	- CollateralTracker._computeSpread(TokenId,uint128,uint256,uint256,uint128).movedRight (contracts/CollateralTracker.sol#1528)
+	- CollateralTracker._computeSpread(TokenId,uint128,uint256,uint256,uint128).movedPartnerRight (contracts/CollateralTracker.sol#1532)
+	- CollateralTracker._computeSpread(TokenId,uint128,uint256,uint256,uint128).movedPartnerLeft (contracts/CollateralTracker.sol#1533)
+	- CollateralTracker._computeSpread(TokenId,uint128,uint256,uint256,uint128).contracts (contracts/CollateralTracker.sol#1558)
+	- CollateralTracker._computeSpread(TokenId,uint128,uint256,uint256,uint128).movedLeft (contracts/CollateralTracker.sol#1529)
+
+/// @audit ************** Possible Issue Line(s) **************
+	L#1528,  L#1532,  L#1533,  L#1558,  L#1529,  
+
+/// @audit ****************** Affected Code *******************
+1528:         uint128 movedRight = amountsMoved.rightSlot();
+1529:         uint128 movedLeft = amountsMoved.leftSlot();
+1532:         uint128 movedPartnerRight = amountsMovedPartner.rightSlot();
+1533:         uint128 movedPartnerLeft = amountsMovedPartner.leftSlot();
+1558:                 uint128 contracts;
+
+```
+
+*GitHub* : [1510-1589](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L1510-L1589)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -7850,7 +7928,7 @@ PanopticPool.pokeMedian() (contracts/PanopticPool.sol#522-534) has uint/ int sma
 
 ```
 
-*GitHub* : [522-534](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L522-L534)
+*GitHub* : [522-534](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L522-L534)
 
 ```solidity
 File: contracts/SemiFungiblePositionManager.sol
@@ -7873,86 +7951,45 @@ SemiFungiblePositionManager._createLegInAMM(IUniswapV3Pool,TokenId,uint256,Liqui
 
 ```
 
-*GitHub* : [958-1104](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L958-L1104)
+*GitHub* : [958-1104](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L958-L1104)
 
 ```solidity
-File: contracts/types/LeftRight.sol
+File: contracts/CollateralTracker.sol
 
 /// @audit ******************* Issue Detail *******************
-LeftRightLibrary.add(LeftRightSigned,LeftRightSigned) (contracts/types/LeftRight.sol#214-226) has uint/ int smaller than 256-bit:
-	- LeftRightLibrary.add(LeftRightSigned,LeftRightSigned).right128 (contracts/types/LeftRight.sol#220)
-	- LeftRightLibrary.add(LeftRightSigned,LeftRightSigned).left128 (contracts/types/LeftRight.sol#217)
+CollateralTracker._getRequiredCollateralSingleLegNoPartner(TokenId,uint256,uint128,int24,uint128) (contracts/CollateralTracker.sol#1311-1422) has uint/ int smaller than 256-bit:
+	- CollateralTracker._getRequiredCollateralSingleLegNoPartner(TokenId,uint256,uint128,int24,uint128).amountMoved (contracts/CollateralTracker.sol#1325)
+	- CollateralTracker._getRequiredCollateralSingleLegNoPartner(TokenId,uint256,uint128,int24,uint128).utilization (contracts/CollateralTracker.sol#1328-1330)
+	- CollateralTracker._getRequiredCollateralSingleLegNoPartner(TokenId,uint256,uint128,int24,uint128).tickUpper (contracts/CollateralTracker.sol#1342)
+	- CollateralTracker._getRequiredCollateralSingleLegNoPartner(TokenId,uint256,uint128,int24,uint128).tickLower (contracts/CollateralTracker.sol#1342)
+	- CollateralTracker._getRequiredCollateralSingleLegNoPartner(TokenId,uint256,uint128,int24,uint128).scaleFactor (contracts/CollateralTracker.sol#1408-1410)
+	- CollateralTracker._getRequiredCollateralSingleLegNoPartner(TokenId,uint256,uint128,int24,uint128).ratio (contracts/CollateralTracker.sol#1362-1368)
+	- CollateralTracker._getRequiredCollateralSingleLegNoPartner(TokenId,uint256,uint128,int24,uint128).strike (contracts/CollateralTracker.sol#1352)
 
 /// @audit ************** Possible Issue Line(s) **************
-	L#220,  L#217,  
+	L#1325,  L#1328-1330,  L#1342,  L#1408-1410,  L#1362-1368,  L#1352,  
 
 /// @audit ****************** Affected Code *******************
- 214:     function add(LeftRightSigned x, LeftRightSigned y) internal pure returns (LeftRightSigned z) {
- 215:         unchecked {
- 216:             int256 left256 = int256(x.leftSlot()) + y.leftSlot();
- 217:             int128 left128 = int128(left256);
- 218: 
- 219:             int256 right256 = int256(x.rightSlot()) + y.rightSlot();
- 220:             int128 right128 = int128(right256);
- 221: 
- 222:             if (left128 != left256 || right128 != right256) revert Errors.UnderOverFlow();
- 223: 
- 224:             return z.toRightSlot(right128).toLeftSlot(left128);
- 225:         }
- 226:     }
+1325:         uint128 amountMoved = tokenType == 0 ? amountsMoved.rightSlot() : amountsMoved.leftSlot();
+1328:         int64 utilization = tokenType == 0
+1329:             ? int64(uint64(poolUtilization))
+1330:             : int64(uint64(poolUtilization >> 64));
+1342:                 (int24 tickLower, int24 tickUpper) = tokenId.asTicks(index);
+1352:                     int24 strike = tokenId.strike(index);
+1362:                     uint160 ratio = tokenType == 1 // tokenType
+1363:                         ? Math.getSqrtRatioAtTick(
+1364:                             Math.max24(2 * (atTick - strike), Constants.MIN_V3POOL_TICK)
+1365:                         ) // puts ->  price/strike
+1366:                         : Math.getSqrtRatioAtTick(
+1367:                             Math.max24(2 * (strike - atTick), Constants.MIN_V3POOL_TICK)
+1368:                         ); // calls -> strike/price
+1408:                         uint160 scaleFactor = Math.getSqrtRatioAtTick(
+1409:                             (tickUpper - strike) + (strike - tickLower)
+1410:                         );
 
 ```
 
-*GitHub* : [214-226](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/LeftRight.sol#L214-L226)
-
-```solidity
-File: contracts/libraries/PanopticMath.sol
-
-/// @audit ******************* Issue Detail *******************
-PanopticMath.getLiquidityChunk(TokenId,uint256,uint128) (contracts/libraries/PanopticMath.sol#289-330) has uint/ int smaller than 256-bit:
-	- PanopticMath.getLiquidityChunk(TokenId,uint256,uint128).tickLower (contracts/libraries/PanopticMath.sol#295)
-	- PanopticMath.getLiquidityChunk(TokenId,uint256,uint128).tickUpper (contracts/libraries/PanopticMath.sol#295)
-
-/// @audit ************** Possible Issue Line(s) **************
-	L#295,  
-
-/// @audit ****************** Affected Code *******************
- 295:         (int24 tickLower, int24 tickUpper) = tokenId.asTicks(legIndex);
-
-```
-
-*GitHub* : [289-330](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L289-L330)
-
-```solidity
-File: contracts/PanopticPool.sol
-
-/// @audit ******************* Issue Detail *******************
-PanopticPool._validateSolvency(address,TokenId[],uint256) (contracts/PanopticPool.sol#887-946) has uint/ int smaller than 256-bit:
-	- PanopticPool._validateSolvency(address,TokenId[],uint256).currentTick (contracts/PanopticPool.sol#898)
-	- PanopticPool._validateSolvency(address,TokenId[],uint256).observationCardinality (contracts/PanopticPool.sol#900)
-	- PanopticPool._validateSolvency(address,TokenId[],uint256).fastOracleTick (contracts/PanopticPool.sol#905-911)
-	- PanopticPool._validateSolvency(address,TokenId[],uint256).slowOracleTick (contracts/PanopticPool.sol#913)
-	- PanopticPool._validateSolvency(address,TokenId[],uint256).observationIndex (contracts/PanopticPool.sol#899)
-
-/// @audit ************** Possible Issue Line(s) **************
-	L#898,  L#900,  L#905-911,  L#913,  L#899,  
-
-/// @audit ****************** Affected Code *******************
- 898:             int24 currentTick,
- 899:             uint16 observationIndex,
- 900:             uint16 observationCardinality,
- 905:         int24 fastOracleTick = PanopticMath.computeMedianObservedPrice(
- 906:             _univ3pool,
- 907:             observationIndex,
- 908:             observationCardinality,
- 909:             FAST_ORACLE_CARDINALITY,
- 910:             FAST_ORACLE_PERIOD
- 911:         );
- 913:         int24 slowOracleTick;
-
-```
-
-*GitHub* : [887-946](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L887-L946)
+*GitHub* : [1311-1422](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L1311-L1422)
 
 ```solidity
 File: contracts/CollateralTracker.sol
@@ -7971,34 +8008,7 @@ CollateralTracker._computeStrangle(TokenId,uint256,uint128,int24,uint128) (contr
 
 ```
 
-*GitHub* : [1600-1649](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L1600-L1649)
-
-```solidity
-File: contracts/SemiFungiblePositionManager.sol
-
-/// @audit ******************* Issue Detail *******************
-SemiFungiblePositionManager._getPremiaDeltas(LeftRightUnsigned,LeftRightUnsigned) (contracts/SemiFungiblePositionManager.sol#1321-1407) has uint/ int smaller than 256-bit:
-	- SemiFungiblePositionManager._getPremiaDeltas(LeftRightUnsigned,LeftRightUnsigned).collected1 (contracts/SemiFungiblePositionManager.sol#1347)
-	- SemiFungiblePositionManager._getPremiaDeltas(LeftRightUnsigned,LeftRightUnsigned).collected0 (contracts/SemiFungiblePositionManager.sol#1346)
-	- SemiFungiblePositionManager._getPremiaDeltas(LeftRightUnsigned,LeftRightUnsigned).premium0X64_gross (contracts/SemiFungiblePositionManager.sol#1384)
-	- SemiFungiblePositionManager._getPremiaDeltas(LeftRightUnsigned,LeftRightUnsigned).premium1X64_gross (contracts/SemiFungiblePositionManager.sol#1385)
-	- SemiFungiblePositionManager._getPremiaDeltas(LeftRightUnsigned,LeftRightUnsigned).premium0X64_owed (contracts/SemiFungiblePositionManager.sol#1363)
-	- SemiFungiblePositionManager._getPremiaDeltas(LeftRightUnsigned,LeftRightUnsigned).premium1X64_owed (contracts/SemiFungiblePositionManager.sol#1364)
-
-/// @audit ************** Possible Issue Line(s) **************
-	L#1347,  L#1346,  L#1384,  L#1385,  L#1363,  L#1364,  
-
-/// @audit ****************** Affected Code *******************
-1346:                 uint128 collected0 = collectedAmounts.rightSlot();
-1347:                 uint128 collected1 = collectedAmounts.leftSlot();
-1363:                 uint128 premium0X64_owed;
-1364:                 uint128 premium1X64_owed;
-1384:                 uint128 premium0X64_gross;
-1385:                 uint128 premium1X64_gross;
-
-```
-
-*GitHub* : [1321-1407](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L1321-L1407)
+*GitHub* : [1600-1649](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L1600-L1649)
 
 ```solidity
 File: contracts/libraries/FeesCalc.sol
@@ -8015,7 +8025,7 @@ FeesCalc.getPortfolioValue(int24,mapping(TokenId => LeftRightUnsigned),TokenId[]
 
 ```
 
-*GitHub* : [46-87](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/FeesCalc.sol#L46-L87)
+*GitHub* : [46-87](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/FeesCalc.sol#L46-L87)
 
 ```solidity
 File: contracts/SemiFungiblePositionManager.sol
@@ -8036,7 +8046,7 @@ SemiFungiblePositionManager.swapInAMM(IUniswapV3Pool,LeftRightSigned) (contracts
 
 ```
 
-*GitHub* : [756-852](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L756-L852)
+*GitHub* : [756-852](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L756-L852)
 
 ```solidity
 File: contracts/CollateralTracker.sol
@@ -8055,7 +8065,7 @@ CollateralTracker._getTotalRequiredCollateral(int24,uint256[2][]) (contracts/Col
 
 ```
 
-*GitHub* : [1200-1236](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L1200-L1236)
+*GitHub* : [1200-1236](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L1200-L1236)
 
 ```solidity
 File: contracts/types/LeftRight.sol
@@ -8097,57 +8107,20 @@ LeftRightLibrary.addCapped(LeftRightUnsigned,LeftRightUnsigned,LeftRightUnsigned
 
 ```
 
-*GitHub* : [279-301](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/LeftRight.sol#L279-L301)
-
-```solidity
-File: contracts/PanopticPool.sol
-
-/// @audit ******************* Issue Detail *******************
-PanopticPool._updatePositionDataBurn(address,TokenId) (contracts/PanopticPool.sol#859-878) has uint/ int smaller than 256-bit:
-	- PanopticPool._updatePositionDataBurn(address,TokenId).tickUpper (contracts/PanopticPool.sol#867)
-	- PanopticPool._updatePositionDataBurn(address,TokenId).tickLower (contracts/PanopticPool.sol#867)
-
-/// @audit ************** Possible Issue Line(s) **************
-	L#867,  
-
-/// @audit ****************** Affected Code *******************
- 859:     function _updatePositionDataBurn(address owner, TokenId tokenId) internal {
- 860:         // reset balances and delete stored option data
- 861:         s_positionBalance[owner][tokenId] = LeftRightUnsigned.wrap(0);
- 862: 
- 863:         uint256 numLegs = tokenId.countLegs();
- 864:         for (uint256 leg = 0; leg < numLegs; ) {
- 865:             if (tokenId.isLong(leg) == 0) {
- 866:                 // Check the liquidity spread, make sure that closing the option does not exceed the MAX_SPREAD allowed
- 867:                 (int24 tickLower, int24 tickUpper) = tokenId.asTicks(leg);
- 868:                 _checkLiquiditySpread(tokenId, leg, tickLower, tickUpper, MAX_SPREAD);
- 869:             }
- 870:             s_options[owner][tokenId][leg] = LeftRightUnsigned.wrap(0);
- 871:             unchecked {
- 872:                 ++leg;
- 873:             }
- 874:         }
- 875: 
- 876:         // Update the position list hash (hash = XOR of all keccak256(tokenId)). Remove hash by XOR'ing again
- 877:         _updatePositionsHash(owner, tokenId, !ADD);
- 878:     }
-
-```
-
-*GitHub* : [859-878](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L859-L878)
+*GitHub* : [279-301](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/LeftRight.sol#L279-L301)
 
 ```solidity
 File: contracts/PanopticPool.sol
 
 /// @audit ******************* Issue Detail *******************
 PanopticPool._addUserOption(TokenId,uint64) (contracts/PanopticPool.sol#739-782) has uint/ int smaller than 256-bit:
-	- PanopticPool._addUserOption(TokenId,uint64).tickLower (contracts/PanopticPool.sol#748)
-	- PanopticPool._addUserOption(TokenId,uint64).premiumAccumulator1 (contracts/PanopticPool.sol#751)
 	- PanopticPool._addUserOption(TokenId,uint64).premiumAccumulator0 (contracts/PanopticPool.sol#751)
 	- PanopticPool._addUserOption(TokenId,uint64).tickUpper (contracts/PanopticPool.sol#748)
+	- PanopticPool._addUserOption(TokenId,uint64).tickLower (contracts/PanopticPool.sol#748)
+	- PanopticPool._addUserOption(TokenId,uint64).premiumAccumulator1 (contracts/PanopticPool.sol#751)
 
 /// @audit ************** Possible Issue Line(s) **************
-	L#748,  L#751,  
+	L#751,  L#748,  
 
 /// @audit ****************** Affected Code *******************
  748:             (int24 tickLower, int24 tickUpper) = tokenId.asTicks(leg);
@@ -8155,7 +8128,62 @@ PanopticPool._addUserOption(TokenId,uint64) (contracts/PanopticPool.sol#739-782)
 
 ```
 
-*GitHub* : [739-782](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L739-L782)
+*GitHub* : [739-782](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L739-L782)
+
+```solidity
+File: contracts/types/LeftRight.sol
+
+/// @audit ******************* Issue Detail *******************
+LeftRightLibrary.subRect(LeftRightSigned,LeftRightSigned) (contracts/types/LeftRight.sol#251-269) has uint/ int smaller than 256-bit:
+	- LeftRightLibrary.subRect(LeftRightSigned,LeftRightSigned).left128 (contracts/types/LeftRight.sol#257)
+	- LeftRightLibrary.subRect(LeftRightSigned,LeftRightSigned).right128 (contracts/types/LeftRight.sol#260)
+
+/// @audit ************** Possible Issue Line(s) **************
+	L#257,  L#260,  
+
+/// @audit ****************** Affected Code *******************
+ 251:     function subRect(
+ 252:         LeftRightSigned x,
+ 253:         LeftRightSigned y
+ 254:     ) internal pure returns (LeftRightSigned z) {
+ 255:         unchecked {
+ 256:             int256 left256 = int256(x.leftSlot()) - y.leftSlot();
+ 257:             int128 left128 = int128(left256);
+ 258: 
+ 259:             int256 right256 = int256(x.rightSlot()) - y.rightSlot();
+ 260:             int128 right128 = int128(right256);
+ 261: 
+ 262:             if (left128 != left256 || right128 != right256) revert Errors.UnderOverFlow();
+ 263: 
+ 264:             return
+ 265:                 z.toRightSlot(int128(Math.max(right128, 0))).toLeftSlot(
+ 266:                     int128(Math.max(left128, 0))
+ 267:                 );
+ 268:         }
+ 269:     }
+
+```
+
+*GitHub* : [251-269](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/LeftRight.sol#L251-L269)
+
+```solidity
+File: contracts/PanopticPool.sol
+
+/// @audit ******************* Issue Detail *******************
+PanopticPool._checkLiquiditySpread(TokenId,uint256,int24,int24,uint64) (contracts/PanopticPool.sol#1465-1494) has uint/ int smaller than 256-bit:
+	- PanopticPool._checkLiquiditySpread(TokenId,uint256,int24,int24,uint64).netLiquidity (contracts/PanopticPool.sol#1480)
+	- PanopticPool._checkLiquiditySpread(TokenId,uint256,int24,int24,uint64).totalLiquidity (contracts/PanopticPool.sol#1481)
+
+/// @audit ************** Possible Issue Line(s) **************
+	L#1480,  L#1481,  
+
+/// @audit ****************** Affected Code *******************
+1480:         uint128 netLiquidity = accountLiquidities.rightSlot();
+1481:         uint128 totalLiquidity = accountLiquidities.leftSlot();
+
+```
+
+*GitHub* : [1465-1494](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1465-L1494)
 
 ```solidity
 File: contracts/SemiFungiblePositionManager.sol
@@ -8176,7 +8204,7 @@ SemiFungiblePositionManager.getAccountPremium(address,address,uint256,int24,int2
 
 ```
 
-*GitHub* : [1449-1523](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L1449-L1523)
+*GitHub* : [1449-1523](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L1449-L1523)
 
 ```solidity
 File: contracts/libraries/Math.sol
@@ -8216,7 +8244,7 @@ Math.getLiquidityForAmount0(int24,int24,uint256) (contracts/libraries/Math.sol#2
 
 ```
 
-*GitHub* : [241-263](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L241-L263)
+*GitHub* : [241-263](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L241-L263)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -8233,147 +8261,61 @@ PanopticPool.startPool(IUniswapV3Pool,address,address,CollateralTracker,Collater
 
 ```
 
-*GitHub* : [291-327](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L291-L327)
+*GitHub* : [291-327](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L291-L327)
+
+```solidity
+File: contracts/libraries/PanopticMath.sol
+
+/// @audit ******************* Issue Detail *******************
+PanopticMath.getAmountsMoved(TokenId,uint128,uint256) (contracts/libraries/PanopticMath.sol#574-599) has uint/ int smaller than 256-bit:
+	- PanopticMath.getAmountsMoved(TokenId,uint128,uint256).tickLower (contracts/libraries/PanopticMath.sol#580)
+	- PanopticMath.getAmountsMoved(TokenId,uint128,uint256).amount0 (contracts/libraries/PanopticMath.sol#582)
+	- PanopticMath.getAmountsMoved(TokenId,uint128,uint256).amount1 (contracts/libraries/PanopticMath.sol#583)
+	- PanopticMath.getAmountsMoved(TokenId,uint128,uint256).tickUpper (contracts/libraries/PanopticMath.sol#580)
+
+/// @audit ************** Possible Issue Line(s) **************
+	L#580,  L#582,  L#583,  
+
+/// @audit ****************** Affected Code *******************
+ 580:         (int24 tickLower, int24 tickUpper) = tokenId.asTicks(legIndex);
+ 582:         uint128 amount0;
+ 583:         uint128 amount1;
+
+```
+
+*GitHub* : [574-599](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L574-L599)
 
 ```solidity
 File: contracts/types/LeftRight.sol
 
 /// @audit ******************* Issue Detail *******************
-LeftRightLibrary.subRect(LeftRightSigned,LeftRightSigned) (contracts/types/LeftRight.sol#251-269) has uint/ int smaller than 256-bit:
-	- LeftRightLibrary.subRect(LeftRightSigned,LeftRightSigned).right128 (contracts/types/LeftRight.sol#260)
-	- LeftRightLibrary.subRect(LeftRightSigned,LeftRightSigned).left128 (contracts/types/LeftRight.sol#257)
+LeftRightLibrary.add(LeftRightUnsigned,LeftRightSigned) (contracts/types/LeftRight.sol#194-208) has uint/ int smaller than 256-bit:
+	- LeftRightLibrary.add(LeftRightUnsigned,LeftRightSigned).right128 (contracts/types/LeftRight.sol#202)
+	- LeftRightLibrary.add(LeftRightUnsigned,LeftRightSigned).left128 (contracts/types/LeftRight.sol#197)
 
 /// @audit ************** Possible Issue Line(s) **************
-	L#260,  L#257,  
+	L#202,  L#197,  
 
 /// @audit ****************** Affected Code *******************
- 251:     function subRect(
- 252:         LeftRightSigned x,
- 253:         LeftRightSigned y
- 254:     ) internal pure returns (LeftRightSigned z) {
- 255:         unchecked {
- 256:             int256 left256 = int256(x.leftSlot()) - y.leftSlot();
- 257:             int128 left128 = int128(left256);
- 258: 
- 259:             int256 right256 = int256(x.rightSlot()) - y.rightSlot();
- 260:             int128 right128 = int128(right256);
- 261: 
- 262:             if (left128 != left256 || right128 != right256) revert Errors.UnderOverFlow();
- 263: 
- 264:             return
- 265:                 z.toRightSlot(int128(Math.max(right128, 0))).toLeftSlot(
- 266:                     int128(Math.max(left128, 0))
- 267:                 );
- 268:         }
- 269:     }
+ 194:     function add(LeftRightUnsigned x, LeftRightSigned y) internal pure returns (LeftRightSigned z) {
+ 195:         unchecked {
+ 196:             int256 left = int256(uint256(x.leftSlot())) + y.leftSlot();
+ 197:             int128 left128 = int128(left);
+ 198: 
+ 199:             if (left128 != left) revert Errors.UnderOverFlow();
+ 200: 
+ 201:             int256 right = int256(uint256(x.rightSlot())) + y.rightSlot();
+ 202:             int128 right128 = int128(right);
+ 203: 
+ 204:             if (right128 != right) revert Errors.UnderOverFlow();
+ 205: 
+ 206:             return z.toRightSlot(right128).toLeftSlot(left128);
+ 207:         }
+ 208:     }
 
 ```
 
-*GitHub* : [251-269](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/LeftRight.sol#L251-L269)
-
-```solidity
-File: contracts/PanopticPool.sol
-
-/// @audit ******************* Issue Detail *******************
-PanopticPool._checkLiquiditySpread(TokenId,uint256,int24,int24,uint64) (contracts/PanopticPool.sol#1465-1494) has uint/ int smaller than 256-bit:
-	- PanopticPool._checkLiquiditySpread(TokenId,uint256,int24,int24,uint64).totalLiquidity (contracts/PanopticPool.sol#1481)
-	- PanopticPool._checkLiquiditySpread(TokenId,uint256,int24,int24,uint64).netLiquidity (contracts/PanopticPool.sol#1480)
-
-/// @audit ************** Possible Issue Line(s) **************
-	L#1481,  L#1480,  
-
-/// @audit ****************** Affected Code *******************
-1480:         uint128 netLiquidity = accountLiquidities.rightSlot();
-1481:         uint128 totalLiquidity = accountLiquidities.leftSlot();
-
-```
-
-*GitHub* : [1465-1494](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1465-L1494)
-
-```solidity
-File: contracts/PanopticFactory.sol
-
-/// @audit ******************* Issue Detail *******************
-PanopticFactory._mintFullRange(IUniswapV3Pool,address,address,uint24) (contracts/PanopticFactory.sol#335-411) has uint/ int smaller than 256-bit:
-	- PanopticFactory._mintFullRange(IUniswapV3Pool,address,address,uint24).liquidity0 (contracts/PanopticFactory.sol#365-367)
-	- PanopticFactory._mintFullRange(IUniswapV3Pool,address,address,uint24).tickLower (contracts/PanopticFactory.sol#388)
-	- PanopticFactory._mintFullRange(IUniswapV3Pool,address,address,uint24).tickUpper (contracts/PanopticFactory.sol#389)
-	- PanopticFactory._mintFullRange(IUniswapV3Pool,address,address,uint24).liquidity1 (contracts/PanopticFactory.sol#368-374)
-	- PanopticFactory._mintFullRange(IUniswapV3Pool,address,address,uint24).currentSqrtPriceX96 (contracts/PanopticFactory.sol#341)
-	- PanopticFactory._mintFullRange(IUniswapV3Pool,address,address,uint24).fullRangeLiquidity (contracts/PanopticFactory.sol#348)
-	- PanopticFactory._mintFullRange(IUniswapV3Pool,address,address,uint24).tickSpacing (contracts/PanopticFactory.sol#391)
-
-/// @audit ************** Possible Issue Line(s) **************
-	L#365-367,  L#388,  L#389,  L#368-374,  L#341,  L#348,  L#391,  
-
-/// @audit ****************** Affected Code *******************
- 341:         (uint160 currentSqrtPriceX96, , , , , , ) = v3Pool.slot0();
- 348:         uint128 fullRangeLiquidity;
- 365:                 uint128 liquidity0 = uint128(
- 366:                     Math.mulDiv96RoundingUp(FULL_RANGE_LIQUIDITY_AMOUNT_TOKEN, currentSqrtPriceX96)
- 367:                 );
- 368:                 uint128 liquidity1 = uint128(
- 369:                     Math.mulDivRoundingUp(
- 370:                         FULL_RANGE_LIQUIDITY_AMOUNT_TOKEN,
- 371:                         Constants.FP96,
- 372:                         currentSqrtPriceX96
- 373:                     )
- 374:                 );
- 388:         int24 tickLower;
- 389:         int24 tickUpper;
- 391:             int24 tickSpacing = v3Pool.tickSpacing();
-
-```
-
-*GitHub* : [335-411](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticFactory.sol#L335-L411)
-
-```solidity
-File: contracts/PanopticPool.sol
-
-/// @audit ******************* Issue Detail *******************
-PanopticPool.settleLongPremium(TokenId[],address,uint256) (contracts/PanopticPool.sol#1587-1659) has uint/ int smaller than 256-bit:
-	- PanopticPool.settleLongPremium(TokenId[],address,uint256).tickUpper (contracts/PanopticPool.sol#1602)
-	- PanopticPool.settleLongPremium(TokenId[],address,uint256).premiumAccumulator1 (contracts/PanopticPool.sol#1605)
-	- PanopticPool.settleLongPremium(TokenId[],address,uint256).currentTick (contracts/PanopticPool.sol#1598)
-	- PanopticPool.settleLongPremium(TokenId[],address,uint256).tickLower (contracts/PanopticPool.sol#1602)
-	- PanopticPool.settleLongPremium(TokenId[],address,uint256).premiumAccumulator0 (contracts/PanopticPool.sol#1605)
-
-/// @audit ************** Possible Issue Line(s) **************
-	L#1602,  L#1605,  L#1598,  
-
-/// @audit ****************** Affected Code *******************
-1598:         (, int24 currentTick, , , , , ) = s_univ3pool.slot0();
-1602:             (int24 tickLower, int24 tickUpper) = tokenId.asTicks(legIndex);
-1605:             (uint128 premiumAccumulator0, uint128 premiumAccumulator1) = SFPM.getAccountPremium(
-
-```
-
-*GitHub* : [1587-1659](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1587-L1659)
-
-```solidity
-File: contracts/CollateralTracker.sol
-
-/// @audit ******************* Issue Detail *******************
-CollateralTracker._computeSpread(TokenId,uint128,uint256,uint256,uint128) (contracts/CollateralTracker.sol#1510-1589) has uint/ int smaller than 256-bit:
-	- CollateralTracker._computeSpread(TokenId,uint128,uint256,uint256,uint128).movedLeft (contracts/CollateralTracker.sol#1529)
-	- CollateralTracker._computeSpread(TokenId,uint128,uint256,uint256,uint128).movedPartnerLeft (contracts/CollateralTracker.sol#1533)
-	- CollateralTracker._computeSpread(TokenId,uint128,uint256,uint256,uint128).movedPartnerRight (contracts/CollateralTracker.sol#1532)
-	- CollateralTracker._computeSpread(TokenId,uint128,uint256,uint256,uint128).movedRight (contracts/CollateralTracker.sol#1528)
-	- CollateralTracker._computeSpread(TokenId,uint128,uint256,uint256,uint128).contracts (contracts/CollateralTracker.sol#1558)
-
-/// @audit ************** Possible Issue Line(s) **************
-	L#1529,  L#1533,  L#1532,  L#1528,  L#1558,  
-
-/// @audit ****************** Affected Code *******************
-1528:         uint128 movedRight = amountsMoved.rightSlot();
-1529:         uint128 movedLeft = amountsMoved.leftSlot();
-1532:         uint128 movedPartnerRight = amountsMovedPartner.rightSlot();
-1533:         uint128 movedPartnerLeft = amountsMovedPartner.leftSlot();
-1558:                 uint128 contracts;
-
-```
-
-*GitHub* : [1510-1589](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L1510-L1589)
+*GitHub* : [194-208](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/LeftRight.sol#L194-L208)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -8413,7 +8355,7 @@ TokenIdLibrary.validateIsExercisable(TokenId,int24) (contracts/types/TokenId.sol
 
 ```
 
-*GitHub* : [578-599](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L578-L599)
+*GitHub* : [578-599](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L578-L599)
 
 ```solidity
 File: contracts/types/LeftRight.sol
@@ -8443,7 +8385,7 @@ LeftRightLibrary.sub(LeftRightSigned,LeftRightSigned) (contracts/types/LeftRight
 
 ```
 
-*GitHub* : [232-244](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/LeftRight.sol#L232-L244)
+*GitHub* : [232-244](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/LeftRight.sol#L232-L244)
 
 ```solidity
 File: contracts/SemiFungiblePositionManager.sol
@@ -8460,30 +8402,7 @@ SemiFungiblePositionManager._createPositionInAMM(IUniswapV3Pool,TokenId,uint128,
 
 ```
 
-*GitHub* : [863-941](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L863-L941)
-
-```solidity
-File: contracts/PanopticPool.sol
-
-/// @audit ******************* Issue Detail *******************
-PanopticPool.liquidate(TokenId[],address,LeftRightUnsigned,TokenId[]) (contracts/PanopticPool.sol#1017-1171) has uint/ int smaller than 256-bit:
-	- PanopticPool.liquidate(TokenId[],address,LeftRightUnsigned,TokenId[]).finalTick (contracts/PanopticPool.sol#1077)
-	- PanopticPool.liquidate(TokenId[],address,LeftRightUnsigned,TokenId[]).currentTick (contracts/PanopticPool.sol#1032)
-	- PanopticPool.liquidate(TokenId[],address,LeftRightUnsigned,TokenId[])._finalTick (contracts/PanopticPool.sol#1119)
-	- PanopticPool.liquidate(TokenId[],address,LeftRightUnsigned,TokenId[]).twapTick (contracts/PanopticPool.sol#1026)
-
-/// @audit ************** Possible Issue Line(s) **************
-	L#1077,  L#1032,  L#1119,  L#1026,  
-
-/// @audit ****************** Affected Code *******************
-1026:         int24 twapTick = getUniV3TWAP();
-1032:             (, int24 currentTick, , , , , ) = s_univ3pool.slot0();
-1077:         int24 finalTick;
-1119:             int24 _finalTick = finalTick;
-
-```
-
-*GitHub* : [1017-1171](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1017-L1171)
+*GitHub* : [863-941](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L863-L941)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -8519,7 +8438,67 @@ PanopticPool.calculateAccumulatedFeesBatch(address,bool,TokenId[]) (contracts/Pa
 
 ```
 
-*GitHub* : [381-400](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L381-L400)
+*GitHub* : [381-400](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L381-L400)
+
+```solidity
+File: contracts/PanopticPool.sol
+
+/// @audit ******************* Issue Detail *******************
+PanopticPool._updatePositionDataBurn(address,TokenId) (contracts/PanopticPool.sol#859-878) has uint/ int smaller than 256-bit:
+	- PanopticPool._updatePositionDataBurn(address,TokenId).tickLower (contracts/PanopticPool.sol#867)
+	- PanopticPool._updatePositionDataBurn(address,TokenId).tickUpper (contracts/PanopticPool.sol#867)
+
+/// @audit ************** Possible Issue Line(s) **************
+	L#867,  
+
+/// @audit ****************** Affected Code *******************
+ 859:     function _updatePositionDataBurn(address owner, TokenId tokenId) internal {
+ 860:         // reset balances and delete stored option data
+ 861:         s_positionBalance[owner][tokenId] = LeftRightUnsigned.wrap(0);
+ 862: 
+ 863:         uint256 numLegs = tokenId.countLegs();
+ 864:         for (uint256 leg = 0; leg < numLegs; ) {
+ 865:             if (tokenId.isLong(leg) == 0) {
+ 866:                 // Check the liquidity spread, make sure that closing the option does not exceed the MAX_SPREAD allowed
+ 867:                 (int24 tickLower, int24 tickUpper) = tokenId.asTicks(leg);
+ 868:                 _checkLiquiditySpread(tokenId, leg, tickLower, tickUpper, MAX_SPREAD);
+ 869:             }
+ 870:             s_options[owner][tokenId][leg] = LeftRightUnsigned.wrap(0);
+ 871:             unchecked {
+ 872:                 ++leg;
+ 873:             }
+ 874:         }
+ 875: 
+ 876:         // Update the position list hash (hash = XOR of all keccak256(tokenId)). Remove hash by XOR'ing again
+ 877:         _updatePositionsHash(owner, tokenId, !ADD);
+ 878:     }
+
+```
+
+*GitHub* : [859-878](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L859-L878)
+
+```solidity
+File: contracts/PanopticPool.sol
+
+/// @audit ******************* Issue Detail *******************
+PanopticPool.settleLongPremium(TokenId[],address,uint256) (contracts/PanopticPool.sol#1587-1659) has uint/ int smaller than 256-bit:
+	- PanopticPool.settleLongPremium(TokenId[],address,uint256).tickLower (contracts/PanopticPool.sol#1602)
+	- PanopticPool.settleLongPremium(TokenId[],address,uint256).premiumAccumulator0 (contracts/PanopticPool.sol#1605)
+	- PanopticPool.settleLongPremium(TokenId[],address,uint256).tickUpper (contracts/PanopticPool.sol#1602)
+	- PanopticPool.settleLongPremium(TokenId[],address,uint256).currentTick (contracts/PanopticPool.sol#1598)
+	- PanopticPool.settleLongPremium(TokenId[],address,uint256).premiumAccumulator1 (contracts/PanopticPool.sol#1605)
+
+/// @audit ************** Possible Issue Line(s) **************
+	L#1602,  L#1605,  L#1598,  
+
+/// @audit ****************** Affected Code *******************
+1598:         (, int24 currentTick, , , , , ) = s_univ3pool.slot0();
+1602:             (int24 tickLower, int24 tickUpper) = tokenId.asTicks(legIndex);
+1605:             (uint128 premiumAccumulator0, uint128 premiumAccumulator1) = SFPM.getAccountPremium(
+
+```
+
+*GitHub* : [1587-1659](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1587-L1659)
 
 ```solidity
 File: contracts/SemiFungiblePositionManager.sol
@@ -8536,7 +8515,7 @@ SemiFungiblePositionManager.initializeAMMPool(address,address,uint24) (contracts
 
 ```
 
-*GitHub* : [350-391](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L350-L391)
+*GitHub* : [350-391](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L350-L391)
 
 ```solidity
 File: contracts/CollateralTracker.sol
@@ -8553,7 +8532,7 @@ CollateralTracker.startToken(bool,address,address,uint24,PanopticPool) (contract
 
 ```
 
-*GitHub* : [221-264](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L221-L264)
+*GitHub* : [221-264](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L221-L264)
 
 ```solidity
 File: contracts/libraries/InteractionHelper.sol
@@ -8578,73 +8557,18 @@ InteractionHelper.computeDecimals(address) (contracts/libraries/InteractionHelpe
 
 ```
 
-*GitHub* : [107-115](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/InteractionHelper.sol#L107-L115)
-
-```solidity
-File: contracts/libraries/PanopticMath.sol
-
-/// @audit ******************* Issue Detail *******************
-PanopticMath.computeInternalMedian(uint256,uint256,uint256,uint256,IUniswapV3Pool) (contracts/libraries/PanopticMath.sol#168-233) has uint/ int smaller than 256-bit:
-	- PanopticMath.computeInternalMedian(uint256,uint256,uint256,uint256,IUniswapV3Pool).lastObservedTick (contracts/libraries/PanopticMath.sol#184)
-	- PanopticMath.computeInternalMedian(uint256,uint256,uint256,uint256,IUniswapV3Pool).orderMap (contracts/libraries/PanopticMath.sol#200)
-	- PanopticMath.computeInternalMedian(uint256,uint256,uint256,uint256,IUniswapV3Pool).rank (contracts/libraries/PanopticMath.sol#205)
-	- PanopticMath.computeInternalMedian(uint256,uint256,uint256,uint256,IUniswapV3Pool).entry (contracts/libraries/PanopticMath.sol#206)
-	- PanopticMath.computeInternalMedian(uint256,uint256,uint256,uint256,IUniswapV3Pool).newOrderMap (contracts/libraries/PanopticMath.sol#202)
-	- PanopticMath.computeInternalMedian(uint256,uint256,uint256,uint256,IUniswapV3Pool).tickCumulative_last (contracts/libraries/PanopticMath.sol#192)
-	- PanopticMath.computeInternalMedian(uint256,uint256,uint256,uint256,IUniswapV3Pool).shift (contracts/libraries/PanopticMath.sol#203)
-	- PanopticMath.computeInternalMedian(uint256,uint256,uint256,uint256,IUniswapV3Pool).tickCumulative_old (contracts/libraries/PanopticMath.sol#186)
-	- PanopticMath.computeInternalMedian(uint256,uint256,uint256,uint256,IUniswapV3Pool).i (contracts/libraries/PanopticMath.sol#207)
-
-/// @audit ************** Possible Issue Line(s) **************
-	L#184,  L#200,  L#205,  L#206,  L#202,  L#192,  L#203,  L#186,  L#207,  
-
-/// @audit ****************** Affected Code *******************
- 184:                 int24 lastObservedTick;
- 186:                     (uint256 timestamp_old, int56 tickCumulative_old, , ) = univ3pool.observations(
- 192:                     (uint256 timestamp_last, int56 tickCumulative_last, , ) = univ3pool
- 200:                 uint24 orderMap = uint24(medianData >> 192);
- 202:                 uint24 newOrderMap;
- 203:                 uint24 shift = 1;
- 205:                 uint24 rank;
- 206:                 int24 entry;
- 207:                 for (uint8 i; i < 8; ++i) {
-
-```
-
-*GitHub* : [168-233](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L168-L233)
-
-```solidity
-File: contracts/libraries/PanopticMath.sol
-
-/// @audit ******************* Issue Detail *******************
-PanopticMath.getAmountsMoved(TokenId,uint128,uint256) (contracts/libraries/PanopticMath.sol#574-599) has uint/ int smaller than 256-bit:
-	- PanopticMath.getAmountsMoved(TokenId,uint128,uint256).amount1 (contracts/libraries/PanopticMath.sol#583)
-	- PanopticMath.getAmountsMoved(TokenId,uint128,uint256).tickUpper (contracts/libraries/PanopticMath.sol#580)
-	- PanopticMath.getAmountsMoved(TokenId,uint128,uint256).amount0 (contracts/libraries/PanopticMath.sol#582)
-	- PanopticMath.getAmountsMoved(TokenId,uint128,uint256).tickLower (contracts/libraries/PanopticMath.sol#580)
-
-/// @audit ************** Possible Issue Line(s) **************
-	L#583,  L#580,  L#582,  
-
-/// @audit ****************** Affected Code *******************
- 580:         (int24 tickLower, int24 tickUpper) = tokenId.asTicks(legIndex);
- 582:         uint128 amount0;
- 583:         uint128 amount1;
-
-```
-
-*GitHub* : [574-599](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L574-L599)
+*GitHub* : [107-115](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/InteractionHelper.sol#L107-L115)
 
 ```solidity
 File: contracts/libraries/Math.sol
 
 /// @audit ******************* Issue Detail *******************
 Math.getAmount0ForLiquidity(LiquidityChunk) (contracts/libraries/Math.sol#191-202) has uint/ int smaller than 256-bit:
-	- Math.getAmount0ForLiquidity(LiquidityChunk).highPriceX96 (contracts/libraries/Math.sol#193)
 	- Math.getAmount0ForLiquidity(LiquidityChunk).lowPriceX96 (contracts/libraries/Math.sol#192)
+	- Math.getAmount0ForLiquidity(LiquidityChunk).highPriceX96 (contracts/libraries/Math.sol#193)
 
 /// @audit ************** Possible Issue Line(s) **************
-	L#193,  L#192,  
+	L#192,  L#193,  
 
 /// @audit ****************** Affected Code *******************
  191:     function getAmount0ForLiquidity(LiquidityChunk liquidityChunk) internal pure returns (uint256) {
@@ -8662,7 +8586,79 @@ Math.getAmount0ForLiquidity(LiquidityChunk) (contracts/libraries/Math.sol#191-20
 
 ```
 
-*GitHub* : [191-202](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L191-L202)
+*GitHub* : [191-202](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L191-L202)
+
+```solidity
+File: contracts/PanopticPool.sol
+
+/// @audit ******************* Issue Detail *******************
+PanopticPool.liquidate(TokenId[],address,LeftRightUnsigned,TokenId[]) (contracts/PanopticPool.sol#1017-1171) has uint/ int smaller than 256-bit:
+	- PanopticPool.liquidate(TokenId[],address,LeftRightUnsigned,TokenId[]).currentTick (contracts/PanopticPool.sol#1032)
+	- PanopticPool.liquidate(TokenId[],address,LeftRightUnsigned,TokenId[])._finalTick (contracts/PanopticPool.sol#1119)
+	- PanopticPool.liquidate(TokenId[],address,LeftRightUnsigned,TokenId[]).twapTick (contracts/PanopticPool.sol#1026)
+	- PanopticPool.liquidate(TokenId[],address,LeftRightUnsigned,TokenId[]).finalTick (contracts/PanopticPool.sol#1077)
+
+/// @audit ************** Possible Issue Line(s) **************
+	L#1032,  L#1119,  L#1026,  L#1077,  
+
+/// @audit ****************** Affected Code *******************
+1026:         int24 twapTick = getUniV3TWAP();
+1032:             (, int24 currentTick, , , , , ) = s_univ3pool.slot0();
+1077:         int24 finalTick;
+1119:             int24 _finalTick = finalTick;
+
+```
+
+*GitHub* : [1017-1171](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1017-L1171)
+
+```solidity
+File: contracts/libraries/PanopticMath.sol
+
+/// @audit ******************* Issue Detail *******************
+PanopticMath.getPoolId(address) (contracts/libraries/PanopticMath.sol#47-54) has uint/ int smaller than 256-bit:
+	- PanopticMath.getPoolId(address).tickSpacing (contracts/libraries/PanopticMath.sol#49)
+	- PanopticMath.getPoolId(address).poolId (contracts/libraries/PanopticMath.sol#50)
+
+/// @audit ************** Possible Issue Line(s) **************
+	L#49,  L#50,  
+
+/// @audit ****************** Affected Code *******************
+  47:     function getPoolId(address univ3pool) internal view returns (uint64) {
+  48:         unchecked {
+  49:             int24 tickSpacing = IUniswapV3Pool(univ3pool).tickSpacing();
+  50:             uint64 poolId = uint64(uint160(univ3pool) >> 112);
+  51:             poolId += uint64(uint24(tickSpacing)) << 48;
+  52:             return poolId;
+  53:         }
+  54:     }
+
+```
+
+*GitHub* : [47-54](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L47-L54)
+
+```solidity
+File: contracts/SemiFungiblePositionManager.sol
+
+/// @audit ******************* Issue Detail *******************
+SemiFungiblePositionManager._collectAndWritePositionData(LiquidityChunk,IUniswapV3Pool,LeftRightUnsigned,bytes32,LeftRightSigned,uint256) (contracts/SemiFungiblePositionManager.sol#1255-1313) has uint/ int smaller than 256-bit:
+	- SemiFungiblePositionManager._collectAndWritePositionData(LiquidityChunk,IUniswapV3Pool,LeftRightUnsigned,bytes32,LeftRightSigned,uint256).receivedAmount0 (contracts/SemiFungiblePositionManager.sol#1284)
+	- SemiFungiblePositionManager._collectAndWritePositionData(LiquidityChunk,IUniswapV3Pool,LeftRightUnsigned,bytes32,LeftRightSigned,uint256).startingLiquidity (contracts/SemiFungiblePositionManager.sol#1263)
+	- SemiFungiblePositionManager._collectAndWritePositionData(LiquidityChunk,IUniswapV3Pool,LeftRightUnsigned,bytes32,LeftRightSigned,uint256).collected0 (contracts/SemiFungiblePositionManager.sol#1293)
+	- SemiFungiblePositionManager._collectAndWritePositionData(LiquidityChunk,IUniswapV3Pool,LeftRightUnsigned,bytes32,LeftRightSigned,uint256).collected1 (contracts/SemiFungiblePositionManager.sol#1294)
+	- SemiFungiblePositionManager._collectAndWritePositionData(LiquidityChunk,IUniswapV3Pool,LeftRightUnsigned,bytes32,LeftRightSigned,uint256).receivedAmount1 (contracts/SemiFungiblePositionManager.sol#1284)
+
+/// @audit ************** Possible Issue Line(s) **************
+	L#1284,  L#1263,  L#1293,  L#1294,  
+
+/// @audit ****************** Affected Code *******************
+1263:         uint128 startingLiquidity = currentLiquidity.rightSlot();
+1284:             (uint128 receivedAmount0, uint128 receivedAmount1) = univ3pool.collect(
+1293:             uint128 collected0;
+1294:             uint128 collected1;
+
+```
+
+*GitHub* : [1255-1313](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L1255-L1313)
 
 ```solidity
 File: contracts/libraries/PanopticMath.sol
@@ -8684,7 +8680,7 @@ PanopticMath.getTicks(int24,int24,int24) (contracts/libraries/PanopticMath.sol#3
 
 ```
 
-*GitHub* : [338-363](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L338-L363)
+*GitHub* : [338-363](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L338-L363)
 
 ```solidity
 File: contracts/libraries/Math.sol
@@ -8718,9 +8714,40 @@ Math.getLiquidityForAmount1(int24,int24,uint256) (contracts/libraries/Math.sol#2
 
 ```
 
-*GitHub* : [271-287](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L271-L287)
+*GitHub* : [271-287](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L271-L287)
 
-### [G-14]<a name="g-14"></a> Use Bytes32 for small data storage
+```solidity
+File: contracts/PanopticPool.sol
+
+/// @audit ******************* Issue Detail *******************
+PanopticPool._validateSolvency(address,TokenId[],uint256) (contracts/PanopticPool.sol#887-946) has uint/ int smaller than 256-bit:
+	- PanopticPool._validateSolvency(address,TokenId[],uint256).fastOracleTick (contracts/PanopticPool.sol#905-911)
+	- PanopticPool._validateSolvency(address,TokenId[],uint256).slowOracleTick (contracts/PanopticPool.sol#913)
+	- PanopticPool._validateSolvency(address,TokenId[],uint256).observationIndex (contracts/PanopticPool.sol#899)
+	- PanopticPool._validateSolvency(address,TokenId[],uint256).currentTick (contracts/PanopticPool.sol#898)
+	- PanopticPool._validateSolvency(address,TokenId[],uint256).observationCardinality (contracts/PanopticPool.sol#900)
+
+/// @audit ************** Possible Issue Line(s) **************
+	L#905-911,  L#913,  L#899,  L#898,  L#900,  
+
+/// @audit ****************** Affected Code *******************
+ 898:             int24 currentTick,
+ 899:             uint16 observationIndex,
+ 900:             uint16 observationCardinality,
+ 905:         int24 fastOracleTick = PanopticMath.computeMedianObservedPrice(
+ 906:             _univ3pool,
+ 907:             observationIndex,
+ 908:             observationCardinality,
+ 909:             FAST_ORACLE_CARDINALITY,
+ 910:             FAST_ORACLE_PERIOD
+ 911:         );
+ 913:         int24 slowOracleTick;
+
+```
+
+*GitHub* : [887-946](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L887-L946)
+
+### [G-15]<a name="g-15"></a> Use Bytes32 for small data storage
 
 Using bytes32 is cheaper in Solidity when the data can fit into 32 bytes.
 
@@ -8743,9 +8770,9 @@ CollateralTracker (contracts/CollateralTracker.sol#36-1650) should use bytes32 f
 
 ```
 
-*GitHub* : [36-1650](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L36-L1650)
+*GitHub* : [36-1650](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L36-L1650)
 
-### [G-15]<a name="g-15"></a> Solidity versions 0.8.19 and above are more gas efficient
+### [G-16]<a name="g-16"></a> Solidity versions 0.8.19 and above are more gas efficient
 
 Solidity version 0.8.19 introduced a array of gas optimizations which make contracts which use it more efficient. Provided compatability it may be beneficial to upgrade to this version
 
@@ -8765,7 +8792,7 @@ File: contracts/libraries/SafeTransferLib.sol
 
 ```
 
-*GitHub* : [2-2](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/SafeTransferLib.sol#L2-L2)
+*GitHub* : [2-2](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/SafeTransferLib.sol#L2-L2)
 
 ```solidity
 File: contracts/SemiFungiblePositionManager.sol
@@ -8781,7 +8808,7 @@ File: contracts/SemiFungiblePositionManager.sol
 
 ```
 
-*GitHub* : [2-2](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L2-L2)
+*GitHub* : [2-2](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L2-L2)
 
 ```solidity
 File: contracts/libraries/InteractionHelper.sol
@@ -8797,7 +8824,7 @@ File: contracts/libraries/InteractionHelper.sol
 
 ```
 
-*GitHub* : [2-2](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/InteractionHelper.sol#L2-L2)
+*GitHub* : [2-2](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/InteractionHelper.sol#L2-L2)
 
 ```solidity
 File: contracts/tokens/interfaces/IDonorNFT.sol
@@ -8813,7 +8840,7 @@ File: contracts/tokens/interfaces/IDonorNFT.sol
 
 ```
 
-*GitHub* : [2-2](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/tokens/interfaces/IDonorNFT.sol#L2-L2)
+*GitHub* : [2-2](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/tokens/interfaces/IDonorNFT.sol#L2-L2)
 
 ```solidity
 File: contracts/CollateralTracker.sol
@@ -8829,7 +8856,7 @@ File: contracts/CollateralTracker.sol
 
 ```
 
-*GitHub* : [2-2](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L2-L2)
+*GitHub* : [2-2](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L2-L2)
 
 ```solidity
 File: contracts/libraries/Errors.sol
@@ -8845,7 +8872,7 @@ File: contracts/libraries/Errors.sol
 
 ```
 
-*GitHub* : [2-2](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Errors.sol#L2-L2)
+*GitHub* : [2-2](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Errors.sol#L2-L2)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -8861,7 +8888,7 @@ File: contracts/PanopticPool.sol
 
 ```
 
-*GitHub* : [2-2](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L2-L2)
+*GitHub* : [2-2](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L2-L2)
 
 ```solidity
 File: contracts/libraries/CallbackLib.sol
@@ -8877,7 +8904,7 @@ File: contracts/libraries/CallbackLib.sol
 
 ```
 
-*GitHub* : [2-2](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/CallbackLib.sol#L2-L2)
+*GitHub* : [2-2](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/CallbackLib.sol#L2-L2)
 
 ```solidity
 File: contracts/libraries/Math.sol
@@ -8893,7 +8920,7 @@ File: contracts/libraries/Math.sol
 
 ```
 
-*GitHub* : [2-2](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L2-L2)
+*GitHub* : [2-2](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L2-L2)
 
 ```solidity
 File: contracts/libraries/Constants.sol
@@ -8909,7 +8936,7 @@ File: contracts/libraries/Constants.sol
 
 ```
 
-*GitHub* : [2-2](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Constants.sol#L2-L2)
+*GitHub* : [2-2](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Constants.sol#L2-L2)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -8925,7 +8952,7 @@ File: contracts/types/TokenId.sol
 
 ```
 
-*GitHub* : [2-2](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L2-L2)
+*GitHub* : [2-2](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L2-L2)
 
 ```solidity
 File: contracts/types/LeftRight.sol
@@ -8941,7 +8968,7 @@ File: contracts/types/LeftRight.sol
 
 ```
 
-*GitHub* : [2-2](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/LeftRight.sol#L2-L2)
+*GitHub* : [2-2](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/LeftRight.sol#L2-L2)
 
 ```solidity
 File: contracts/PanopticFactory.sol
@@ -8957,7 +8984,7 @@ File: contracts/PanopticFactory.sol
 
 ```
 
-*GitHub* : [2-2](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticFactory.sol#L2-L2)
+*GitHub* : [2-2](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticFactory.sol#L2-L2)
 
 ```solidity
 File: contracts/types/LiquidityChunk.sol
@@ -8973,7 +9000,7 @@ File: contracts/types/LiquidityChunk.sol
 
 ```
 
-*GitHub* : [2-2](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/LiquidityChunk.sol#L2-L2)
+*GitHub* : [2-2](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/LiquidityChunk.sol#L2-L2)
 
 ```solidity
 File: contracts/tokens/ERC1155Minimal.sol
@@ -8989,7 +9016,7 @@ File: contracts/tokens/ERC1155Minimal.sol
 
 ```
 
-*GitHub* : [2-2](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/tokens/ERC1155Minimal.sol#L2-L2)
+*GitHub* : [2-2](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/tokens/ERC1155Minimal.sol#L2-L2)
 
 ```solidity
 File: contracts/libraries/FeesCalc.sol
@@ -9005,7 +9032,7 @@ File: contracts/libraries/FeesCalc.sol
 
 ```
 
-*GitHub* : [2-2](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/FeesCalc.sol#L2-L2)
+*GitHub* : [2-2](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/FeesCalc.sol#L2-L2)
 
 ```solidity
 File: contracts/multicall/Multicall.sol
@@ -9021,7 +9048,7 @@ File: contracts/multicall/Multicall.sol
 
 ```
 
-*GitHub* : [2-2](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/multicall/Multicall.sol#L2-L2)
+*GitHub* : [2-2](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/multicall/Multicall.sol#L2-L2)
 
 ```solidity
 File: contracts/tokens/interfaces/IERC20Partial.sol
@@ -9037,7 +9064,7 @@ File: contracts/tokens/interfaces/IERC20Partial.sol
 
 ```
 
-*GitHub* : [2-2](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/tokens/interfaces/IERC20Partial.sol#L2-L2)
+*GitHub* : [2-2](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/tokens/interfaces/IERC20Partial.sol#L2-L2)
 
 ```solidity
 File: contracts/tokens/ERC20Minimal.sol
@@ -9053,7 +9080,7 @@ File: contracts/tokens/ERC20Minimal.sol
 
 ```
 
-*GitHub* : [2-2](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/tokens/ERC20Minimal.sol#L2-L2)
+*GitHub* : [2-2](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/tokens/ERC20Minimal.sol#L2-L2)
 
 ```solidity
 File: contracts/libraries/PanopticMath.sol
@@ -9069,9 +9096,146 @@ File: contracts/libraries/PanopticMath.sol
 
 ```
 
-*GitHub* : [2-2](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L2-L2)
+*GitHub* : [2-2](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L2-L2)
 
-### [G-16]<a name="g-16"></a> Use assembly to write address storage values
+### [G-17]<a name="g-17"></a> Optimal State Variable Order
+
+Detects optimal variable order in contract storage layouts to decrease the number of storage slots used. Each storage slot used can cost at least 5,000 gas for each write operation, and potentially up to 20,000 gas if you're turning a zero value into a non-zero value. Hence, optimizing storage usage can result in significant gas savings. The real-world savings could vary depending on your contract's specific logic and the state of the Ethereum network.
+
+*There are 2 instance(s) of this issue:*
+
+```solidity
+File: contracts/PanopticPool.sol
+
+/// @audit ******************* Issue Detail *******************
+PanopticPool (contracts/PanopticPool.sol#27-1981) should reorder state variables as following :- 
+```solidity
+
+Orignal variable order (count: 21 slots)
+Slot 1: ['int24 MIN_SWAP_TICK (3B)', 'int24 MAX_SWAP_TICK (3B)', 'bool COMPUTE_ALL_PREMIA (1B)', 'bool COMPUTE_LONG_PREMIA (1B)', 'bool ONLY_AVAILABLE_PREMIUM (1B)', 'bool COMMIT_LONG_SETTLED (1B)', 'bool DONOT_COMMIT_LONG_SETTLED (1B)', 'bool ADD (1B)', 'uint32 TWAP_WINDOW (4B)', 'bool SLOW_ORACLE_UNISWAP_MODE (1B)'] 
+Slot 2: ['uint256 MEDIAN_PERIOD (32B)'] 
+Slot 3: ['uint256 FAST_ORACLE_CARDINALITY (32B)'] 
+Slot 4: ['uint256 FAST_ORACLE_PERIOD (32B)'] 
+Slot 5: ['uint256 SLOW_ORACLE_CARDINALITY (32B)'] 
+Slot 6: ['uint256 SLOW_ORACLE_PERIOD (32B)'] 
+Slot 7: ['int256 MAX_TWAP_DELTA_LIQUIDATION (32B)'] 
+Slot 8: ['int256 MAX_SLOW_FAST_DELTA (32B)'] 
+Slot 9: ['uint64 MAX_SPREAD (8B)', 'uint64 MAX_POSITIONS (8B)'] 
+Slot 10: ['uint256 BP_DECREASE_BUFFER (32B)'] 
+Slot 11: ['uint256 NO_BUFFER (32B)'] 
+Slot 12: ['SemiFungiblePositionManager SFPM (20B)'] 
+Slot 13: ['IUniswapV3Pool s_univ3pool (20B)'] 
+Slot 14: ['uint256 s_miniMedian (32B)'] 
+Slot 15: ['CollateralTracker s_collateralToken0 (20B)'] 
+Slot 16: ['CollateralTracker s_collateralToken1 (20B)'] 
+Slot 17: ['mapping(address => mapping(TokenId => mapping(uint256 => LeftRightUnsigned))) s_options (32B)'] 
+Slot 18: ['mapping(bytes32 => LeftRightUnsigned) s_grossPremiumLast (32B)'] 
+Slot 19: ['mapping(bytes32 => LeftRightUnsigned) s_settledTokens (32B)'] 
+Slot 20: ['mapping(address => mapping(TokenId => LeftRightUnsigned)) s_positionBalance (32B)'] 
+Slot 21: ['mapping(address => uint256) s_positionsHash (32B)'] 
+
+Optimized variable order (count: 19 slots)
+Slot 1: ['uint256 MEDIAN_PERIOD (32B)'] 
+Slot 2: ['uint256 FAST_ORACLE_CARDINALITY (32B)'] 
+Slot 3: ['uint256 FAST_ORACLE_PERIOD (32B)'] 
+Slot 4: ['uint256 SLOW_ORACLE_CARDINALITY (32B)'] 
+Slot 5: ['uint256 SLOW_ORACLE_PERIOD (32B)'] 
+Slot 6: ['int256 MAX_TWAP_DELTA_LIQUIDATION (32B)'] 
+Slot 7: ['int256 MAX_SLOW_FAST_DELTA (32B)'] 
+Slot 8: ['uint256 BP_DECREASE_BUFFER (32B)'] 
+Slot 9: ['uint256 NO_BUFFER (32B)'] 
+Slot 10: ['uint256 s_miniMedian (32B)'] 
+Slot 11: ['mapping(address => mapping(TokenId => mapping(uint256 => LeftRightUnsigned))) s_options (32B)'] 
+Slot 12: ['mapping(bytes32 => LeftRightUnsigned) s_grossPremiumLast (32B)'] 
+Slot 13: ['mapping(bytes32 => LeftRightUnsigned) s_settledTokens (32B)'] 
+Slot 14: ['mapping(address => mapping(TokenId => LeftRightUnsigned)) s_positionBalance (32B)'] 
+Slot 15: ['mapping(address => uint256) s_positionsHash (32B)'] 
+Slot 16: ['SemiFungiblePositionManager SFPM (20B)', 'uint64 MAX_SPREAD (8B)', 'uint32 TWAP_WINDOW (4B)'] 
+Slot 17: ['IUniswapV3Pool s_univ3pool (20B)', 'uint64 MAX_POSITIONS (8B)', 'int24 MIN_SWAP_TICK (3B)', 'bool COMPUTE_ALL_PREMIA (1B)'] 
+Slot 18: ['CollateralTracker s_collateralToken0 (20B)', 'int24 MAX_SWAP_TICK (3B)', 'bool COMPUTE_LONG_PREMIA (1B)', 'bool ONLY_AVAILABLE_PREMIUM (1B)', 'bool COMMIT_LONG_SETTLED (1B)', 'bool DONOT_COMMIT_LONG_SETTLED (1B)', 'bool ADD (1B)', 'bool SLOW_ORACLE_UNISWAP_MODE (1B)'] 
+Slot 19: ['CollateralTracker s_collateralToken1 (20B)'] 
+```
+
+/// @audit ****************** Affected Code *******************
+  27: contract PanopticPool is ERC1155Holder, Multicall {
+  28:     /*//////////////////////////////////////////////////////////////
+  29:                                 EVENTS
+  30:     //////////////////////////////////////////////////////////////*/
+  31: 
+  32:     /// @notice Emitted when an account is liquidated.
+  33:     /// @dev Need to unpack bonusAmounts to get raw numbers, which are always positive.
+  34:     /// @param liquidator Address of the caller whom is liquidating the distressed account.
+  35:     /// @param liquidatee Address of the distressed/liquidatable account.
+  36:     /// @param bonusAmounts LeftRight encoding for the the bonus paid for token 0 (right slot) and 1 (left slot) from the Panoptic Pool to the liquidator.
+
+```
+
+*GitHub* : [27-1981](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L27-L1981)
+
+```solidity
+File: contracts/CollateralTracker.sol
+
+/// @audit ******************* Issue Detail *******************
+CollateralTracker (contracts/CollateralTracker.sol#36-1650) should reorder state variables as following :- 
+```solidity
+
+Orignal variable order (count: 18 slots)
+Slot 1: ['string TICKER_PREFIX (32B)'] 
+Slot 2: ['string NAME_PREFIX (32B)'] 
+Slot 3: ['uint256 DECIMALS (32B)'] 
+Slot 4: ['int128 DECIMALS_128 (16B)'] 
+Slot 5: ['address s_underlyingToken (20B)', 'bool s_initialized (1B)'] 
+Slot 6: ['address s_univ3token0 (20B)'] 
+Slot 7: ['address s_univ3token1 (20B)', 'bool s_underlyingIsToken0 (1B)'] 
+Slot 8: ['PanopticPool s_panopticPool (20B)'] 
+Slot 9: ['uint128 s_poolAssets (16B)', 'uint128 s_inAMM (16B)'] 
+Slot 10: ['uint128 s_ITMSpreadFee (16B)', 'uint24 s_poolFee (3B)'] 
+Slot 11: ['uint256 TICK_DEVIATION (32B)'] 
+Slot 12: ['uint256 COMMISSION_FEE (32B)'] 
+Slot 13: ['uint256 SELLER_COLLATERAL_RATIO (32B)'] 
+Slot 14: ['uint256 BUYER_COLLATERAL_RATIO (32B)'] 
+Slot 15: ['int256 FORCE_EXERCISE_COST (32B)'] 
+Slot 16: ['uint256 TARGET_POOL_UTIL (32B)'] 
+Slot 17: ['uint256 SATURATED_POOL_UTIL (32B)'] 
+Slot 18: ['uint256 ITM_SPREAD_MULTIPLIER (32B)'] 
+
+Optimized variable order (count: 17 slots)
+Slot 1: ['string TICKER_PREFIX (32B)'] 
+Slot 2: ['string NAME_PREFIX (32B)'] 
+Slot 3: ['uint256 DECIMALS (32B)'] 
+Slot 4: ['uint256 TICK_DEVIATION (32B)'] 
+Slot 5: ['uint256 COMMISSION_FEE (32B)'] 
+Slot 6: ['uint256 SELLER_COLLATERAL_RATIO (32B)'] 
+Slot 7: ['uint256 BUYER_COLLATERAL_RATIO (32B)'] 
+Slot 8: ['int256 FORCE_EXERCISE_COST (32B)'] 
+Slot 9: ['uint256 TARGET_POOL_UTIL (32B)'] 
+Slot 10: ['uint256 SATURATED_POOL_UTIL (32B)'] 
+Slot 11: ['uint256 ITM_SPREAD_MULTIPLIER (32B)'] 
+Slot 12: ['address s_underlyingToken (20B)', 'uint24 s_poolFee (3B)', 'bool s_initialized (1B)', 'bool s_underlyingIsToken0 (1B)'] 
+Slot 13: ['address s_univ3token0 (20B)'] 
+Slot 14: ['address s_univ3token1 (20B)'] 
+Slot 15: ['PanopticPool s_panopticPool (20B)'] 
+Slot 16: ['int128 DECIMALS_128 (16B)', 'uint128 s_poolAssets (16B)'] 
+Slot 17: ['uint128 s_inAMM (16B)', 'uint128 s_ITMSpreadFee (16B)'] 
+```
+
+/// @audit ****************** Affected Code *******************
+  36: contract CollateralTracker is ERC20Minimal, Multicall {
+  37:     // Used for safecasting
+  38:     using Math for uint256;
+  39: 
+  40:     /*//////////////////////////////////////////////////////////////
+  41:                                 EVENTS
+  42:     //////////////////////////////////////////////////////////////*/
+  43: 
+  44:     /// @notice Emitted when assets are deposited into the Collateral Tracker.
+  45:     /// @param sender The address of the caller (and depositor)
+
+```
+
+*GitHub* : [36-1650](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L36-L1650)
+
+### [G-18]<a name="g-18"></a> Use assembly to write address storage values
 
 Using assembly to write address storage values can potentially save gas costs. This detector flags instances where address storage values are written without using assembly.
 
@@ -9100,7 +9264,7 @@ PanopticFactory.transferOwnership(address) (contracts/PanopticFactory.sol#147-15
 
 ```
 
-*GitHub* : [147-155](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticFactory.sol#L147-L155)
+*GitHub* : [147-155](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticFactory.sol#L147-L155)
 
 ```solidity
 File: contracts/CollateralTracker.sol
@@ -9122,7 +9286,7 @@ CollateralTracker.startToken(bool,address,address,uint24,PanopticPool) (contract
 
 ```
 
-*GitHub* : [221-264](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L221-L264)
+*GitHub* : [221-264](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L221-L264)
 
 ```solidity
 File: contracts/PanopticFactory.sol
@@ -9156,7 +9320,7 @@ PanopticFactory.constructor(address,SemiFungiblePositionManager,IUniswapV3Factor
 
 ```
 
-*GitHub* : [115-130](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticFactory.sol#L115-L130)
+*GitHub* : [115-130](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticFactory.sol#L115-L130)
 
 ```solidity
 File: contracts/PanopticFactory.sol
@@ -9178,9 +9342,9 @@ PanopticFactory.initialize(address) (contracts/PanopticFactory.sol#134-139) writ
 
 ```
 
-*GitHub* : [134-139](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticFactory.sol#L134-L139)
+*GitHub* : [134-139](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticFactory.sol#L134-L139)
 
-### [G-17]<a name="g-17"></a> State variable read in a loop
+### [G-19]<a name="g-19"></a> State variable read in a loop
 
 Reading a state variable inside a loop can unnecessarily increase gas consumption, as each read operation from the blockchain state is costly. This inefficiency becomes pronounced in loops with many iterations. To optimize gas usage, it's advisable to read the state variable once before the loop starts, store its value in a local (memory) variable, and then use this local variable within the loop. This approach minimizes the number of state read operations, thereby reducing the gas cost associated with executing the contract function, making the smart contract more efficient and cost-effective to run.
 
@@ -9203,7 +9367,7 @@ PanopticFactory.minePoolAddress(bytes32,uint256,uint256) (contracts/PanopticFact
 
 ```
 
-*GitHub* : [290-326](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticFactory.sol#L290-L326)
+*GitHub* : [290-326](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticFactory.sol#L290-L326)
 
 ```solidity
 File: contracts/tokens/ERC1155Minimal.sol
@@ -9233,7 +9397,7 @@ ERC1155.balanceOfBatch(address[],uint256[]) (contracts/tokens/ERC1155Minimal.sol
 
 ```
 
-*GitHub* : [178-191](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/tokens/ERC1155Minimal.sol#L178-L191)
+*GitHub* : [178-191](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/tokens/ERC1155Minimal.sol#L178-L191)
 
 ```solidity
 File: contracts/SemiFungiblePositionManager.sol
@@ -9250,7 +9414,7 @@ SemiFungiblePositionManager.initializeAMMPool(address,address,uint24) (contracts
 
 ```
 
-*GitHub* : [350-391](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L350-L391)
+*GitHub* : [350-391](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L350-L391)
 
 ```solidity
 File: contracts/SemiFungiblePositionManager.sol
@@ -9286,9 +9450,9 @@ SemiFungiblePositionManager.safeBatchTransferFrom(address,address,uint256[],uint
 
 ```
 
-*GitHub* : [566-585](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L566-L585)
+*GitHub* : [566-585](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L566-L585)
 
-### [G-18]<a name="g-18"></a> Unnecessary casting as variable is already of the same type
+### [G-20]<a name="g-20"></a> Unnecessary casting as variable is already of the same type
 
 Unnecessary casting of a variable to the same type is redundant and can contribute to gas inefficiency and code clutter. This situation commonly arises when developers, perhaps due to oversight or misunderstanding, explicitly cast a variable to its existing type. For example, casting a `uint256` variable to `uint256` again does not change its type or value but adds unnecessary operations and gas.
 
@@ -9311,7 +9475,7 @@ PanopticPool.startPool(IUniswapV3Pool,address,address,CollateralTracker,Collater
 
 ```
 
-*GitHub* : [291-327](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L291-L327)
+*GitHub* : [291-327](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L291-L327)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -9328,7 +9492,7 @@ PanopticPool.startPool(IUniswapV3Pool,address,address,CollateralTracker,Collater
 
 ```
 
-*GitHub* : [291-327](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L291-L327)
+*GitHub* : [291-327](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L291-L327)
 
 ```solidity
 File: contracts/PanopticFactory.sol
@@ -9352,9 +9516,9 @@ PanopticFactory._mintFullRange(IUniswapV3Pool,address,address,uint24) (contracts
 
 ```
 
-*GitHub* : [335-411](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticFactory.sol#L335-L411)
+*GitHub* : [335-411](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticFactory.sol#L335-L411)
 
-### [G-19]<a name="g-19"></a> Shorten the array rather than copying to a new one
+### [G-21]<a name="g-21"></a> Shorten the array rather than copying to a new one
 
 Leveraging inline assembly in Solidity provides the ability to directly manipulate the length slot of an array, thereby altering its length without the need to copy the elements to a new array of the desired size. This technique is more gas-efficient as it avoids the computational expense associated with array duplication. However, this method circumvents the type-checking and safety mechanisms of high-level Solidity and should be used judiciously. Always ensure that the array doesn't contain vital data beyond the revised length, as this data will become unreachable yet still consume storage space.
 
@@ -9369,7 +9533,7 @@ File: contracts/multicall/Multicall.sol
 
 
 
-*GitHub* : [13](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/multicall/Multicall.sol#L13-L13)
+*GitHub* : [13](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/multicall/Multicall.sol#L13-L13)
 
 ```solidity
 File: contracts/tokens/ERC1155Minimal.sol
@@ -9379,9 +9543,9 @@ File: contracts/tokens/ERC1155Minimal.sol
 ```
 
 
-*GitHub* : [182](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/tokens/ERC1155Minimal.sol#L182-L182)
+*GitHub* : [182](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/tokens/ERC1155Minimal.sol#L182-L182)
 
-### [G-20]<a name="g-20"></a> checks for zero uint should be done using assembly to save gas
+### [G-22]<a name="g-22"></a> checks for zero uint should be done using assembly to save gas
 
 Using assembly for simple zero checks on unsigned integers can save gas due to lower-level, optimized operations.
 
@@ -9424,7 +9588,7 @@ File: contracts/CollateralTracker.sol
 
 
 
-*GitHub* : [512](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L512-L512), [575](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L575-L575), [664](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L664-L664), [708](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L708-L708), [1325](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L1325-L1325), [1328](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L1328-L1328), [1339](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L1339-L1339), [1347](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L1347-L1347), [1375](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L1375-L1375), [1479](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L1479-L1479), [1544](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L1544-L1544), [1582](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L1582-L1582), [1584](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L1584-L1584), [1637](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L1637-L1637), [1638](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L1638-L1638)
+*GitHub* : [512](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L512-L512), [575](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L575-L575), [664](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L664-L664), [708](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L708-L708), [1325](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L1325-L1325), [1328](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L1328-L1328), [1339](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L1339-L1339), [1347](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L1347-L1347), [1375](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L1375-L1375), [1479](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L1479-L1479), [1544](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L1544-L1544), [1582](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L1582-L1582), [1584](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L1584-L1584), [1637](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L1637-L1637), [1638](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L1638-L1638)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -9447,7 +9611,7 @@ File: contracts/PanopticPool.sol
 
 
 
-*GitHub* : [460](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L460-L460), [865](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L865-L865), [1483](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1483-L1483), [1596](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1596-L1596), [1679](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1679-L1679), [1780](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1780-L1780), [1789](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1789-L1789)
+*GitHub* : [460](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L460-L460), [865](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L865-L865), [1483](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1483-L1483), [1596](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1596-L1596), [1679](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1679-L1679), [1780](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1780-L1780), [1789](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1789-L1789)
 
 ```solidity
 File: contracts/SemiFungiblePositionManager.sol
@@ -9466,7 +9630,7 @@ File: contracts/SemiFungiblePositionManager.sol
 
 
 
-*GitHub* : [688](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L688-L688), [833](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L833-L833), [999](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L999-L999), [1066](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L1066-L1066), [1078](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L1078-L1078)
+*GitHub* : [688](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L688-L688), [833](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L833-L833), [999](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L999-L999), [1066](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L1066-L1066), [1078](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L1078-L1078)
 
 ```solidity
 File: contracts/libraries/FeesCalc.sol
@@ -9477,7 +9641,7 @@ File: contracts/libraries/FeesCalc.sol
 
 
 
-*GitHub* : [67](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/FeesCalc.sol#L67-L67)
+*GitHub* : [67](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/FeesCalc.sol#L67-L67)
 
 ```solidity
 File: contracts/libraries/Math.sol
@@ -9498,7 +9662,7 @@ File: contracts/libraries/Math.sol
 
 
 
-*GitHub* : [179](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L179-L179), [360](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L360-L360), [474](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L474-L474), [537](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L537-L537), [614](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L614-L614), [691](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L691-L691)
+*GitHub* : [179](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L179-L179), [360](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L360-L360), [474](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L474-L474), [537](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L537-L537), [614](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L614-L614), [691](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L691-L691)
 
 ```solidity
 File: contracts/libraries/PanopticMath.sol
@@ -9521,7 +9685,7 @@ File: contracts/libraries/PanopticMath.sol
 
 
 
-*GitHub* : [325](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L325-L325), [425](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L425-L425), [475](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L475-L475), [479](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L479-L479), [584](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L584-L584), [615](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L615-L615), [618](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L618-L618)
+*GitHub* : [325](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L325-L325), [425](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L425-L425), [475](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L475-L475), [479](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L479-L479), [584](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L584-L584), [615](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L615-L615), [618](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L618-L618)
 
 ```solidity
 File: contracts/tokens/ERC1155Minimal.sol
@@ -9534,7 +9698,7 @@ File: contracts/tokens/ERC1155Minimal.sol
 
 
 
-*GitHub* : [202](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/tokens/ERC1155Minimal.sol#L202-L202), [203](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/tokens/ERC1155Minimal.sol#L203-L203)
+*GitHub* : [202](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/tokens/ERC1155Minimal.sol#L202-L202), [203](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/tokens/ERC1155Minimal.sol#L203-L203)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -9550,9 +9714,9 @@ File: contracts/types/TokenId.sol
 ```
 
 
-*GitHub* : [465](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L465-L465), [501](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L501-L501), [508](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L508-L508), [528](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L528-L528)
+*GitHub* : [465](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L465-L465), [501](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L501-L501), [508](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L508-L508), [528](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L528-L528)
 
-### [G-21]<a name="g-21"></a> Use Assembly for Hash Calculation
+### [G-23]<a name="g-23"></a> Use Assembly for Hash Calculation
 
 Assembly version of the `keccak256` hashing function is more efficient than the high-level Solidity version as Solidity has additional overhead when handling function calls and memory management, which can increase the gas cost.
 
@@ -9589,7 +9753,7 @@ File: contracts/PanopticPool.sol
 
 
 
-*GitHub* : [461](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L461-L467), [1642](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1642-L1648), [1673](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1673-L1675), [1855](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1855-L1857)
+*GitHub* : [461](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L461-L467), [1642](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1642-L1648), [1673](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1673-L1675), [1855](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1855-L1857)
 
 ```solidity
 File: contracts/SemiFungiblePositionManager.sol
@@ -9637,7 +9801,7 @@ File: contracts/SemiFungiblePositionManager.sol
 
 
 
-*GitHub* : [611](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L611-L619), [620](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L620-L628), [974](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L974-L982), [1150](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L1150-L1157)
+*GitHub* : [611](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L611-L619), [620](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L620-L628), [974](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L974-L982), [1150](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L1150-L1157)
 
 ```solidity
 File: contracts/libraries/PanopticMath.sol
@@ -9655,9 +9819,9 @@ File: contracts/libraries/PanopticMath.sol
 ```
 
 
-*GitHub* : [103](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L103-L103), [878](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L878-L884)
+*GitHub* : [103](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L103-L103), [878](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L878-L884)
 
-### [G-22]<a name="g-22"></a> `>=` costs less gas than `>`
+### [G-24]<a name="g-24"></a> `>=` costs less gas than `>`
 
 The compiler uses opcodes `GT` and `ISZERO` for solidity code that uses `>`, but only requires `LT` for `>=`, [which saves **3 gas**](https://gist.github.com/IllIllI000/3dc79d25acccfa16dee4e83ffdc6ffde). If `<` is being used, the condition can be inverted. In cases where a for-loop is being used, one can count down rather than up, in order to use the optimal operator
 
@@ -9726,7 +9890,7 @@ File: contracts/CollateralTracker.sol
 
 
 
-*GitHub* : [418](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L418-L418), [480](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L480-L480), [536](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L536-L536), [596](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L596-L596), [662](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L662-L662), [708](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L708-L708), [709](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L709-L709), [776](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L776-L776), [784](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L784-L784), [790](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L790-L790), [835](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L835-L835), [841](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L841-L841), [937](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L937-L937), [976](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L976-L976), [1010](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L1010-L1010), [1018](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L1018-L1018), [1067](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L1067-L1067), [1075](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L1075-L1075), [1168](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L1168-L1168), [1173](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L1173-L1173), [1182](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L1182-L1182), [1208](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L1208-L1208), [1255](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L1255-L1255), [1347](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L1347-L1347), [1374](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L1374-L1374), [1545](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L1545-L1545), [1549](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L1549-L1549), [1570](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L1570-L1570)
+*GitHub* : [418](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L418-L418), [480](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L480-L480), [536](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L536-L536), [596](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L596-L596), [662](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L662-L662), [708](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L708-L708), [709](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L709-L709), [776](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L776-L776), [784](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L784-L784), [790](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L790-L790), [835](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L835-L835), [841](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L841-L841), [937](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L937-L937), [976](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L976-L976), [1010](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L1010-L1010), [1018](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L1018-L1018), [1067](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L1067-L1067), [1075](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L1075-L1075), [1168](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L1168-L1168), [1173](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L1173-L1173), [1182](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L1182-L1182), [1208](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L1208-L1208), [1255](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L1255-L1255), [1347](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L1347-L1347), [1374](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L1374-L1374), [1545](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L1545-L1545), [1549](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L1549-L1549), [1570](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L1570-L1570)
 
 ```solidity
 File: contracts/PanopticFactory.sol
@@ -9747,7 +9911,7 @@ File: contracts/PanopticFactory.sol
 
 
 
-*GitHub* : [181](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticFactory.sol#L181-L181), [188](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticFactory.sol#L188-L188), [217](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticFactory.sol#L217-L217), [303](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticFactory.sol#L303-L303), [308](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticFactory.sol#L308-L308), [378](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticFactory.sol#L378-L378)
+*GitHub* : [181](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticFactory.sol#L181-L181), [188](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticFactory.sol#L188-L188), [217](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticFactory.sol#L217-L217), [303](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticFactory.sol#L303-L303), [308](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticFactory.sol#L308-L308), [378](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticFactory.sol#L378-L378)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -9788,7 +9952,7 @@ File: contracts/PanopticPool.sol
 
 
 
-*GitHub* : [441](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L441-L441), [459](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L459-L459), [510](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L510-L510), [745](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L745-L745), [802](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L802-L802), [864](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L864-L864), [943](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L943-L943), [1035](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1035-L1035), [1274](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1274-L1274), [1382](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1382-L1382), [1415](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1415-L1415), [1492](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1492-L1492), [1518](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1518-L1518), [1596](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1596-L1596), [1672](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1672-L1672), [1852](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1852-L1852)
+*GitHub* : [441](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L441-L441), [459](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L459-L459), [510](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L510-L510), [745](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L745-L745), [802](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L802-L802), [864](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L864-L864), [943](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L943-L943), [1035](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1035-L1035), [1274](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1274-L1274), [1382](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1382-L1382), [1415](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1415-L1415), [1492](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1492-L1492), [1518](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1518-L1518), [1596](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1596-L1596), [1672](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1672-L1672), [1852](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1852-L1852)
 
 ```solidity
 File: contracts/SemiFungiblePositionManager.sol
@@ -9831,7 +9995,7 @@ File: contracts/SemiFungiblePositionManager.sol
 
 
 
-*GitHub* : [412](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L412-L412), [419](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L419-L419), [446](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L446-L446), [453](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L453-L453), [575](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L575-L575), [601](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L601-L601), [715](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L715-L715), [819](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L819-L819), [824](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L824-L824), [827](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L827-L827), [882](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L882-L882), [939](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L939-L939), [1013](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L1013-L1013), [1085](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L1085-L1085), [1296](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L1296-L1296), [1299](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L1299-L1299), [1465](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L1465-L1465)
+*GitHub* : [412](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L412-L412), [419](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L419-L419), [446](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L446-L446), [453](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L453-L453), [575](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L575-L575), [601](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L601-L601), [715](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L715-L715), [819](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L819-L819), [824](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L824-L824), [827](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L827-L827), [882](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L882-L882), [939](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L939-L939), [1013](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L1013-L1013), [1085](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L1085-L1085), [1296](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L1296-L1296), [1299](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L1299-L1299), [1465](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L1465-L1465)
 
 ```solidity
 File: contracts/libraries/FeesCalc.sol
@@ -9846,7 +10010,7 @@ File: contracts/libraries/FeesCalc.sol
 
 
 
-*GitHub* : [51](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/FeesCalc.sol#L51-L51), [55](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/FeesCalc.sol#L55-L55), [147](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/FeesCalc.sol#L147-L147)
+*GitHub* : [51](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/FeesCalc.sol#L51-L51), [55](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/FeesCalc.sol#L55-L55), [147](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/FeesCalc.sol#L147-L147)
 
 ```solidity
 File: contracts/libraries/Math.sol
@@ -9915,7 +10079,7 @@ File: contracts/libraries/Math.sol
 
 
 
-*GitHub* : [26](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L26-L26), [34](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L34-L34), [42](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L42-L42), [50](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L50-L50), [58](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L58-L58), [66](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L66-L66), [74](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L74-L74), [83](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L83-L83), [130](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L130-L130), [131](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L131-L131), [176](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L176-L176), [312](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L312-L312), [326](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L326-L326), [361](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L361-L361), [370](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L370-L370), [447](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L447-L447), [448](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L448-L448), [484](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L484-L484), [547](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L547-L547), [587](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L587-L587), [588](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L588-L588), [624](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L624-L624), [664](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L664-L664), [665](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L665-L665), [701](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L701-L701), [759](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L759-L759), [760](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L760-L760), [761](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L761-L761), [768](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L768-L768), [769](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/Math.sol#L769-L769)
+*GitHub* : [26](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L26-L26), [34](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L34-L34), [42](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L42-L42), [50](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L50-L50), [58](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L58-L58), [66](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L66-L66), [74](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L74-L74), [83](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L83-L83), [130](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L130-L130), [131](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L131-L131), [176](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L176-L176), [312](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L312-L312), [326](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L326-L326), [361](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L361-L361), [370](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L370-L370), [447](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L447-L447), [448](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L448-L448), [484](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L484-L484), [547](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L547-L547), [587](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L587-L587), [588](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L588-L588), [624](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L624-L624), [664](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L664-L664), [665](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L665-L665), [701](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L701-L701), [759](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L759-L759), [760](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L760-L760), [761](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L761-L761), [768](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L768-L768), [769](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/Math.sol#L769-L769)
 
 ```solidity
 File: contracts/libraries/PanopticMath.sol
@@ -9986,7 +10150,7 @@ File: contracts/libraries/PanopticMath.sol
 
 
 
-*GitHub* : [137](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L137-L137), [148](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L148-L148), [207](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L207-L207), [218](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L218-L218), [248](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L248-L248), [256](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L256-L256), [359](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L359-L359), [360](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L360-L360), [395](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L395-L395), [479](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L479-L479), [494](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L494-L494), [511](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L511-L511), [528](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L528-L528), [532](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L532-L532), [537](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L537-L537), [551](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L551-L551), [555](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L555-L555), [564](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L564-L564), [704](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L704-L704), [706](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L706-L706), [724](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L724-L724), [781](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L781-L781), [784](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L784-L784), [798](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L798-L798), [799](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L799-L799), [822](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L822-L822), [823](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L823-L823), [860](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L860-L860), [863](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L863-L863), [931](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L931-L931), [949](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L949-L949)
+*GitHub* : [137](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L137-L137), [148](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L148-L148), [207](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L207-L207), [218](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L218-L218), [248](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L248-L248), [256](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L256-L256), [359](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L359-L359), [360](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L360-L360), [395](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L395-L395), [479](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L479-L479), [494](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L494-L494), [511](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L511-L511), [528](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L528-L528), [532](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L532-L532), [537](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L537-L537), [551](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L551-L551), [555](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L555-L555), [564](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L564-L564), [704](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L704-L704), [706](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L706-L706), [724](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L724-L724), [781](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L781-L781), [784](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L784-L784), [798](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L798-L798), [799](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L799-L799), [822](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L822-L822), [823](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L823-L823), [860](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L860-L860), [863](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L863-L863), [931](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L931-L931), [949](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L949-L949)
 
 ```solidity
 File: contracts/multicall/Multicall.sol
@@ -9997,7 +10161,7 @@ File: contracts/multicall/Multicall.sol
 
 
 
-*GitHub* : [14](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/multicall/Multicall.sol#L14-L14)
+*GitHub* : [14](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/multicall/Multicall.sol#L14-L14)
 
 ```solidity
 File: contracts/tokens/ERC1155Minimal.sol
@@ -10010,7 +10174,7 @@ File: contracts/tokens/ERC1155Minimal.sol
 
 
 
-*GitHub* : [143](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/tokens/ERC1155Minimal.sol#L143-L143), [187](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/tokens/ERC1155Minimal.sol#L187-L187)
+*GitHub* : [143](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/tokens/ERC1155Minimal.sol#L143-L143), [187](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/tokens/ERC1155Minimal.sol#L187-L187)
 
 ```solidity
 File: contracts/types/LeftRight.sol
@@ -10027,7 +10191,7 @@ File: contracts/types/LeftRight.sol
 
 
 
-*GitHub* : [161](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/LeftRight.sol#L161-L161), [162](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/LeftRight.sol#L162-L162), [184](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/LeftRight.sol#L184-L184), [185](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/LeftRight.sol#L185-L185)
+*GitHub* : [161](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/LeftRight.sol#L161-L161), [162](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/LeftRight.sol#L162-L162), [184](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/LeftRight.sol#L184-L184), [185](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/LeftRight.sol#L185-L185)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -10059,9 +10223,9 @@ File: contracts/types/TokenId.sol
 ```
 
 
-*GitHub* : [376](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L376-L376), [378](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L378-L378), [380](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L380-L380), [382](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L382-L382), [439](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L439-L439), [441](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L441-L441), [443](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L443-L443), [445](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L445-L445), [507](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L507-L507), [520](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L520-L520), [581](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L581-L581), [589](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L589-L589)
+*GitHub* : [376](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L376-L376), [378](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L378-L378), [380](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L380-L380), [382](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L382-L382), [439](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L439-L439), [441](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L441-L441), [443](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L443-L443), [445](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L445-L445), [507](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L507-L507), [520](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L520-L520), [581](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L581-L581), [589](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L589-L589)
 
-### [G-23]<a name="g-23"></a> Counting down in for statements is more gas efficient
+### [G-25]<a name="g-25"></a> Counting down in for statements is more gas efficient
 
 Looping downwards in Solidity is more gas efficient due to how the EVM compares variables. In a 'for' loop that counts down, the end condition is usually to compare with zero, which is cheaper than comparing with another number. As such, restructure your loops to count downwards where possible.
 
@@ -10078,7 +10242,7 @@ File: contracts/CollateralTracker.sol
 
 
 
-*GitHub* : [662](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L662-L662), [1255](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L1255-L1255)
+*GitHub* : [662](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L662-L662), [1255](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L1255-L1255)
 
 ```solidity
 File: contracts/PanopticPool.sol
@@ -10089,7 +10253,7 @@ File: contracts/PanopticPool.sol
 
 
 
-*GitHub* : [1672](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticPool.sol#L1672-L1672)
+*GitHub* : [1672](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1672-L1672)
 
 ```solidity
 File: contracts/libraries/PanopticMath.sol
@@ -10116,7 +10280,7 @@ File: contracts/libraries/PanopticMath.sol
 
 
 
-*GitHub* : [137](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L137-L137), [148](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L148-L148), [207](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L207-L207), [248](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L248-L248), [256](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L256-L256), [781](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L781-L781), [784](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L784-L784), [860](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L860-L860), [863](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/libraries/PanopticMath.sol#L863-L863)
+*GitHub* : [137](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L137-L137), [148](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L148-L148), [207](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L207-L207), [248](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L248-L248), [256](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L256-L256), [781](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L781-L781), [784](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L784-L784), [860](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L860-L860), [863](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/libraries/PanopticMath.sol#L863-L863)
 
 ```solidity
 File: contracts/tokens/ERC1155Minimal.sol
@@ -10127,7 +10291,7 @@ File: contracts/tokens/ERC1155Minimal.sol
 
 
 
-*GitHub* : [187](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/tokens/ERC1155Minimal.sol#L187-L187)
+*GitHub* : [187](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/tokens/ERC1155Minimal.sol#L187-L187)
 
 ```solidity
 File: contracts/types/TokenId.sol
@@ -10141,9 +10305,9 @@ File: contracts/types/TokenId.sol
 ```
 
 
-*GitHub* : [507](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L507-L507), [520](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L520-L520), [581](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId.sol#L581-L581)
+*GitHub* : [507](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L507-L507), [520](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L520-L520), [581](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/TokenId.sol#L581-L581)
 
-### [G-24]<a name="g-24"></a> Avoid transferring amounts of zero in order to save gas
+### [G-26]<a name="g-26"></a> Avoid transferring amounts of zero in order to save gas
 
 Skipping the external call when nothing will be transferred, will save at least **100 gas**
 
@@ -10168,7 +10332,7 @@ File: contracts/CollateralTracker.sol
 
 
 
-*GitHub* : [333](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L333-L333), [352](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L352-L352), [424](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L424-L424), [484](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L484-L484), [556](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L556-L556), [616](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/CollateralTracker.sol#L616-L616)
+*GitHub* : [333](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L333-L333), [352](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L352-L352), [424](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L424-L424), [484](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L484-L484), [556](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L556-L556), [616](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L616-L616)
 
 ```solidity
 File: contracts/PanopticFactory.sol
@@ -10181,7 +10345,7 @@ File: contracts/PanopticFactory.sol
 
 
 
-*GitHub* : [182](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticFactory.sol#L182-L182), [189](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/PanopticFactory.sol#L189-L189)
+*GitHub* : [182](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticFactory.sol#L182-L182), [189](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticFactory.sol#L189-L189)
 
 ```solidity
 File: contracts/SemiFungiblePositionManager.sol
@@ -10197,5 +10361,6 @@ File: contracts/SemiFungiblePositionManager.sol
 ```
 
 
-*GitHub* : [413](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L413-L413), [420](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L420-L420), [456](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L456-L456), [555](https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/SemiFungiblePositionManager.sol#L555-L555)
+*GitHub* : [413](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L413-L413), [420](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L420-L420), [456](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L456-L456), [555](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/SemiFungiblePositionManager.sol#L555-L555)
+
 
