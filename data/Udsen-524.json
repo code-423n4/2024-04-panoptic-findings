@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "Udsen",
+  "risk": "3",
+  "title": "Unsafe casting of `int256` to `uint256` can prompt the `s_settledTokens` mapping into a broken state",
+  "issueId": 524,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/524"
+}
