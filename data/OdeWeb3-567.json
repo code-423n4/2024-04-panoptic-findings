@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "OdeWeb3",
+  "risk": "3",
+  "title": "Core function can be called externally leading to DOS",
+  "issueId": 567,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/567"
+}
