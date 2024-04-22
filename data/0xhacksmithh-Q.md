@@ -1,5 +1,123 @@
 ## Low & NC Report For Panoptics
 
+### [L-1] No token extract method presents in `CollateralTracker` contract
+
+`CollateralTracker` is a token vault contract.
+It possible that some token could remain in that contract at the, due to some precision loss or rounding down/up opration as Dusts
+
+So developer should implemnt some token extract method so that those Dust amount could pulled out of collateralTracker contracts.
+
+
+Or in most hazardious situation let say in some attack case, it could stop attacker from daring fund.
+
+Protocol should implement some sort of `pause / upgradable` methods. I mention those in Non-critical section.
+
+https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol
+
+
+
+### [L-2] Possible precision loss in `maxMint` function
+
+In Solidity division can result in rounding down errors, hence to minimize any rounding errors we always want to perform multiplication before division.
+
+```solidity
+    function maxMint(address) external view returns (uint256 maxShares) { 
+        unchecked {
+            return (convertToShares(type(uint104).max) * DECIMALS) / (DECIMALS + COMMISSION_FEE);
+        }
+    }
+
+    function convertToShares(uint256 assets) public view returns (uint256 shares) {
+        return Math.mulDiv(assets, totalSupply, totalAssets()); 
+    }
+```
+https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L444-L448
+
+https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L379-L381
+
+
+
+
+### [L-3] Multiple Wrong cases provided in contest Docs
+
+#### Wrong Equation used in `Net, Gross, and Owed fees (with spread)` section
+
+`gross_feesCollectedX128 = feesGrowthX128 * N + feesGrowthX128*ν*S*(1 + S/N)` --Eq-1
+
+According to Docs we get following equation(Eq-2) by solving above(Eq-1)
+
+`gross_feesCollectedX128 = feesGrowthX128 * T * (1 + ν*S^2/(N*T))` -- Eq-2
+
+which is not true
+
+To get Eq-2 from above we have to assume that ` T = N + VS `
+which is not right
+
+Actually `T = N + S`
+
+That shows that above equation(Eq-1) was wrong
+
+https://panoptic.xyz/docs/panoptic-protocol/streamia#net-gross-and-owed-fees-with-spread
+
+
+
+### [L-4] `maxDeposit` is incompatible with some ERC20 tokens
+
+maxDeposit() returns that maximum amount asset that can be deposited to `collateralTracker` contract. it returns `type(uint104).max`
+
+But problem is that some tokens like `COMP` `UNI` ony support maxTransfer or maxAllowance till `type(uint96).max`.
+https://www.youtube.com/watch?v=Tx0f8A2Yd3k&t=2090s
+
+So for those type of Assets here `maxDeposit()` retuning wrong values.
+
+```solidity
+    /// @notice returns The maximum deposit amount.
+    /// @return maxAssets The maximum amount of assets that can be deposited.
+    function maxDeposit(address) external pure returns (uint256 maxAssets) {
+        return type(uint104).max;
+    }
+```
+https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L392-L394
+
+
+
+### [L-5] `maxMint` calculation is wrong
+
+In ERC4626 standard's word maxMint() `MUST return the maximum amount of shares mint would allow to be deposited to receiver and not cause a revert, `
+
+```solidity
+    function maxMint(address) external view returns (uint256 maxShares) { 
+        unchecked {
+            return (convertToShares(type(uint104).max) * DECIMALS) / (DECIMALS + COMMISSION_FEE);
+        }
+    }
+
+
+
+    function convertToShares(uint256 assets) public view returns (uint256 shares) {
+        return Math.mulDiv(assets, totalSupply, totalAssets());
+```
+
+But in above implementation we see so many rounding downs
+
+- 1st rounding down in `convertToShares`
+- 2nd in `maxShares` calculation
+
+As a result `maxMint()` not returning maximum possible shares
+
+https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L444-L448
+
+### [L-6] Some Refactoring could happen in Code as code making same check twice
+
+
+
+
+
+### [L-7] `deposit()` doesn't fully followed `ERC4626` standard
+
+
+https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L
+
 
 
 
