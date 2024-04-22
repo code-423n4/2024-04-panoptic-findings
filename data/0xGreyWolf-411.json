@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "0xGreyWolf",
+  "risk": "2",
+  "title": "`CollateralTracker` lacks slippage protection in `redeem()` and `withdraw()` functions",
+  "issueId": 411,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/411"
+}
