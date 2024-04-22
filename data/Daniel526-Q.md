@@ -61,3 +61,21 @@ library SafeMath {
 }
 
 ```
+
+## C. Potential Reliance on Outdated Uniswap V3 Fee Data
+[FeesCalc.sol#L129-L209](https://github.com/code-423n4/2024-04-panoptic/blob/833312ebd600665b577fbd9c03ffa0daf250ed24/contracts/libraries/FeesCalc.sol#L129-L209)
+The `FeesCalc` library within the provided Solidity contract is designed to calculate fees accumulated within liquidity positions, specifically option position legs, by interfacing with a Uniswap V3 pool. The library's function `_getAMMSwapFeesPerLiquidityCollected` retrieves fee growth data for a given liquidity position's tick range:
+```solidity
+function _getAMMSwapFeesPerLiquidityCollected(
+    IUniswapV3Pool univ3pool,
+    int24 currentTick,
+    int24 tickLower,
+    int24 tickUpper
+) internal view returns (uint256 feeGrowthInside0X128, uint256 feeGrowthInside1X128)
+```
+This function assumes that the pool's `feeGrowthGlobal0X128` and `feeGrowthGlobal1X128` accumulators, as well as the tick data, are up-to-date at the time of the call. However, if a swap transaction has not yet been processed by the pool to update these values, the contract may use stale data to calculate fees, potentially leading to inaccurate fee calculations.
+### Impact:
+ The impact of using potentially outdated fee data is the incorrect calculation of accumulated fees within liquidity positions. This could result in misreporting the value of a user's portfolio, leading to financial discrepancies.
+
+### Mitigation:
+Consider implementing a mechanism to ensure that the fee data is current before performing calculations. One approach could be to trigger or wait for a Uniswap V3 pool
