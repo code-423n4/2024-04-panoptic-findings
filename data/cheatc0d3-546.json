@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "cheatc0d3",
+  "risk": "2",
+  "title": "Lack of Arbitrum Sequencer Uptime Checks in CollateralTracker Contract",
+  "issueId": 546,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/546"
+}
