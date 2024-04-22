@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "0xbrett8571",
+  "risk": "2",
+  "title": "Users may receive incorrect premium amounts credited to their accounts, potentially resulting in financial losses or unintended gains.",
+  "issueId": 391,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/391"
+}
