@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "0xdice91",
+  "risk": "2",
+  "title": "When Burning a Tokenized Position `validate` should be done before flipping the `isLong` bits in `_validateAndForwardToAMM()`",
+  "issueId": 459,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/459"
+}
