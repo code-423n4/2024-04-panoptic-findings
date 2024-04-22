@@ -3766,7 +3766,7 @@ https://github.com/code-423n4/2024-04-panoptic/tree/main/contracts/types/TokenId
 | [[NC050](#nc050---unused-import)] | Unused import | 1 |
 | [[NC051](#nc051---unsafe-conversion-from-unsigned-to-signed-values)] | Unsafe conversion from unsigned to signed values | 72 |
 | [[NC052](#nc052---add-inline-comments-for-unnamed-variables)] | Add inline comments for unnamed variables | 2 |
-| [[NC053](#nc053---style-guide-state-and-local-variables-should-be-named-using-lowercamelcase)] | Style guide: State and local variables should be named using lowerCamelCase | 715 |
+| [[NC053](#nc053---style-guide-state-and-local-variables-should-be-named-using-lowercamelcase)] | Style guide: State and local variables should be named using lowerCamelCase | 220 |
 | [[NC054](#nc054---unusual-loop-variable)] | Unusual loop variable | 16 |
 | [[NC055](#nc055---use-the-latest-solidity-prior-to-0820-if-on-l2s-for-deployment)] | Use the latest solidity (prior to 0.8.20 if on L2s) for deployment | 20 |
 | [[NC056](#nc056---visibility-should-be-set-explicitly-rather-than-defaulting-to-internal)] | Visibility should be set explicitly rather than defaulting to internal | 8 |
