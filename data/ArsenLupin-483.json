@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "ArsenLupin",
+  "risk": "3",
+  "title": "In the swapInAMM the malicious actor could manipulate the sqrtPriceX96 in the slot0 which can cause an incorrect calculation.",
+  "issueId": 483,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/483"
+}
