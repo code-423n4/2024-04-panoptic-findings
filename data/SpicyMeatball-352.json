@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "SpicyMeatball",
+  "risk": "2",
+  "title": "Users can evade settleLongPremium or forceExercise being called on their position",
+  "issueId": 352,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/352"
+}
