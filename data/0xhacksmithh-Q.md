@@ -107,16 +107,64 @@ As a result `maxMint()` not returning maximum possible shares
 
 https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L444-L448
 
-### [L-6] Some Refactoring could happen in Code as code making same check twice
+### [L-6] Before setting Crucial address state variable make sure to check address(0)
+
+```solidity
+    constructor(
+        address _WETH9,
+        SemiFungiblePositionManager _SFPM,
+        IUniswapV3Factory _univ3Factory,
+        IDonorNFT _donorNFT,
+        address _poolReference,
+        address _collateralReference
+    ) {
+        WETH = _WETH9; // @audit L :: address check in constructor
+        SFPM = _SFPM;
+        DONOR_NFT = _donorNFT;
+        // We store the Uniswap Factory contract - later we can use this to verify uniswap pools
+        UNIV3_FACTORY = _univ3Factory;
+        POOL_REFERENCE = _poolReference;
+        COLLATERAL_REFERENCE = _collateralReference;
+    }
+```
+https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticFactory.sol#L115-L130
 
 
 
 
 
 ### [L-7] `deposit()` doesn't fully followed `ERC4626` standard
+according to EIP-4626 standard following s the required condition for deposit()
 
+MUST support EIP-20 approve / transferFrom on asset as a deposit flow. MAY support an additional flow in which the underlying tokens are owned by the Vault contract before the deposit execution, and are accounted for during deposit.
 
-https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L
+This EIP-20 approve support feature already implemented in case of CallateralTracker.sol's withdraw() & redeem(). So its recommened to follow same feature in case of deposit as well.
+```solidity
+    function deposit(uint256 assets, address receiver) external returns (uint256 shares) { // @audit-issue incompatible with erc4626 as EIP-20 approve
+        if (assets > type(uint104).max) revert Errors.DepositTooLarge();
+
+        shares = previewDeposit(assets); 
+
+        
+        SafeTransferLib.safeTransferFrom(
+            s_underlyingToken,
+            msg.sender,
+            address(s_panopticPool),
+            assets
+        );
+        
+        _mint(receiver, shares);
+
+        // update tracked asset balance
+        unchecked {
+            s_poolAssets += uint128(assets); 
+        }
+
+        emit Deposit(msg.sender, receiver, assets, shares);
+    }
+```
+
+https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L417-L440
 
 
 
@@ -127,12 +175,44 @@ https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTra
 Contracts should avoid making low-level calls to custom addresses, especially if these calls are based on address parameters in the function. 
 Such behavior can lead to unexpected execution of untrusted code. Instead, consider using Solidity's high-level function calls or contract interactions.
 
+```solidity
+        return ERC20Minimal.transfer(recipient, amount);
+
+
+       return ERC20Minimal.transferFrom(from, to, amount);
+```
+https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L333
+https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L352
 
 
 
 ### [N-02] Missing Event Emission After Critical Initialize() Function
 
 Emitting an initialization event offers clear, on-chain evidence of the contract's initialization state, enhancing transparency and auditability. This practice aids users and developers in accurately tracking the contract's lifecycle, pinpointing the precise moment of its initialization. Moreover, it aligns with best practices for event logging in smart contracts, ensuring that significant state changes are both observable and verifiable through emitted events.
+```solidity
+        totalSupply = 10 ** 6;
+
+        s_poolAssets = 1;
+
+
+        s_underlyingToken = underlyingIsToken0 ? token0 : token1;
+
+
+        s_panopticPool = panopticPool;
+
+
+        COMMISSION_FEE = _commissionFee;
+        SELLER_COLLATERAL_RATIO = _sellerCollateralRatio;
+        BUYER_COLLATERAL_RATIO = _buyerCollateralRatio;
+        FORCE_EXERCISE_COST = _forceExerciseCost;
+        TARGET_POOL_UTIL = _targetPoolUtilization;
+        SATURATED_POOL_UTIL = _saturatedPoolUtilization;
+        ITM_SPREAD_MULTIPLIER = _ITMSpreadMultiplier;
+```
+https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L187-L193
+https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L238
+https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L234
+https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L244
 
 
 ### [N-03] Multiple address/ID mappings can be combined into a single mapping of an address/ID to a struct, for readability
@@ -229,6 +309,10 @@ https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.
 
 Complex casting in Solidity contracts can introduce both readability issues and potential for overflows. Whenever multiple casts are found, consider whether the complexity is necessary. If so, it is strongly recommended to add inline comments to explain why these casts are needed and to assure that no overflows are introduced.
 
+*Instances(Multiple instances in following contracts)*
+
+https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/LeftRight.sol
+https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/types/LiquidityChunk.sol
 
 ### [N-10] Constants in comparisons should appear on the left side
 
@@ -248,10 +332,6 @@ if (Math.abs(currentTick - twapTick) > MAX_TWAP_DELTA_LIQUIDATION)
 https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L341
 https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L943
 https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1035
-
-### [N-11] Consider returning a struct rather than having multiple return values
-
-Functions that return many variables can become difficult to read and maintain. Using a struct to encapsulate these return values can improve code readability, increase reusability, and reduce the likelihood of errors. Consider refactoring functions that return more than three variables to use a struct instead.
 
 
 
@@ -324,11 +404,6 @@ https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.
 https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L710
 
 
-### [N-15] Consider using named function arguments
-
-When calling functions in external contracts with multiple arguments, consider using named function parameters, rather than positional ones.
-
-
 
 ### [N-16] Leverage Recent Solidity Features with 0.8.23
 
@@ -336,14 +411,22 @@ The recent updates in Solidity provide several features and optimizations that, 
 
 Additionally, the re-implementation of the UnusedAssignEliminator and UnusedStoreEliminator in the Solidity optimizer provides the ability to remove unused assignments in deeply nested loops. This results in a cleaner, more efficient contract code, reducing clutter and potential points of confusion during code review or debugging. It's recommended to make full use of these features and optimizations to enhance the robustness and readability of your smart contracts.
 
+* Should implemented in all contract files *
 
-### [N-17] Contract uses both require()/revert() as well as custom errors
+### [N-17] Use of magic numbers in code's mathematical calculations
 
-The contract uses both require()/revert() and custom errors for error handling.
-
-It's recommended to use a consistent approach for error handling in a single file.
-
-
+```solidity
+            TICK_DEVIATION = uint256(
+                2230 +
+                    (12500 * ratioTick) /
+                    10_000 +
+                    (7812 * ratioTick ** 2) /
+                    10_000 ** 2 +
+                    (6510 * ratioTick ** 3) /
+                    10_000 ** 3
+            );
+```
+https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/CollateralTracker.sol#L200-L209
 
 ### [N-18] `constant` should be value rather than expression
 
