@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "Manax",
+  "risk": "3",
+  "title": "`delegatecall` not handled correctly allowing the calling contract to manipulate the state of the called contract",
+  "issueId": 349,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/349"
+}
