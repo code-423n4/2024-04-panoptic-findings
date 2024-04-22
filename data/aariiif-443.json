@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "aariiif",
+  "risk": "2",
+  "title": "Potential inconsistencies and loss of funds due to the lack of proper error handling and return value checks for the `_validateAndForwardToAMM` function calls.",
+  "issueId": 443,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/443"
+}
