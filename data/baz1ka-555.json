@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "baz1ka",
+  "risk": "2",
+  "title": "`PanopticPool` can be initialized with wrong data",
+  "issueId": 555,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/555"
+}
