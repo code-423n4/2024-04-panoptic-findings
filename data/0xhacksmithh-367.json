@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "0xhacksmithh",
+  "risk": "2",
+  "title": "`CollateralTracker.sol` is not fully supporting `EIP-4626` standard",
+  "issueId": 367,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/367"
+}
