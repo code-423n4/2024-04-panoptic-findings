@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "DadeKuma",
+  "risk": "2",
+  "title": "Median is not updated when burning a position, which can result in an inaccurate solvency check",
+  "issueId": 540,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/540"
+}
