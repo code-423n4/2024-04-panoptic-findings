@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "Myd",
+  "risk": "2",
+  "title": "If the user's collateral balance is insufficient, the payback may fail",
+  "issueId": 407,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/407"
+}
