@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "OdeWeb3",
+  "risk": "2",
+  "title": "There is no msg.value check while making deposit.",
+  "issueId": 529,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/529"
+}
