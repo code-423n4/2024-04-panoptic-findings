@@ -16,7 +16,7 @@ Apart from the 6 different **QA** aspects, **_`3 low-risk`_** issues were found.
   - [1️⃣ Refactor](#refactor-1️⃣)
   - [2️⃣ Modularity](#modularity-2️⃣)
   - [3️⃣ Comment correctness](#comment-correctness-3️⃣)
-  - [4️⃣ Consisteny & readability](#consisteny--readability-4️⃣)
+  - [4️⃣ Consistency & readability](#consistency--readability-4️⃣)
   - [5️⃣ Naming](#naming-5️⃣)
   - [6️⃣ Code & Repo Navigability](#code--repo-navigability-6️⃣)
 - [Low Risk 🔅](#low-risk-🔅)
@@ -32,7 +32,7 @@ Apart from the 6 different **QA** aspects, **_`3 low-risk`_** issues were found.
 
 ### **1️⃣.1️⃣ Define errors an events in interfaces**
 
-It's a good pratice to define errors and events in interfaces, and add the functions docs for the interface there. Allow for developers for faster understanding of the code and the functions that are being used. Also encapsulates better the logic of the contracts and makes the contract file smaller and more confortable to work with.
+It's a good practice to define errors and events in interfaces, and add the functions docs for the interface there. Allow for developers for faster understanding of the code and the functions that are being used. Also encapsulates better the logic of the contracts and makes the contract file smaller and more comfortable to work with.
 
 For example with the `PanopticPool.sol` a `IPanopticPool.sol` interface should be made with all the **external** and **public** functions and their docs. In a glimpse a developer would see that the main actions users do in the pool are: `mintOptions()`, `burnOptions()`, `forceExercise()`, `settleLongPremium()` or `pokeMedian()`.
 
@@ -83,7 +83,7 @@ _checkSolvencyAtTick(liquidatee, positionIdList, currentTick, twapTick, NO_BUFFE
 
 - [Here](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L1481) the variable is not actually `totalLiquidity`, the value which holds is actually `removedLiquidity`. Change name to `removedLiquidity`.
 
-## **4️⃣ `Consisteny & readability`** 🧩
+## **4️⃣ `Consistency & readability`** 🧩
 
 - Use `i` as the iterator name in [this foor loop](https://github.com/code-423n4/2024-04-panoptic/blob/main/contracts/PanopticPool.sol#L441) for consistency.
 
@@ -204,7 +204,7 @@ Use restrictive pragmas.
 
 Add the described timelock to the owner system and a 2tx process to avoid any potential issues.
 
-Because the ultimate owner is meant to finally be `address(0)`, when implementing the 2tx transfer process add an `if` statement to avoid the 2tx process if the `newOwner` is `address(0)`. Yet still the timelock should still work just in case an accidental or malicious transfer to `addres(0)` happens before the expected time and can be detected reveresed on time.
+Because the ultimate owner is meant to finally be `address(0)`, when implementing the 2tx transfer process add an `if` statement to avoid the 2tx process if the `newOwner` is `address(0)`. Yet still the timelock should work just in case an accidental or malicious transfer to `addres(0)` happens before the expected time and so it can be detected and reversed on time.
 
 ---
 
