@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "baz1ka",
+  "risk": "2",
+  "title": "InteractionHelper.computeDecimals returns incorrect default value if ERC20 doesn't suport metadata",
+  "issueId": 554,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/554"
+}
