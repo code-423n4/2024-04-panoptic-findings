@@ -1,0 +1,8 @@
+{
+  "contest": 354,
+  "handle": "aman",
+  "risk": "2",
+  "title": "difference in calculation of values in `previewDeposit` and `previewMint` will return different vaules",
+  "issueId": 491,
+  "issueUrl": "https://github.com/code-423n4/2024-04-panoptic-findings/issues/491"
+}
